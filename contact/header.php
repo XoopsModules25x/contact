@@ -17,11 +17,11 @@
  * @author      Kazumi Ono (aka Onokazu)
  * @author      Trabis <lusopoemas@gmail.com>
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id: header.php 12159 2013-10-07 19:11:27Z beckmi $
+ * @version     $Id$
  */
 
 include '../../mainfile.php';
-include XOOPS_ROOT_PATH."/modules/contact/class/contact.php";
-include_once XOOPS_ROOT_PATH."/class/xoopsformloader.php";
+include XOOPS_ROOT_PATH . "/modules/contact/class/contact.php";
+include_once XOOPS_ROOT_PATH . "/class/xoopsformloader.php";
 
-$contact_handler = & xoops_getModuleHandler ( 'contact', 'contact' );
+$contact_handler = & xoops_getModuleHandler('contact', 'contact');

@@ -21,7 +21,7 @@
  */
 
 // Call header
-require dirname(__FILE__) . '/header.php';
+require dirname(__FILE__) . '/admin_header.php';
 // Display Admin header
 xoops_cp_header();
 // Define default value
@@ -31,7 +31,7 @@ switch ($op) {
     case 'list':
         // prune manager
         $form = new XoopsThemeForm(_AM_CONTACT_TOOLS_PRUNE, 'tools', 'tools.php', 'post');
-        $form->addElement(new XoopsFormTextDateSelect(_AM_CONTACT_TOOLS_PRUNE_BEFORE, 'prune_date', 15,  time()));
+        $form->addElement(new XoopsFormTextDateSelect(_AM_CONTACT_TOOLS_PRUNE_BEFORE, 'prune_date', 15, time()));
         $onlyreply = new xoopsFormCheckBox('', 'onlyreply');
         $onlyreply->addOption(1, _AM_CONTACT_TOOLS_PRUNE_REPLYONLY);
         $form->addElement($onlyreply, false);
@@ -41,19 +41,19 @@ switch ($op) {
         break;
 
     case 'prune':
-     $timestamp = $contact_handler->Contact_CleanVars( $_REQUEST, 'prune_date', '', 'int' );
-     $onlyreply = $contact_handler->Contact_CleanVars( $_REQUEST, 'onlyreply', 0, 'int' );
-      $timestamp = strtotime($timestamp);
-      $count = $contact_handler->Contact_PruneCount($timestamp,$onlyreply);
-     $contact_handler->Contact_DeleteBeforeDate($timestamp,$onlyreply);
-     redirect_header ( 'tools.php', 1, sprintf(_AM_CONTACT_MSG_PRUNE_DELETED,$count) );
-      xoops_cp_footer ();
-      exit ();
-      break;
+        $timestamp = $contact_handler->Contact_CleanVars($_REQUEST, 'prune_date', '', 'int');
+        $onlyreply = $contact_handler->Contact_CleanVars($_REQUEST, 'onlyreply', 0, 'int');
+        $timestamp = strtotime($timestamp);
+        $count     = $contact_handler->Contact_PruneCount($timestamp, $onlyreply);
+        $contact_handler->Contact_DeleteBeforeDate($timestamp, $onlyreply);
+        redirect_header('tools.php', 1, sprintf(_AM_CONTACT_MSG_PRUNE_DELETED, $count));
+        xoops_cp_footer();
+        exit ();
+        break;
 }
 
 $xoopsTpl->assign('navigation', $admin_class->addNavigation('tools.php'));
 // Call template file
 $xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/contact/templates/admin/contact_tools.html');
 // Call footer
-require dirname(__FILE__) . '/footer.php';
+require dirname(__FILE__) . '/admin_footer.php';

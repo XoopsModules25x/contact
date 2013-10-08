@@ -22,37 +22,35 @@
 
 defined("XOOPS_ROOT_PATH") or die("XOOPS root path not defined");
 
-$dirname = basename(dirname(dirname(__FILE__)));
-$module_handler = xoops_gethandler('module');
-$module = $module_handler->getByDirname($dirname);
-$pathIcon32 = $module->getInfo('icons32');
-
-//xoops_loadLanguage('admin', $dirname);
+$module_handler  = xoops_gethandler('module');
+$module          = $module_handler->getByDirname(basename(dirname(dirname(__FILE__))));
+$pathIcon32 = '../../' . $module->getInfo('icons32');
+xoops_loadLanguage('modinfo', $module->dirname());
 
 $adminmenu = array();
 
-$i = 1;
+$i                      = 1;
 $adminmenu[$i]["title"] = _MI_CONTACT_MENU_HOME;
 $adminmenu[$i]["link"]  = "admin/index.php";
-$adminmenu[$i]["desc"] = _MI_CONTACT_MENU_HOME_DESC;
-$adminmenu[$i]["icon"] = $pathIcon32.'/home.png';
+$adminmenu[$i]["desc"]  = _MI_CONTACT_MENU_HOME_DESC;
+$adminmenu[$i]["icon"]  = $pathIcon32 . '/home.png';
 $i++;
 $adminmenu[$i]["title"] = _MI_CONTACT_MENU_CONTACT;
 $adminmenu[$i]["link"]  = "admin/contact.php";
-$adminmenu[$i]["desc"] = _MI_CONTACT_MENU_CONTACT_DESC;
-$adminmenu[$i]["icon"] = $pathIcon32.'/content.png';
+$adminmenu[$i]["desc"]  = _MI_CONTACT_MENU_CONTACT_DESC;
+$adminmenu[$i]["icon"]  = $pathIcon32 . '/content.png';
 $i++;
 $adminmenu[$i]["title"] = _MI_CONTACT_MENU_LOGS;
 $adminmenu[$i]["link"]  = "admin/log.php";
-$adminmenu[$i]["desc"] = _MI_CONTACT_MENU_LOGS_DESC;
-$adminmenu[$i]["icon"] = $pathIcon32.'/exec.png';
+$adminmenu[$i]["desc"]  = _MI_CONTACT_MENU_LOGS_DESC;
+$adminmenu[$i]["icon"]  = $pathIcon32 . '/exec.png';
 $i++;
 $adminmenu[$i]["title"] = _MI_CONTACT_MENU_TOOLS;
 $adminmenu[$i]["link"]  = "admin/tools.php";
-$adminmenu[$i]["desc"] = _MI_CONTACT_MENU_TOOLS_DESC;
-$adminmenu[$i]["icon"] = $pathIcon32.'/exec.png';
+$adminmenu[$i]["desc"]  = _MI_CONTACT_MENU_TOOLS_DESC;
+$adminmenu[$i]["icon"]  = $pathIcon32 . '/exec.png';
 $i++;
 $adminmenu[$i]["title"] = _MI_CONTACT_MENU_ABOUT;
 $adminmenu[$i]["link"]  = "admin/about.php";
-$adminmenu[$i]["desc"] = _MI_CONTACT_MENU_ABOUT_DESC;
-$adminmenu[$i]["icon"] = $pathIcon32.'/about.png';
+$adminmenu[$i]["desc"]  = _MI_CONTACT_MENU_ABOUT_DESC;
+$adminmenu[$i]["icon"]  = $pathIcon32 . '/about.png';

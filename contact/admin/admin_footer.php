@@ -19,5 +19,5 @@
  * @author      Hossein Azizabadi (AKA Voltan)
  * @version     $Id$
  */
- 
+
 xoops_cp_footer();
