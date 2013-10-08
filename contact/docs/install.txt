@@ -1,0 +1,4 @@
+INSTALL/UNISTALL
+=================
+
+In order to install the module please do following:

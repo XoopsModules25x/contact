@@ -1,0 +1,69 @@
+<script src="<{$xoops_url}>/browse.php?Frameworks/jquery/jquery.js" type="text/javascript"></script>
+<script src="<{$xoops_url}>/browse.php?Frameworks/jquery/plugins/jquery.ui.js" type="text/javascript"></script>
+<link rel="stylesheet" href="<{$xoops_url}>/modules/system/css/ui/base/ui.all.css" type="text/css"/>
+<script type="text/javascript">
+    $(function () {
+
+        $("#dialog:ui-dialog").dialog("destroy");
+
+
+        var contact_name = $("#contact_name"), contact_mail = $("#contact_mail"), contact_phone = $("#contact_phone"), contact_subject = $("#contact_subject"), contact_message = $("#contact_message"), contact_uid = $("#contact_uid"),
+                allFields = $([]).add(contact_name).add(contact_mail).add(contact_phone).add(contact_subject).add(contact_message).add(contact_uid),
+                tips = $(".validateTips");
+
+        $("#dialog-form").dialog({
+            autoOpen: false,
+            height: 400,
+            width: 350,
+            modal: true,
+            buttons: {
+                "Contact Us": function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "<{$xoops_url}>/modules/contact/ajax.php",
+                        data: allFields,
+                    });
+                    $(this).dialog("close");
+                },
+                "Cancel": function () {
+                    $(this).dialog("close");
+                }
+            },
+            close: function () {
+                allFields.val("").removeClass("ui-state-error");
+            }
+        });
+
+        $("#create-user")
+                .button()
+                .click(function () {
+                    $("#dialog-form").dialog("open");
+                });
+    });
+</script>
+
+<div class="demo">
+    <div id="dialog-form" title="Contact Us">
+        <p class="validateTips">Contact us</p>
+
+        <form enctype="multipart/form-data">
+            <{xoMemberInfo assign=member_info}>
+            <label for="name">Name</label>
+            <input name="contact_name" title="Name" id="contact_name" size="20" maxlength="255" value="<{$xoops_uname}>" type="text"
+                   class="text ui-widget-content ui-corner-all"/>
+            <br/><label for="email">Email</label>
+            <input name="contact_mail" title="Email" id="contact_mail" size="20" maxlength="255" value="<{$member_info.email}>" type="text"
+                   class="text ui-widget-content ui-corner-all"/>
+            <br/><label for="password">Phone</label>
+            <input name="contact_phone" title="Phone" id="contact_phone" size="20" maxlength="255" value="" type="text"
+                   class="text ui-widget-content ui-corner-all"/>
+            <br/><label for="password">Subject</label>
+            <input name="contact_subject" title="Subject" id="contact_subject" size="20" maxlength="255" value="" type="text"
+                   class="text ui-widget-content ui-corner-all"/>
+            <br/><label for="password">Comment</label>
+            <textarea name="contact_message" id="contact_message" title="Comment" rows="5" cols="60"></textarea>
+            <input name="contact_uid" id="contact_uid" value="<{$xoops_userid}>" type="hidden">
+        </form>
+    </div>
+    <button id="create-user">Contact Us</button>
+</div>
