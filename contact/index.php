@@ -17,7 +17,7 @@
  * @author      Kazumi Ono (aka Onokazu)
  * @author      Trabis <lusopoemas@gmail.com>
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id: index.php 12162 2013-10-08 02:00:11Z beckmi $
+ * @version     $Id$
  */
 
 include 'header.php';

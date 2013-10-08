@@ -241,15 +241,15 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
         $contact                       = array();
         $contact['contact_cid']        = $this->Contact_CleanVars($_POST, 'contact_id', '', 'int');
         $contact['contact_uid']        = $this->Contact_CleanVars($_POST, 'contact_uid', '', 'int');
-        $contact['contact_name']       = $this->Contact_CleanVars($_POST, 'contact_name', '', 'string');
-        $contact['contact_nameto']     = $this->Contact_CleanVars($_POST, 'contact_nameto', '', 'string');
-        $contact['contact_subject']    = $this->Contact_CleanVars($_POST, 'contact_subject', '', 'string');
+        $contact['contact_name']       = $this->Contact_CleanVars($_POST, 'contact_name', '', 'text'); //mb changed from string to text
+        $contact['contact_nameto']     = $this->Contact_CleanVars($_POST, 'contact_nameto', '', 'text'); //mb changed from string to text
+        $contact['contact_subject']    = $this->Contact_CleanVars($_POST, 'contact_subject', '', 'text'); //mb changed from string to text
         $contact['contact_mail']       = $this->Contact_CleanVars($_POST, 'contact_mail', '', 'mail');
         $contact['contact_mailto']     = $this->Contact_CleanVars($_POST, 'contact_mailto', '', 'mail');
         $contact['contact_url']        = $this->Contact_CleanVars($_POST, 'contact_url', '', 'url');
         $contact['contact_create']     = time();
-        $contact['contact_icq']        = $this->Contact_CleanVars($_POST, 'contact_icq', '', 'string');
-        $contact['contact_company']    = $this->Contact_CleanVars($_POST, 'contact_company', '', 'string');
+        $contact['contact_icq']        = $this->Contact_CleanVars($_POST, 'contact_icq', '', 'text'); //mb changed from string to text
+        $contact['contact_company']    = $this->Contact_CleanVars($_POST, 'contact_company', '', 'text'); //mb changed from string to text
         $contact['contact_location']   = $this->Contact_CleanVars($_POST, 'contact_location', '', 'text');
         $contact['contact_phone']      = $this->Contact_CleanVars($_POST, 'contact_phone', '', 'int');
         $contact['contact_department'] = $this->Contact_CleanVars($_POST, 'contact_department', _MD_CONTACT_DEFULTDEP, 'string');
@@ -268,8 +268,8 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
         $xoopsMailer->useMail();
         $xoopsMailer->setToEmails($this->Contact_ToEmails($contact['contact_department']));
         $xoopsMailer->setFromEmail($contact['contact_mail']);
-        $xoopsMailer->setFromName($contact['contact_name']);
-        $xoopsMailer->setSubject($contact['contact_subject']);
+        $xoopsMailer->setFromName(html_entity_decode($contact['contact_name'], ENT_QUOTES, 'UTF-8'));
+        $xoopsMailer->setSubject(html_entity_decode($contact['contact_subject'], ENT_QUOTES, 'UTF-8'));
         $xoopsMailer->setBody(html_entity_decode($contact['contact_message'], ENT_QUOTES, 'UTF-8'));
         if ($xoopsMailer->send()) {
             $message = _MD_CONTACT_MES_SEND;

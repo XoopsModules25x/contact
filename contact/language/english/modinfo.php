@@ -1,5 +1,5 @@
 <?php
-// $Id: modinfo.php 12162 2013-10-08 02:00:11Z beckmi $
+// $Id: modinfo.php 12156 2013-10-07 13:16:45Z cesag $
 // Module Info
 // The name of this module
 define('_MI_CONTACT_NAME', "Contact us");
