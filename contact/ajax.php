@@ -24,8 +24,8 @@ include 'header.php';
 
 if (!empty($_POST)) {
     // Info Processing
-   $contact = $contact_handler->Contact_InfoProcessing($_POST);
-   // Save info
+    $contact = $contact_handler->Contact_InfoProcessing($_POST);
+    // Save info
     $obj = $contact_handler->create();
     $obj->setVars($contact);
     $contact_handler->insert($obj);
