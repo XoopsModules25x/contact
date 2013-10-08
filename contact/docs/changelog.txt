@@ -1,0 +1,22 @@
+Version 1.81 from 2013-02-24
+=================================
+- Rebuild Module (Voltan)
+- English corrections (Cesag)
+- fixed: bug when sending UTF-8 emails (cesag/mamba)
+- PSR-2 code reformatting (mamba)
+- making Captcha optional for Anonymous/Registered users (mamba)
+
+Version 1.80 from 2012-1-19
+=================================
+- Rebuild Module (Voltan)
+
+Version 1.71 from 2011-12-12
+=================================
+- converted to XOOPS Standard Module GUI (Mamba)
+- included ModuleAdmin class from (Mage)
+
+Version 1.70 from 11-08-2010
+=================================
+- added 2.4.x compatibilty (Trabis)
+- added php5.3 compatibilty (Trabis)
+- added error checking while sending emails (Trabis)
