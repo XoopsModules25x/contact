@@ -21,7 +21,7 @@
  */
 
 // Call header
-require dirname(__FILE__) . '/header.php';
+require dirname(__FILE__) . '/admin_header.php';
 // Display Admin header
 xoops_cp_header();
 // Define default value
@@ -56,4 +56,4 @@ $xoopsTpl->assign('navigation', $admin_class->addNavigation('tools.php'));
 // Call template file
 $xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/contact/templates/admin/contact_tools.html');
 // Call footer
-require dirname(__FILE__) . '/footer.php';
+require dirname(__FILE__) . '/admin_footer.php';

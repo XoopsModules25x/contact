@@ -36,18 +36,11 @@ xoops_loadLanguage('admin', $thisModuleDir);
 xoops_loadLanguage('modinfo', $thisModuleDir);
 xoops_loadLanguage('main', $thisModuleDir);
 
-$pathIcon16      = '../' . $xoopsModule->getInfo('icons16');
-$pathIcon32      = '../' . $xoopsModule->getInfo('icons32');
-$pathModuleAdmin = $xoopsModule->getInfo('dirmoduleadmin');
+$pathIcon16 = XOOPS_URL . '/' . $xoopsModule->getInfo('icons16');
+$pathIcon32 = XOOPS_URL . '/' . $xoopsModule->getInfo('icons32');
+$pathModuleAdmin = XOOPS_ROOT_PATH . '/' . $xoopsModule->getInfo('dirmoduleadmin');
+require_once $pathModuleAdmin . '/moduleadmin/moduleadmin.php';
+$admin_class = new ModuleAdmin();
 
 // Contact Handler
 $contact_handler = & xoops_getModuleHandler('contact', 'contact');
-
-// Locad admin menu class
-if (file_exists($GLOBALS['xoops']->path($pathModuleAdmin . '/moduleadmin.php'))) {
-    include_once $GLOBALS['xoops']->path($pathModuleAdmin . '/moduleadmin.php');
-} else {
-    redirect_header("../../../admin.php", 5, _AM_MODULEADMIN_MISSING, false);
-}
-
-$admin_class = new ModuleAdmin();

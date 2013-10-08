@@ -39,9 +39,9 @@ $modversion['official']       = 1;
 $modversion['image']          = "images/contact_slogo.png";
 $modversion['dirname']        = basename(dirname(__FILE__));
 $modversion['onUpdate']       = 'include/functions_update.php';
-$modversion['dirmoduleadmin'] = '/Frameworks/moduleclasses/moduleadmin';
-$modversion['icons16']        = '../../Frameworks/moduleclasses/icons/16';
-$modversion['icons32']        = '../../Frameworks/moduleclasses/icons/32';
+$modversion['dirmoduleadmin'] = 'Frameworks/moduleclasses';
+$modversion['icons16']        = 'Frameworks/moduleclasses/icons/16';
+$modversion['icons32']        = 'Frameworks/moduleclasses/icons/32';
 
 // DB
 $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
