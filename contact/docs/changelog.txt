@@ -1,3 +1,21 @@
+Version 2.2 beta 1 NOT RELEASED
+=================================
+- fixed: every Submitter was Admin (mamba)
+- fixed: department selection was showing email as well (mamba)
+- fixed: with reply, the email was always from the admin, even if there could more admins (mamba)
+- added Prefix for Emails Subject, if Department is used: so it can show '[Contact Department]: ' (mamba)
+
+Version 2.1 from 2015-01-01
+=================================
+- fixed: bug in contact_index.html <{if $comapny}> (goffy)
+- template contact_index.html: replaced coded language word by language vars (goffy)
+- fixed: mix in module option form_skype/form_icq - splitted to two options (goffy)
+- fixed: bug, when there is no department used (goffy)
+
+Version 2.0 from ?
+=================================
+- added bootstrap to contact_index.html (bleek)
+
 Version 1.81 from 2013-02-24
 =================================
 - Rebuild Module (Voltan)
@@ -5,6 +23,9 @@ Version 1.81 from 2013-02-24
 - fixed: bug when sending UTF-8 emails (cesag/mamba)
 - PSR-2 code reformatting (mamba)
 - making Captcha optional for Anonymous/Registered users (mamba)
+- Fixed an error when sending anonymous (mamba)
+- Fixed an error when sending Captcha (Montuy337513 alias black_beard)
+- Fixed bug with $_POST table (Montuy337513 alias black_beard)
 
 Version 1.80 from 2012-1-19
 =================================

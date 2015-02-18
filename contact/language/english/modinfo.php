@@ -1,5 +1,4 @@
 <?php
-// $Id: modinfo.php 12156 2013-10-07 13:16:45Z cesag $
 // Module Info
 // The name of this module
 define('_MI_CONTACT_NAME', "Contact us");
@@ -32,8 +31,8 @@ define('_MI_CONTACT_FORM_ADDRESS', "Get Address");
 define('_MI_CONTACT_FORM_ADDRESS_DESC', "");
 define('_MI_CONTACT_FORM_DEPT', "Select Departments");
 define('_MI_CONTACT_FORM_DEPT_DESC', "");
-define('_MI_CONTACT_FORM_CAPTCHA_REGISTERED', "Use Captcha for Registered Users?");
-define('_MI_CONTACT_FORM_CAPTCHA_DESC', "Select <em>Yes</em> to use Captcha in the submit form.<br />Default: <em>Yes</em>");
+define('_MI_CONTACT_FORM_CAPTCHA_REGISTERED', "Use Captcha?");
+define('_MI_CONTACT_FORM_CAPTCHA_DESC', "Select <em>Yes</em> to use Captcha in the submit form.<br />Default: <em>No</em>");
 define('_MI_CONTACT_DEPT', "Departments");
 define('_MI_CONTACT_DEPT_DESC', "Departments allow you to define a department/email combination.  Users selecting<br />"
     . "from a defined department will have their contact information sent to the corresponding<br />"
@@ -49,6 +48,21 @@ define('_MI_CONTACT_HEAD_OPTIONS', "Form Options");
 define('_MI_CONTACT_HEAD_ADMIN', "Admin setting");
 define('_MI_CONTACT_HEAD_INFO', "Information");
 //1.81
-define('_MI_CONTACT_FORM_CAPTCHA_ANONYMOUS', "Use Captcha for Anonymous Users?");
+define('_MI_CONTACT_FORM_CAPTCHA_ANONYMOUS', "Your reCaptcha website key");
+define('_MI_CONTACT_FORM_CAPTCHAKEY_DESC', "More about Google reCaptcha <br> https://www.google.com/recaptcha");
 
+define('_MI_CONTACT_FORM_CAPTCHA_SECRETKEY', "Your reCaptcha secret key");
+define('_MI_CONTACT_FORM_CAPTCHAKEY2_DESC', "More about Google reCaptcha <br> https://www.google.com/recaptcha");
+define('_MI_CONTACT_MAP', "Embed google maps");
+define('_MI_CONTACT_MAP_DESC', "embed google maps iframe <br> change iframe width to '100%'");
+//2.1
+define('_MI_CONTACT_FORM_SKYPE', "Get Skype");
+define('_MI_CONTACT_FORM_SKYPE_DESC', "");
+
+define('_MI_CONTACT_SUBJECT_PREFIX', "Add Department as Prefix?");
+define('_MI_CONTACT_SUBJECT_PREFIX_DESC', "If yes, the name of the Department will be used as Prefix for the email Subject");
+
+define('_MI_CONTACT_PREFIX_TEXT', "Email's Subject Prefix");
+define('_MI_CONTACT_PREFIX_TEXT_DESC', "This text will be included in the email's Subject Prefix");
+define('_MI_CONTACT_PREFIX_TEXT_DEFAULT', "Contact&nbsp;");
 

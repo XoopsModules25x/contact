@@ -17,7 +17,7 @@
  * @author      Kazumi Ono (aka Onokazu)
  * @author      Trabis <lusopoemas@gmail.com>
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id$
+ * @version     $Id: header.php 12164 2013-10-08 11:14:45Z beckmi $
  */
 
 include '../../mainfile.php';

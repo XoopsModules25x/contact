@@ -4,6 +4,7 @@ define('_MD_CONTACT_NAME', "Name");
 define('_MD_CONTACT_MAIL', "Email");
 define('_MD_CONTACT_URL', "URL");
 define('_MD_CONTACT_ICQ', "ICQ");
+define('_MD_CONTACT_SKYPE', "Skype");
 define('_MD_CONTACT_COMPANY', "Company");
 define('_MD_CONTACT_LOCATION', "Location");
 define('_MD_CONTACT_PHONE', "Phone");
@@ -18,3 +19,20 @@ define('_MD_CONTACT_MES_NOTSAVE', "Sorry, your Message was not saved in our DB")
 define('_MD_CONTACT_MES_SAVEINDB', "Your Message has been saved in our DB");
 define('_MD_CONTACT_MES_SENDERROR', "Error in sending Message");
 define('_MD_CONTACT_MES_ERROR', "Error");
+define('_MD_CONTACT_MES_NOCAPTCHA', "Captcha is required!");
+define('_MD_CONTACT_MES_CAPTCHAINCORRECT', "Captcha not correct!");
+//2.1
+define('_MD_CONTACT_ICQ_NAME', "ICQ");
+define('_MD_CONTACT_ICQ_INFO', "Enter ICQ");
+define('_MD_CONTACT_SKYPE_NAME', "Skype Name");
+define('_MD_CONTACT_SUBMIT', "Submit");
+define('_MD_CONTACT_NAME_INFO', "Enter name");
+define('_MD_CONTACT_MAIL_INFO', "Enter e-mail");
+define('_MD_CONTACT_URL_INFO', "Enter website");
+define('_MD_CONTACT_COMPANY_INFO', "Enter company");
+define('_MD_CONTACT_ADDRESS_INFO', "Enter address");
+define('_MD_CONTACT_LOCATION_INFO', "Enter city");
+define('_MD_CONTACT_PHONE_INFO', "Enter phone");
+define('_MD_CONTACT_SKYPE_NAME_INFO', "Enter skype name");
+define('_MD_CONTACT_SUBJECT_INFO', "Enter subject");
+define('_MD_CONTACT_MESSAGE_INFO', "Enter message");

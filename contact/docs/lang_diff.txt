@@ -3,6 +3,24 @@ LANGUAGE DIFFERENCES
 
 Below are language differences from a version to next version.
 
+//2.1
+main.php
+define('_MD_CONTACT_SKYPE_NAME', "Skype Name");
+define('_MD_CONTACT_SUBMIT', "Submit");
+define('_MD_CONTACT_NAME_INFO', "Enter name");
+define('_MD_CONTACT_MAIL_INFO', "Enter e-mail");
+define('_MD_CONTACT_URL_INFO', "Enter website");
+define('_MD_CONTACT_COMPANY_INFO', "Enter company");
+define('_MD_CONTACT_ADDRESS_INFO', "Enter address");
+define('_MD_CONTACT_LOCATION_INFO', "Enter city");
+define('_MD_CONTACT_PHONE_INFO', "Enter phone");
+define('_MD_CONTACT_SKYPE_NAME_INFO', "Enter skype name");
+define('_MD_CONTACT_SUBJECT_INFO', "Enter subject");
+define('_MD_CONTACT_MESSAGE_INFO', "Enter message");
+
+mod_info.php
+define('_MI_CONTACT_FORM_SKYPE', "Get skype name");
+define('_MI_CONTACT_FORM_SKYPE_DESC', "");
 
 in file /language/english/admin.php:
 //1.71

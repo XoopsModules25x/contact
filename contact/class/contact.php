@@ -17,6 +17,7 @@
  * @author      Kazumi Ono (aka Onokazu)
  * @author      Trabis <lusopoemas@gmail.com>
  * @author      Hossein Azizabadi (AKA Voltan)
+ * @author		Mirza (AKA Bleekk)
  * @version     $Id$
  */
 
@@ -53,90 +54,7 @@ class contact extends XoopsObject
         $this->db    = $GLOBALS ['xoopsDB'];
         $this->table = $this->db->prefix('contact');
     }
-
-    public function Contact_ContactForm($department)
-    {
-        global $xoopsConfig, $xoopsOption, $xoopsUser, $xoopsUserIsAdmin, $xoopsModuleConfig;
-        if ($this->isNew()) {
-            if (!empty($xoopsUser)) {
-                $contact_uid      = $xoopsUser->getVar('uid');
-                $contact_name     = $xoopsUser->getVar('uname');
-                $contact_mail     = $xoopsUser->getVar('email');
-                $contact_url      = $xoopsUser->getVar('url');
-                $contact_icq      = $xoopsUser->getVar('user_icq');
-                $contact_location = $xoopsUser->getVar('user_from');
-
-            } else {
-                $contact_uid      = 0;
-                $contact_name     = '';
-                $contact_mail     = '';
-                $contact_url      = '';
-                $contact_icq      = '';
-                $contact_location = '';
-            }
-        } else {
-            $contact_uid      = $this->getVar('contact_uid');
-            $contact_name     = $this->getVar('contact_name');
-            $contact_mail     = $this->getVar('contact_mail');
-            $contact_url      = $this->getVar('contact_url');
-            $contact_icq      = $this->getVar('contact_icq');
-            $contact_location = $this->getVar('contact_location');
-        }
-
-        $form = new XoopsThemeForm(_MD_CONTACT_FORM, 'save', 'index.php', 'post', true);
-        $form->setExtra('enctype="multipart/form-data"');
-        $form->addElement(new XoopsFormHidden ('op', 'save'));
-        $form->addElement(new XoopsFormHidden ('contact_id', $this->getVar('contact_id', 'e')));
-        $form->addElement(new XoopsFormHidden ('contact_uid', $contact_uid));
-        $form->addElement(new XoopsFormText (_MD_CONTACT_NAME, 'contact_name', 50, 255, $contact_name), true);
-        $form->addElement(new XoopsFormText (_MD_CONTACT_MAIL, 'contact_mail', 50, 255, $contact_mail), true);
-
-        if (xoops_getModuleOption('form_url', 'contact')) {
-            $form->addElement(new XoopsFormText (_MD_CONTACT_URL, 'contact_url', 50, 255, $contact_url), false);
-        }
-        if (xoops_getModuleOption('form_icq', 'contact')) {
-            $form->addElement(new XoopsFormText (_MD_CONTACT_ICQ, 'contact_icq', 50, 255, $contact_icq), false);
-        }
-        if (xoops_getModuleOption('form_company', 'contact')) {
-            $form->addElement(new XoopsFormText (_MD_CONTACT_COMPANY, 'contact_company', 50, 255, $this->getVar('contact_company')), false);
-        }
-        if (xoops_getModuleOption('form_location', 'contact')) {
-            $form->addElement(new XoopsFormText (_MD_CONTACT_LOCATION, 'contact_location', 50, 255, $contact_location), false);
-        }
-        if (xoops_getModuleOption('form_phone', 'contact')) {
-            $form->addElement(new XoopsFormText (_MD_CONTACT_PHONE, 'contact_phone', 50, 255, $this->getVar('contact_phone')), false);
-        }
-        if (xoops_getModuleOption('form_address', 'contact')) {
-            $form->addElement(new XoopsFormTextArea (_MD_CONTACT_ADDRESS, 'contact_address', $this->getVar('contact_address', 'e'), 3, 60), false);
-        }
-        if (xoops_getModuleOption('form_dept', 'contact')) {
-            // show a drop down with the correct departments listed
-            $departmentlist = new XoopsFormSelect(_MD_CONTACT_DEPARTMENT, 'contact_department');
-            $departments    = xoops_getModuleOption('contact_dept', 'contact');
-            foreach ($departments as $val) {
-                $valexplode = explode(',', $val);
-                $departmentlist->addOption($valexplode[0]);
-            }
-            $form->addElement($departmentlist);
-        }
-
-        $form->addElement(new XoopsFormText (_MD_CONTACT_SUBJECT, 'contact_subject', 50, 255, $this->getVar('contact_subject')), true);
-        $form->addElement(new XoopsFormTextArea (_MD_CONTACT_MESSAGE, 'contact_message', $this->getVar('contact_message', 'e'), 5, 60), true);
-
-
-            // check captcha
-            if ((!$xoopsUser && $xoopsModuleConfig['captchaAnonymous'])
-                || ($xoopsUser && !$xoopsUserIsAdmin && $xoopsModuleConfig['captchaRegistered'])
-            ) {
-                xoops_load('XoopsFormCaptcha');
-                $form->addElement(new XoopsFormCaptcha('','',false), true);
-            }
-
-        $form->addElement(new XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
-
-        return $form;
-    }
-
+	
     public function Contact_ReplyForm()
     {
         global $xoopsConfig;
@@ -147,10 +65,10 @@ class contact extends XoopsObject
         $form->addElement(new XoopsFormHidden ('contact_uid', $this->getVar('contact_uid', 'e')));
         $form->addElement(new XoopsFormLabel(_AM_CONTACT_FROM, '', ''));
         $form->addElement(
-            new XoopsFormText (_AM_CONTACT_NAMEFROM, 'contact_name', 50, 255, XoopsUser::getUnameFromId($this->getVar('contact_uid'))),
+            new XoopsFormText (_AM_CONTACT_NAMEFROM, 'contact_name', 50, 255, XoopsUser::getUnameFromId($GLOBALS['xoopsUser']->uid())),
             true
         );
-        $form->addElement(new XoopsFormText (_AM_CONTACT_MAILFROM, 'contact_mail', 50, 255, $xoopsConfig['adminmail']), true);
+        $form->addElement(new XoopsFormText (_AM_CONTACT_MAILFROM, 'contact_mail', 50, 255, $GLOBALS['xoopsUser']->getVar('email')), true);
         $form->addElement(new XoopsFormLabel(_AM_CONTACT_TO, '', ''));
         $form->addElement(new XoopsFormText (_AM_CONTACT_NAMETO, 'contact_nameto', 50, 255, $this->getVar('contact_name')), true);
         $form->addElement(new XoopsFormText (_AM_CONTACT_MAILTO, 'contact_mailto', 50, 255, $this->getVar('contact_mail')), true);
@@ -191,7 +109,6 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
      */
     public function Contact_CleanVars(&$global, $key, $default = '', $type = 'int')
     {
-
         switch ($type) {
             case 'array':
                 $ret = (isset($global[$key]) && is_array($global[$key])) ? $global[$key] : $default;
@@ -238,6 +155,8 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
 
     public function Contact_InfoProcessing($global)
     {
+    	
+		
         $contact                       = array();
         $contact['contact_cid']        = $this->Contact_CleanVars($_POST, 'contact_id', '', 'int');
         $contact['contact_uid']        = $this->Contact_CleanVars($_POST, 'contact_uid', '', 'int');
@@ -258,8 +177,9 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
         $contact['contact_address']    = $this->Contact_CleanVars($_POST, 'contact_address', '', 'text');
         $contact['contact_platform']   = $this->Contact_CleanVars($_POST, 'contact_platform', 'Web', 'platform');
         $contact['contact_type']       = $this->Contact_CleanVars($_POST, 'contact_type', 'Contact', 'type');
-
+		
         return $contact;
+        
     }
 
     public function Contact_SendMail($contact)
@@ -269,7 +189,12 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
         $xoopsMailer->setToEmails($this->Contact_ToEmails($contact['contact_department']));
         $xoopsMailer->setFromEmail($contact['contact_mail']);
         $xoopsMailer->setFromName(html_entity_decode($contact['contact_name'], ENT_QUOTES, 'UTF-8'));
-        $xoopsMailer->setSubject(html_entity_decode($contact['contact_subject'], ENT_QUOTES, 'UTF-8'));
+
+        $subjectPrefix = '';
+        if ($GLOBALS['xoopsModuleConfig']['form_dept'] && $GLOBALS['xoopsModuleConfig']['subject_prefix'] && $GLOBALS['xoopsModuleConfig']['contact_dept']) {
+            $subjectPrefix = '[' . $GLOBALS['xoopsModuleConfig']['prefix_text'] . ' ' . $contact['contact_department'] . ']: ';
+        }
+        $xoopsMailer->setSubject($subjectPrefix . html_entity_decode($contact['contact_subject'], ENT_QUOTES, 'UTF-8'));
         $xoopsMailer->setBody(html_entity_decode($contact['contact_message'], ENT_QUOTES, 'UTF-8'));
         if ($xoopsMailer->send()) {
             $message = _MD_CONTACT_MES_SEND;
