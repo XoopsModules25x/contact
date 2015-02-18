@@ -17,7 +17,8 @@
  * @author      Kazumi Ono (aka Onokazu)
  * @author      Trabis <lusopoemas@gmail.com>
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id$
+ * @author		Mirza (AKA Bleekk)
+ * @version     $Id: xoops_version.php 12165 2013-10-08 12:12:22Z beckmi $
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
@@ -27,15 +28,15 @@ if (!defined('XOOPS_ROOT_PATH')) {
 $moduleDirName = basename(dirname(__FILE__));
 
 $modversion['name']           = _MI_CONTACT_NAME;
-$modversion['version']        = 1.81;
+$modversion['version']        = 2.1;
 $modversion['description']    = _MI_CONTACT_DESC;
 $modversion['credits']        = 'The XOOPS Project, Mohtava Project';
-$modversion['author']         = 'Kazumi Ono (Onokazu), modified by Trabis, rewritten by Voltan';
+$modversion['author']         = 'Kazumi Ono (Onokazu), modified by Trabis, rewritten by Voltan, modified by Bleekk';
 $modversion['nickname']       = '';
 $modversion['help']           = 'page=help';
 $modversion['license']        = 'GNU GPL 2.0';
 $modversion['license_url']    = "www.gnu.org/licenses/gpl-2.0.html";
-$modversion['official']       = 1;
+$modversion['official']       = 2;
 $modversion['image']          = "images/contact_slogo.png";
 $modversion['dirname']        = basename(dirname(__FILE__));
 $modversion['onUpdate']       = 'include/functions_update.php';
@@ -85,21 +86,29 @@ $modversion['config'][] = array(
 );
 
 $modversion['config'][] = array(
-    'name'        => 'captchaRegistered',
+    'name'        => 'useCaptcha', //captchaRegistered
     'title'       => '_MI_CONTACT_FORM_CAPTCHA_REGISTERED',
     'description' => '_MI_CONTACT_FORM_CAPTCHA_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
-    'default'     => 1
+    'default'     => 0
 );
 
 $modversion['config'][] = array(
-    'name'        => 'captchaAnonymous',
+    'name'        => 'captchaKey',
     'title'       => '_MI_CONTACT_FORM_CAPTCHA_ANONYMOUS',
-    'description' => '_MI_CONTACT_FORM_CAPTCHA_DESC',
-    'formtype'    => 'yesno',
-    'valuetype'   => 'int',
-    'default'     => 1
+    'description' => '_MI_CONTACT_FORM_CAPTCHAKEY_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => ''
+);
+$modversion['config'][] = array(
+    'name'        => 'captchaSecretKey',
+    'title'       => '_MI_CONTACT_FORM_CAPTCHA_SECRETKEY',
+    'description' => '_MI_CONTACT_FORM_CAPTCHAKEY2_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => ''
 );
 
 $modversion['config'][] = array(
@@ -115,6 +124,15 @@ $modversion['config'][] = array(
     'name'        => 'form_icq',
     'title'       => '_MI_CONTACT_FORM_ICQ',
     'description' => '_MI_CONTACT_FORM_ICQ_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0
+);
+
+$modversion['config'][] = array(
+    'name'        => 'form_skype',
+    'title'       => '_MI_CONTACT_FORM_SKYPE',
+    'description' => '_MI_CONTACT_FORM_SKYPE_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => 0
@@ -175,6 +193,26 @@ $modversion['config'][] = array(
 );
 
 $modversion['config'][] = array(
+    'name'        => 'subject_prefix',
+    'title'       => '_MI_CONTACT_SUBJECT_PREFIX',
+    'description' => '_MI_CONTACT_SUBJECT_PREFIX_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0
+);
+
+$modversion['config'][] = array(
+    'name'        => 'prefix_text',
+    'title'       => '_MI_CONTACT_PREFIX_TEXT',
+    'description' => '_MI_CONTACT_PREFIX_TEXT_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => _MI_CONTACT_PREFIX_TEXT_DEFAULT
+);
+
+
+
+$modversion['config'][] = array(
     'name'        => 'break',
     'title'       => '_MI_CONTACT_HEAD_INFO',
     'description' => '',
@@ -187,6 +225,15 @@ $modversion['config'][] = array(
     'name'        => 'contact_info',
     'title'       => '_MI_CONTACT_TOPINFO',
     'description' => '_MI_CONTACT_TOPINFO_DESC',
+    'formtype'    => 'textarea',
+    'valuetype'   => 'text',
+    'default'     => ''
+);
+
+$modversion['config'][] = array(
+    'name'        => 'embed_maps',
+    'title'       => '_MI_CONTACT_MAP',
+    'description' => '_MI_CONTACT_MAP_DESC',
     'formtype'    => 'textarea',
     'valuetype'   => 'text',
     'default'     => ''
