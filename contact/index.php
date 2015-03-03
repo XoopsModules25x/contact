@@ -27,9 +27,9 @@ include XOOPS_ROOT_PATH . "/header.php";
 
 global $xoopsConfig, $xoopsOption, $xoopsTpl, $xoopsUser, $xoopsUserIsAdmin, $xoopsLogger;
 
-	$department = $contact_handler->Contact_CleanVars($_GET, 'department', '', 'string');
-	$obj  = $contact_handler->create();
-	
+    $department = $contact_handler->Contact_CleanVars($_GET, 'department', '', 'string');
+    $obj  = $contact_handler->create();
+    
     /*Modules Options*/
     if ($xoopsModuleConfig['form_dept'] == 1) {
         if (xoops_getModuleOption('form_dept', 'contact')) {
@@ -44,18 +44,18 @@ global $xoopsConfig, $xoopsOption, $xoopsTpl, $xoopsUser, $xoopsUserIsAdmin, $xo
         $xoopsTpl->assign('depart', $xoopsModuleConfig['form_dept']);
         $xoopsTpl->assign('departments', $departmentlist);
     }
-	$xoopsTpl->assign('captcha', $xoopsModuleConfig['useCaptcha']);
-	$xoopsTpl->assign('captchakey', $xoopsModuleConfig['captchaKey']);
-	$xoopsTpl->assign('url', $xoopsModuleConfig['form_url']);
+    $xoopsTpl->assign('captcha', $xoopsModuleConfig['useCaptcha']);
+    $xoopsTpl->assign('captchakey', $xoopsModuleConfig['captchaKey']);
+    $xoopsTpl->assign('url', $xoopsModuleConfig['form_url']);
     $xoopsTpl->assign('icq', $xoopsModuleConfig['form_icq']);
-	$xoopsTpl->assign('skype', $xoopsModuleConfig['form_skype']);
-	$xoopsTpl->assign('company', $xoopsModuleConfig['form_company']);
-	$xoopsTpl->assign('location', $xoopsModuleConfig['form_location']);
-	$xoopsTpl->assign('phone', $xoopsModuleConfig['form_phone']);
-	$xoopsTpl->assign('address', $xoopsModuleConfig['form_address']);
-	
-	$xoopsTpl->assign('map', $xoopsModuleConfig['embed_maps']);
-	/*end Modules options*/
+    $xoopsTpl->assign('skype', $xoopsModuleConfig['form_skype']);
+    $xoopsTpl->assign('company', $xoopsModuleConfig['form_company']);
+    $xoopsTpl->assign('location', $xoopsModuleConfig['form_location']);
+    $xoopsTpl->assign('phone', $xoopsModuleConfig['form_phone']);
+    $xoopsTpl->assign('address', $xoopsModuleConfig['form_address']);
+    
+    $xoopsTpl->assign('map', $xoopsModuleConfig['embed_maps']);
+    /*end Modules options*/
     $xoopsTpl->assign('breadcrumb', '<li><a href="' . XOOPS_URL . '">' . _YOURHOME . '</a></li> <li class="active">' . $xoopsModule->name().'</li>');
     $xoopsTpl->assign('info', xoops_getModuleOption('contact_info', 'contact'));
     
@@ -81,9 +81,9 @@ global $xoopsConfig, $xoopsOption, $xoopsTpl, $xoopsUser, $xoopsUserIsAdmin, $xo
     $xoopsTpl->assign('lng_address_info', _MD_CONTACT_ADDRESS_INFO);
     $xoopsTpl->assign('lng_location_info', _MD_CONTACT_LOCATION_INFO);
     $xoopsTpl->assign('lng_phone_info', _MD_CONTACT_PHONE_INFO);
-	$xoopsTpl->assign('lng_icq_info', _MD_CONTACT_ICQ_INFO);
+    $xoopsTpl->assign('lng_icq_info', _MD_CONTACT_ICQ_INFO);
     $xoopsTpl->assign('lng_skypename_info', _MD_CONTACT_SKYPE_NAME_INFO);
     $xoopsTpl->assign('lng_subject_info', _MD_CONTACT_SUBJECT_INFO);
     $xoopsTpl->assign('lng_message_info', _MD_CONTACT_MESSAGE_INFO);
-		       
+               
 include XOOPS_ROOT_PATH . "/footer.php";

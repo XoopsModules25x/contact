@@ -54,7 +54,7 @@ class contact extends XoopsObject
         $this->db    = $GLOBALS ['xoopsDB'];
         $this->table = $this->db->prefix('contact');
     }
-	
+    
     public function Contact_ReplyForm()
     {
         global $xoopsConfig;
@@ -155,8 +155,8 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
 
     public function Contact_InfoProcessing($global)
     {
-    	
-		
+        
+        
         $contact                       = array();
         $contact['contact_cid']        = $this->Contact_CleanVars($_POST, 'contact_id', '', 'int');
         $contact['contact_uid']        = $this->Contact_CleanVars($_POST, 'contact_uid', '', 'int');
@@ -177,7 +177,7 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
         $contact['contact_address']    = $this->Contact_CleanVars($_POST, 'contact_address', '', 'text');
         $contact['contact_platform']   = $this->Contact_CleanVars($_POST, 'contact_platform', 'Web', 'platform');
         $contact['contact_type']       = $this->Contact_CleanVars($_POST, 'contact_type', 'Contact', 'type');
-		
+        
         return $contact;
         
     }

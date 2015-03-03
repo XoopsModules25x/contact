@@ -65,4 +65,3 @@ define('_MI_CONTACT_SUBJECT_PREFIX_DESC', "If yes, the name of the Department wi
 define('_MI_CONTACT_PREFIX_TEXT', "Email's Subject Prefix");
 define('_MI_CONTACT_PREFIX_TEXT_DESC', "This text will be included in the email's Subject Prefix");
 define('_MI_CONTACT_PREFIX_TEXT_DEFAULT', "Contact&nbsp;");
-
