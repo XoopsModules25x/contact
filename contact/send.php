@@ -29,63 +29,62 @@ include XOOPS_ROOT_PATH . "/header.php";
 global $xoopsConfig;
 
 if(isset($_POST['g-recaptcha-response'])){
-	$captcha=$_POST['g-recaptcha-response'];
+    $captcha=$_POST['g-recaptcha-response'];
 }
 
 if(!$captcha && $xoopsModuleConfig['useCaptcha']){
-	redirect_header("index.php", 2, _MD_CONTACT_MES_NOCAPTCHA);
+    redirect_header("index.php", 2, _MD_CONTACT_MES_NOCAPTCHA);
 }
 else {
-	$response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$xoopsModuleConfig['captchaSecretKey']."&response=".$captcha."&remoteip=".$_SERVER['REMOTE_ADDR']);
+    $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$xoopsModuleConfig['captchaSecretKey']."&response=".$captcha."&remoteip=".$_SERVER['REMOTE_ADDR']);
     if($response.success==false && $xoopsModuleConfig['useCaptcha'])
     {
-    	redirect_header("index.php", 2, _MD_CONTACT_MES_CAPTCHAINCORRECT);
+        redirect_header("index.php", 2, _MD_CONTACT_MES_CAPTCHAINCORRECT);
     }else{
 
-	global $xoopsConfig, $xoopsOption, $xoopsTpl, $xoopsUser, $xoopsUserIsAdmin, $xoopsLogger;
-		$op         = $contact_handler->Contact_CleanVars($_POST, 'op', 'form', 'string');
-		$department = $contact_handler->Contact_CleanVars($_GET, 'department', '', 'string');
-		if($op == "save") {
-			if (empty($_POST['submit']) ) {
-				redirect_header(XOOPS_URL, 3, _MD_CONTACT_MES_ERROR);
-			    exit();
-			} else {
-					
-				// check email
-			    if (!$contact_handler->Contact_CleanVars($_POST, 'contact_mail', '', 'mail')) {
-			    	redirect_header("index.php", 1, _MD_CONTACT_MES_NOVALIDEMAIL);
-			        exit();
-			    }
-			
-			    // Info Processing
-			    $contact = $contact_handler->Contact_InfoProcessing($_POST);
-				
-				// insert in DB
-			    if ($saveinfo = true) {
-			    	$obj = $contact_handler->create();
-			        $obj->setVars($contact);
-			        if (!$contact_handler->insert($obj)) {
-			        	redirect_header("index.php", 3, _MD_CONTACT_MES_NOTSAVE);
-			            exit();
-			       	}
-			   	}
-			
-			    // send mail can send message
-			    if ($sendmail = true) {
-			    	$message = $contact_handler->Contact_SendMail($contact);
-			    } elseif ($saveinfo = true) {
-			    	$message = _MD_CONTACT_MES_SAVEINDB;
-			    } else {
-			    	$message = _MD_CONTACT_MES_SENDERROR;
-			    }
-			    
-			    redirect_header(XOOPS_URL, 3, $message);
-				exit();
-			}
-		}
+    global $xoopsConfig, $xoopsOption, $xoopsTpl, $xoopsUser, $xoopsUserIsAdmin, $xoopsLogger;
+        $op         = $contact_handler->Contact_CleanVars($_POST, 'op', 'form', 'string');
+        $department = $contact_handler->Contact_CleanVars($_GET, 'department', '', 'string');
+        if($op == "save") {
+            if (empty($_POST['submit']) ) {
+                redirect_header(XOOPS_URL, 3, _MD_CONTACT_MES_ERROR);
+                exit();
+            } else {
+                    
+                // check email
+                if (!$contact_handler->Contact_CleanVars($_POST, 'contact_mail', '', 'mail')) {
+                    redirect_header("index.php", 1, _MD_CONTACT_MES_NOVALIDEMAIL);
+                    exit();
+                }
+            
+                // Info Processing
+                $contact = $contact_handler->Contact_InfoProcessing($_POST);
+                
+                // insert in DB
+                if ($saveinfo = true) {
+                    $obj = $contact_handler->create();
+                    $obj->setVars($contact);
+                    if (!$contact_handler->insert($obj)) {
+                        redirect_header("index.php", 3, _MD_CONTACT_MES_NOTSAVE);
+                        exit();
+                       }
+                }
+            
+                // send mail can send message
+                if ($sendmail = true) {
+                    $message = $contact_handler->Contact_SendMail($contact);
+                } elseif ($saveinfo = true) {
+                    $message = _MD_CONTACT_MES_SAVEINDB;
+                } else {
+                    $message = _MD_CONTACT_MES_SENDERROR;
+                }
+                
+                redirect_header(XOOPS_URL, 3, $message);
+                exit();
+            }
+        }
 
     }
 }
-
 
 include XOOPS_ROOT_PATH . "/footer.php";

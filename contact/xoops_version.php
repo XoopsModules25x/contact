@@ -210,8 +210,6 @@ $modversion['config'][] = array(
     'default'     => _MI_CONTACT_PREFIX_TEXT_DEFAULT
 );
 
-
-
 $modversion['config'][] = array(
     'name'        => 'break',
     'title'       => '_MI_CONTACT_HEAD_INFO',
