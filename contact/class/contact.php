@@ -30,7 +30,7 @@ class contact extends XoopsObject
 
     public function __construct()
     {
-        $this->XoopsObject();
+        parent::__construct();
         $this->initVar("contact_id", XOBJ_DTYPE_INT, null, false, 11);
         $this->initVar("contact_uid", XOBJ_DTYPE_INT, null, false, 11);
         $this->initVar("contact_cid", XOBJ_DTYPE_INT, null, false, 11);

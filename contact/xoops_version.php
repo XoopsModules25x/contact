@@ -55,7 +55,7 @@ $modversion["release_date"]        = "2013/10/07";
 $modversion["module_status"]       = "Beta 1";
 $modversion["author_website_url"]  = "http://www.xoops.org/";
 $modversion["author_website_name"] = "XOOPS";
-$modversion['min_php']             = '5.3.7';
+$modversion['min_php']             = '5.5';
 $modversion['min_xoops']           = '2.5.6';
 $modversion['min_admin']           = '1.1';
 
