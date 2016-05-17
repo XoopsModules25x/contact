@@ -10,28 +10,26 @@
 */
 
 /**
- * Contact module
+ * Contact us module for xoops
  *
- * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/
- * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
- * @author      Kazumi Ono (aka Onokazu)
- * @author      Trabis <lusopoemas@gmail.com>
- * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id$
+ * @copyright      module for xoops
+ * @license        GPL 3.0 or later
+ * @package        contacts
+ * @since          2.22
+ * @min_xoops      2.5.7
+ * @author         Txmod Xoops - Email:<info@txmodxoops.org> - Website:<http://txmodxoops.org>
+ * @version        $Id: 2.3 index.php 14020 Tue 2016-05-17 18:46:48Z Kazumi Ono (Onokazu), modified by Trabis, rewritten by Voltan, modified by Bleekk, Goffy, New GUI & version by Timgno $
  */
-
-// Call header
-require dirname(__FILE__) . '/admin_header.php';
-// Display Admin header
-xoops_cp_header();
-
-// Display Admin menu class
-$admin_class->addInfoBox(_AM_CONTACT_INDEX_ADMENU1);
-$admin_class->addInfoBoxLine(_AM_CONTACT_INDEX_ADMENU1, _AM_CONTACT_INDEX_TOTAL, $contact_handler->Contact_GetCount('contact_cid'));
-$xoopsTpl->assign('navigation', $admin_class->addNavigation('index.php'));
-$xoopsTpl->assign('renderindex', $admin_class->renderIndex());
-
-// Call template file
-$xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/contact/templates/admin/contact_index.html');
-// Call footer
-require dirname(__FILE__) . '/admin_footer.php';
+include __DIR__ . '/header.php';
+// Count elements
+$countMessages = $contactsHandler->getCount();
+// Template Index
+$templateMain = 'contact_admin_index.tpl';
+// InfoBox Statistics
+$adminMenu->addInfoBox(_AM_CONTACT_INDEX_ADMENU1);
+// Info elements
+$adminMenu->addInfoBoxLine(_AM_CONTACT_INDEX_ADMENU1, '<label>'._AM_CONTACT_INDEX_TOTAL.'</label>', $countMessages);
+// Render Index
+$GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('index.php'));
+$GLOBALS['xoopsTpl']->assign('index', $adminMenu->renderIndex());
+include __DIR__ . '/footer.php';

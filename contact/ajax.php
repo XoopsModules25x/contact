@@ -20,15 +20,15 @@
  * @version     $Id$
  */
 
-include 'header.php';
+include __DIR__ . '/header.php';
 
 if (!empty($_POST)) {
     // Info Processing
-    $contact = $contact_handler->Contact_InfoProcessing($_POST);
+    $contact = $contactsHandler->Contact_InfoProcessing($_POST);
     // Save info
-    $obj = $contact_handler->create();
+    $obj = $contactsHandler->create();
     $obj->setVars($contact);
-    $contact_handler->insert($obj);
+    $contactsHandler->insert($obj);
     // send mail can seet message
-    $message = $contact_handler->Contact_SendMail($contact);
+    $message = $contactsHandler->Contact_SendMail($contact);
 }

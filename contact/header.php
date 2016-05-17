@@ -17,11 +17,14 @@
  * @author      Kazumi Ono (aka Onokazu)
  * @author      Trabis <lusopoemas@gmail.com>
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id: header.php 12164 2013-10-08 11:14:45Z beckmi $
+ * @author      Txmod Xoops (AKA Timgno)
+ * @version     $Id: header.php 14064 2016-05-08 15:15:15Z timgno $
  */
-
-include '../../mainfile.php';
-include XOOPS_ROOT_PATH . "/modules/contact/class/contact.php";
-include_once XOOPS_ROOT_PATH . "/class/xoopsformloader.php";
-
-$contact_handler = & xoops_getModuleHandler('contact', 'contact');
+include dirname(dirname(__DIR__)) .'/mainfile.php';
+include __DIR__ .'/include/common.php';
+//$hotel = ContactHelper::getInstance();
+$xoBreadcrumbs = array();
+$xoBreadcrumbs[] = array('title' => _MD_CONTACT_FORM, 'link' => CONTACTS_URL . '/');
+// Get instance of module
+$contacts = ContactHelper::getInstance();
+$contactsHandler = $contacts->getHandler('contact');

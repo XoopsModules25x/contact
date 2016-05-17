@@ -10,25 +10,18 @@
 */
 
 /**
- * Contact module
+ * Contact us module for xoops
  *
- * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/
- * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
- * @author      Kazumi Ono (aka Onokazu)
- * @author      Trabis <lusopoemas@gmail.com>
- * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id$
+ * @copyright      module for xoops
+ * @license        GPL 3.0 or later
+ * @package        contacts
+ * @since          2.22
+ * @min_xoops      2.5.7
+ * @author         Txmod Xoops - Email:<info@txmodxoops.org> - Website:<http://txmodxoops.org>
+ * @version        $Id: 2.3 about.php 14020 Tue 2016-05-17 18:46:49Z Kazumi Ono (Onokazu), modified by Trabis, rewritten by Voltan, modified by Bleekk, Goffy, New GUI & version by Timgno $
  */
-
-// Call header
-require dirname(__FILE__) . '/admin_header.php';
-// Display Admin header
-xoops_cp_header();
-
-$xoopsTpl->assign('navigation', $admin_class->addNavigation('about.php'));
-$xoopsTpl->assign('renderabout', $admin_class->renderabout('6KJ7RW5DR3VTJ', false));
-
-// Call template file
-$xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/contact/templates/admin/contact_about.html');
-// Call footer
-require dirname(__FILE__) . '/admin_footer.php';
+include __DIR__ . '/header.php';
+$templateMain = 'contacts_admin_about.tpl';
+$GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('about.php'));
+$GLOBALS['xoopsTpl']->assign('about', $adminMenu->renderAbout('7LFE862PGJN88', false));
+include __DIR__ . '/footer.php';

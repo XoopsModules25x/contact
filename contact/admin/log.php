@@ -21,15 +21,15 @@
  */
 
 // Call header
-require dirname(__FILE__) . '/admin_header.php';
-// Display Admin header
-xoops_cp_header();
+include __DIR__ . '/header.php';
 // Define default value
-$op = $contact_handler->Contact_CleanVars($_REQUEST, 'op', 'form', 'string');
-
+$op = $contactsHandler->Contact_CleanVars($_REQUEST, 'op', 'form', 'string');
+// Template Log
+$templateMain = 'contact_admin_logs.tpl';
 switch ($op) {
     case 'form':
         // prune manager
+		xoops_load('XoopsFormLoader');
         $form   = new XoopsThemeForm(_AM_CONTACT_LOGS_FORM, 'logs', 'log.php', 'post');
         $column = new XoopsFormSelect(_AM_CONTACT_LOGS_COLUMN, 'column', 'contact_phone');
         $column->addOption("contact_phone", _AM_CONTACT_LOGS_COLUMN_PHONE);
@@ -42,14 +42,12 @@ switch ($op) {
         break;
 
     case 'getlog':
-        $column = $contact_handler->Contact_CleanVars($_REQUEST, 'column', '', 'string');
-        $log    = $contact_handler->Contact_Logs($column);
+        $column = $contactsHandler->Contact_CleanVars($_REQUEST, 'column', '', 'string');
+        $log    = $contactsHandler->Contact_Logs($column);
         $xoopsTpl->assign('logs', $log);
         break;
 }
 
-$xoopsTpl->assign('navigation', $admin_class->addNavigation('log.php'));
-// Call template file
-$xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/contact/templates/admin/contact_logs.html');
+$xoopsTpl->assign('navigation', $adminMenu->addNavigation('log.php'));
 // Call footer
-require dirname(__FILE__) . '/admin_footer.php';
+include __DIR__ . '/footer.php';

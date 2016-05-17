@@ -3,6 +3,34 @@ LANGUAGE DIFFERENCES
 
 Below are language differences from a version to next version.
 
+//2.21 (goffy)
+modinfo.php:
+define('_MI_CONTACT_HEAD_CAPTCHA', "Options for Captcha");
+define('_MI_CONTACT_FORM_RECAPTCHA_USE', "Use Google reCaptcha?");
+define('_MI_CONTACT_FORM_RECAPTCHA_USE_DESC', "Select <em>Yes</em> to use Google reCaptcha in the submit form.<br />Default: <em>No</em>");
+define('_MI_CONTACT_FORM_RECAPTCHA_KEY', "Your reCaptcha website key");
+define('_MI_CONTACT_FORM_RECAPTCHA_KEY_DESC', "More about Google reCaptcha https://www.google.com/recaptcha <br>and under 'help'.");
+define('_MI_CONTACT_HEAD_DEPT', "Options for usage of departments/recipients");
+define('_MI_CONTACT_HEAD_MISC', "Misc options");
+define('_MI_CONTACT_MAIL_CONFIRM', "Send confirmation mail?");
+define('_MI_CONTACT_MAIL_CONFIRM_DESC', "If yes, a short confirmation mail with the basic information will be sent to given email-address.");
+define('_MI_CONTACT_RECIPIENT_STD', "Standard recipient");
+define('_MI_CONTACT_RECIPIENT_STD_DESC', "Each contact request will be sent to this e-mail-address");
+
+main.php
+define('_MD_CONTACT_MAILCONFIRM_SUBJECT', "Confirmation mail");
+define('_MD_CONTACT_MAILCONFIRM_BODY', "
+Dear {NAME}
+
+We confirm the receipt of your mail
+
+Subject:{SUBJECT}
+Message: 
+{BODY}
+
+We will contact you as soon as possible.
+");
+
 //2.1
 main.php
 define('_MD_CONTACT_SKYPE_NAME', "Skype Name");

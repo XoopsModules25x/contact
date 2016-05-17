@@ -21,67 +21,53 @@
  */
 
 // Call header
-require dirname(__FILE__) . '/admin_header.php';
-// Display Admin header
-xoops_cp_header();
+include __DIR__ . '/header.php';
 // Define default value
-$op         = $contact_handler->Contact_CleanVars($_REQUEST, 'op', 'list', 'string');
-$contact_id = $contact_handler->Contact_CleanVars($_REQUEST, 'id', '0', 'int');
-
+$op = XoopsRequest::getString('op', 'list');
+$contact_id = XoopsRequest::getInt('contact_id');
+// Template Log
+$templateMain = 'contact_admin_contact.tpl';
 // Define scripts
 $xoTheme->addScript('browse.php?Frameworks/jquery/jquery.js');
 $xoTheme->addScript('browse.php?Frameworks/jquery/plugins/jquery.ui.js');
-$xoTheme->addScript(XOOPS_URL . '/modules/contact/js/admin.js');
+$xoTheme->addScript(XOOPS_URL . '/modules/contact/assets/js/admin.js');
 // Add module stylesheet
-$xoTheme->addStylesheet(XOOPS_URL . '/modules/contact/css/admin.css');
+$xoTheme->addStylesheet($style);
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/system/css/ui/' . xoops_getModuleOption('jquery_theme', 'system') . '/ui.all.css');
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/system/css/admin.css');
 
 switch ($op) {
     case 'list':
         $contact            = array();
-        $contact['perpage'] = xoops_getModuleOption('admin_perpage', 'contact');
+        $contact['perpage'] = $contacts->getConfig('admin_perpage');
         $contact['order']   = 'DESC';
         $contact['sort']    = 'contact_id';
-
         // get limited information
-        if (isset($_REQUEST['limit'])) {
-            $contact['limit'] = $contact_handler->Contact_CleanVars($_REQUEST, 'limit', 0, 'int');
-        } else {
-            $contact['limit'] = $contact['perpage'];
-        }
-
+        $contact['limit'] = XoopsRequest::getInt('limit', $contact['perpage']);        
         // get start information
-        if (isset($_REQUEST['start'])) {
-            $contact['start'] = $contact_handler->Contact_CleanVars($_REQUEST, 'start', 0, 'int');
-        } else {
-            $contact['start'] = 0;
-        }
-
-        $contact_numrows = $contact_handler->Contact_GetCount('contact_cid');
-        $contacts        = $contact_handler->Contact_GetAdminList($contact, 'contact_cid');
-
+        $contact['start'] = XoopsRequest::getInt('start', 0);
+        $contact_numrows = $contactsHandler->Contact_GetCount('contact_cid');
+        $contactsList    = $contactsHandler->Contact_GetAdminList($contact, 'contact_cid');
         if ($contact_numrows > $contact['limit']) {
             $contact_pagenav = new XoopsPageNav($contact_numrows, $contact['limit'], $contact['start'], 'start', 'limit=' . $contact['limit']);
             $contact_pagenav = $contact_pagenav->renderNav(4);
         } else {
             $contact_pagenav = '';
         }
-
-        $xoopsTpl->assign('contacts', $contacts);
+        $xoopsTpl->assign('contacts', $contactsList);
         $xoopsTpl->assign('contact_pagenav', $contact_pagenav);
         $level = 'list';
         break;
 
     case 'reply':
-        if ($contact_id > 0) {
-            $obj = $contact_handler->get($contact_id);
+		if ($contact_id > 0) {
+            $obj = $contactsHandler->get($contact_id);
             if ($obj->getVar('contact_cid') != 0) {
                 redirect_header('contact.php', 3, _AM_CONTACT_CANTREPLY);
             }
             $form = $obj->Contact_ReplyForm();
             $xoopsTpl->assign('replyform', $form->render());
-            $xoopsTpl->assign('replylist', $contact_handler->Contact_GetReply($contact_id));
+            $xoopsTpl->assign('replylist', $contactsHandler->Contact_GetReply($contact_id));
         } else {
             redirect_header('contact.php', 3, _AM_CONTACT_MSG_EXIST);
         }
@@ -91,31 +77,31 @@ switch ($op) {
     case 'doreply':
 
         // check email
-        if (!$contact_handler->Contact_CleanVars($_POST, 'contact_mailto', '', 'mail')) {
+        if (!$contactsHandler->Contact_CleanVars($_POST, 'contact_mailto', '', 'mail')) {
             redirect_header("contact.php", 3, _MD_CONTACT_MES_NOVALIDEMAIL);
             exit();
         }
 
         // Info Processing
-        $contact = $contact_handler->Contact_InfoProcessing($_POST);
+        $contact = $contactsHandler->Contact_InfoProcessing($_POST);
 
         // insert in DB
         if ($saveinfo = true) {
-            $obj = $contact_handler->create();
+            $obj = $contactsHandler->create();
             $obj->setVars($contact);
 
-            if (!$contact_handler->insert($obj)) {
+            if (!$contactsHandler->insert($obj)) {
                 redirect_header("contact.php", 3, '4');
                 exit();
             }
 
-            $contact_handler->Contact_AddReply($contact['contact_cid']);
+            $contactsHandler->Contact_AddReply($contact['contact_cid']);
 
         }
 
         // send mail can seet message
         if ($sendmail = true) {
-            $message = $contact_handler->Contact_ReplyMail($contact);
+            $message = $contactsHandler->Contact_ReplyMail($contact);
         } elseif ($saveinfo = true) {
             $message = _MD_CONTACT_MES_SAVEINDB;
         } else {
@@ -129,7 +115,7 @@ switch ($op) {
 
     case 'view':
 
-        $obj = $contact_handler->get($contact_id);
+        $obj = $contactsHandler->get($contact_id);
 
         if (!$obj) {
             redirect_header('contact.php', 3, _AM_CONTACT_MSG_EXIST);
@@ -156,7 +142,7 @@ switch ($op) {
         $contact['contact_address']    = $obj->getVar('contact_address');
 
         $xoopsTpl->assign('contact', $contact);
-        $xoopsTpl->assign('replylist', $contact_handler->Contact_GetReply($contact_id));
+        $xoopsTpl->assign('replylist', $contactsHandler->Contact_GetReply($contact_id));
 
         $level = 'view';
         break;
@@ -185,7 +171,7 @@ switch ($op) {
         $criteria->add(new Criteria ('contact_id', $contact_id));
         $criteria->add(new Criteria ('contact_cid', $contact_id), 'OR');
 
-        if (!$contact_handler->deleteAll($criteria)) {
+        if (!$contactsHandler->deleteAll($criteria)) {
             redirect_header('contact.php', 1, _AM_CONTACT_MSG_DELETEERROR);
             xoops_cp_footer();
             exit ();
@@ -197,10 +183,6 @@ switch ($op) {
         break;
 }
 
-$xoopsTpl->assign('navigation', $admin_class->addNavigation('contact.php'));
+$xoopsTpl->assign('navigation', $adminMenu->addNavigation('contact.php'));
 $xoopsTpl->assign('level', $level);
-
-// Call template file
-$xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/contact/templates/admin/contact_contact.html');
-// Call footer
-require dirname(__FILE__) . '/admin_footer.php';
+include __DIR__ . '/footer.php';

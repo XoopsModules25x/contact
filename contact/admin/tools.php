@@ -21,15 +21,15 @@
  */
 
 // Call header
-require dirname(__FILE__) . '/admin_header.php';
-// Display Admin header
-xoops_cp_header();
+include __DIR__ . '/header.php';
 // Define default value
-$op = $contact_handler->Contact_CleanVars($_REQUEST, 'op', 'list', 'string');
-
+$op = XoopsRequest::getString('op', 'list');
+// Template Log
+$templateMain = 'contact_admin_tools.tpl';
 switch ($op) {
     case 'list':
         // prune manager
+		xoops_load('XoopsFormLoader');
         $form = new XoopsThemeForm(_AM_CONTACT_TOOLS_PRUNE, 'tools', 'tools.php', 'post');
         $form->addElement(new XoopsFormTextDateSelect(_AM_CONTACT_TOOLS_PRUNE_BEFORE, 'prune_date', 15, time()));
         $onlyreply = new xoopsFormCheckBox('', 'onlyreply');
@@ -52,8 +52,6 @@ switch ($op) {
         break;
 }
 
-$xoopsTpl->assign('navigation', $admin_class->addNavigation('tools.php'));
-// Call template file
-$xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/contact/templates/admin/contact_tools.html');
+$xoopsTpl->assign('navigation', $adminMenu->addNavigation('tools.php'));
 // Call footer
-require dirname(__FILE__) . '/admin_footer.php';
+include __DIR__ . '/footer.php';

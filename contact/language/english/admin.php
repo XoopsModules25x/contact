@@ -44,3 +44,5 @@ define('_AM_CONTACT_LOGS_COLUMN', "Select the required column");
 define('_AM_CONTACT_LOGS_COLUMN_PHONE', "Phone");
 define('_AM_CONTACT_LOGS_COLUMN_URL', "URL");
 define('_AM_CONTACT_LOGS_COLUMN_MAIL', "Email");
+// ---------------- Admin Others ----------------
+define('_AM_CONTACT_MAINTAINEDBY', " is maintained by ");

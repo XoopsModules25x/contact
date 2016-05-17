@@ -20,8 +20,8 @@
  * @author      Mirza (AKA Bleekk)
  * @version     $Id: index.php 12285 2014-01-30 11:31:16Z beckmi $
  */
-include 'header.php';
-$xoopsOption['template_main'] = 'contact_index.html';
+include __DIR__ . '/header.php';
+$xoopsOption['template_main'] = 'contact_index.tpl';
 //unset($_SESSION);
 include XOOPS_ROOT_PATH . "/header.php";
 
@@ -29,50 +29,50 @@ include XOOPS_ROOT_PATH . "/header.php";
 global $xoopsConfig;
 
 if(isset($_POST['g-recaptcha-response'])){
-    $captcha=$_POST['g-recaptcha-response'];
+    $captcha = $_POST['g-recaptcha-response'];
 }
 
-if(!$captcha && $xoopsModuleConfig['useCaptcha']){
+if(!$captcha && $contacts->getConfig('recaptchause'){
     redirect_header("index.php", 2, _MD_CONTACT_MES_NOCAPTCHA);
-}
-else {
-    $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$xoopsModuleConfig['captchaSecretKey']."&response=".$captcha."&remoteip=".$_SERVER['REMOTE_ADDR']);
-    if($response.success==false && $xoopsModuleConfig['useCaptcha'])
+} else {
+    $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$contacts->getConfig('recaptchakey')."&response=".$captcha."&remoteip=".$_SERVER['REMOTE_ADDR']);
+    if($response.success == false && $contacts->getConfig('recaptchause')
     {
         redirect_header("index.php", 2, _MD_CONTACT_MES_CAPTCHAINCORRECT);
-    }else{
-
-    global $xoopsConfig, $xoopsOption, $xoopsTpl, $xoopsUser, $xoopsUserIsAdmin, $xoopsLogger;
-        $op         = $contact_handler->Contact_CleanVars($_POST, 'op', 'form', 'string');
-        $department = $contact_handler->Contact_CleanVars($_GET, 'department', '', 'string');
+    } else {
+        global $xoopsConfig, $xoopsOption, $xoopsTpl, $xoopsUser, $xoopsUserIsAdmin, $xoopsLogger;
+        $op         = $contactsHandler->Contact_CleanVars($_POST, 'op', 'form', 'string');
+        $department = $contactsHandler->Contact_CleanVars($_GET, 'department', '', 'string');
         if($op == "save") {
             if (empty($_POST['submit']) ) {
                 redirect_header(XOOPS_URL, 3, _MD_CONTACT_MES_ERROR);
                 exit();
-            } else {
-                    
+            } else {           
                 // check email
-                if (!$contact_handler->Contact_CleanVars($_POST, 'contact_mail', '', 'mail')) {
+                if (!$contactsHandler->Contact_CleanVars($_POST, 'contact_mail', '', 'mail')) {
                     redirect_header("index.php", 1, _MD_CONTACT_MES_NOVALIDEMAIL);
                     exit();
                 }
             
                 // Info Processing
-                $contact = $contact_handler->Contact_InfoProcessing($_POST);
-                
+                $contact = $contactsHandler->Contact_InfoProcessing($_POST);
+              
                 // insert in DB
                 if ($saveinfo = true) {
-                    $obj = $contact_handler->create();
+                    $obj = $contactsHandler->create();
                     $obj->setVars($contact);
-                    if (!$contact_handler->insert($obj)) {
+                    if (!$contactsHandler->insert($obj)) {
                         redirect_header("index.php", 3, _MD_CONTACT_MES_NOTSAVE);
                         exit();
-                       }
+                    }
                 }
             
                 // send mail can send message
                 if ($sendmail = true) {
-                    $message = $contact_handler->Contact_SendMail($contact);
+                    $message = $contactsHandler->Contact_SendMail($contact);
+                    if ($contacts->getConfig('mailconfirm') {
+                        $res_mailconfirm = $contactsHandler->Contact_SendMailConfirm($contact);
+                    }
                 } elseif ($saveinfo = true) {
                     $message = _MD_CONTACT_MES_SAVEINDB;
                 } else {
@@ -83,8 +83,6 @@ else {
                 exit();
             }
         }
-
     }
 }
-
-include XOOPS_ROOT_PATH . "/footer.php";
+include __DIR__ . '/footer.php';

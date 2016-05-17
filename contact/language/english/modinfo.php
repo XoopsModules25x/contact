@@ -29,17 +29,15 @@ define('_MI_CONTACT_FORM_PHONE', "Get Phone");
 define('_MI_CONTACT_FORM_PHONE_DESC', "");
 define('_MI_CONTACT_FORM_ADDRESS', "Get Address");
 define('_MI_CONTACT_FORM_ADDRESS_DESC', "");
-define('_MI_CONTACT_FORM_DEPT', "Select Departments");
+define('_MI_CONTACT_FORM_DEPT', "Show select Departments");
 define('_MI_CONTACT_FORM_DEPT_DESC', "");
-define('_MI_CONTACT_FORM_CAPTCHA_REGISTERED', "Use Captcha?");
-define('_MI_CONTACT_FORM_CAPTCHA_DESC', "Select <em>Yes</em> to use Captcha in the submit form.<br />Default: <em>No</em>");
-define('_MI_CONTACT_DEPT', "Departments");
-define('_MI_CONTACT_DEPT_DESC', "Departments allow you to define a department/email combination.  Users selecting<br />"
-    . "from a defined department will have their contact information sent to the corresponding<br />"
-    . "email address you define.<br /><br />"
+define('_MI_CONTACT_DEPT', "Departments/Receipients");
+define('_MI_CONTACT_DEPT_DESC', "Departments allow you to define a department/email combination.<br />"
+    . "Users selecting from a defined department will have their contact information sent to the corresponding email address you define.<br /><br />"
     . "Define each department/email as follows:<br /><br />"
     . "dept1,email1|dept2,email2|dept3,email3 etc. - each department and email must be separated<br />"
-    . "by a comma ',', and each department email combination must be separated by a pipe '|'");
+    . "by a comma ',', and each department email combination must be separated by a pipe '|'<br /><br />"
+    . "If no department/recipient is defined, than the mail will be sent to standard e-mail-address.");
 define('_MI_CONTACT_PERPAGE', "Messages per page");
 define('_MI_CONTACT_PERPAGE_DESC', "");
 define('_MI_CONTACT_TOPINFO', "Header contact form");
@@ -48,11 +46,6 @@ define('_MI_CONTACT_HEAD_OPTIONS', "Form Options");
 define('_MI_CONTACT_HEAD_ADMIN', "Admin setting");
 define('_MI_CONTACT_HEAD_INFO', "Information");
 //1.81
-define('_MI_CONTACT_FORM_CAPTCHA_ANONYMOUS', "Your reCaptcha website key");
-define('_MI_CONTACT_FORM_CAPTCHAKEY_DESC', "More about Google reCaptcha <br> https://www.google.com/recaptcha");
-
-define('_MI_CONTACT_FORM_CAPTCHA_SECRETKEY', "Your reCaptcha secret key");
-define('_MI_CONTACT_FORM_CAPTCHAKEY2_DESC', "More about Google reCaptcha <br> https://www.google.com/recaptcha");
 define('_MI_CONTACT_MAP', "Embed google maps");
 define('_MI_CONTACT_MAP_DESC', "embed google maps iframe <br> change iframe width to '100%'");
 //2.1
@@ -61,7 +54,21 @@ define('_MI_CONTACT_FORM_SKYPE_DESC', "");
 
 define('_MI_CONTACT_SUBJECT_PREFIX', "Add Department as Prefix?");
 define('_MI_CONTACT_SUBJECT_PREFIX_DESC', "If yes, the name of the Department will be used as Prefix for the email Subject");
-
-define('_MI_CONTACT_PREFIX_TEXT', "Email's Subject Prefix");
-define('_MI_CONTACT_PREFIX_TEXT_DESC', "This text will be included in the email's Subject Prefix");
-define('_MI_CONTACT_PREFIX_TEXT_DEFAULT', "Contact&nbsp;");
+define('_MI_CONTACT_PREFIX_TEXT', "Additional Email's Subject Prefix");
+define('_MI_CONTACT_PREFIX_TEXT_DESC', "This text will be included before the department in the email's subject prefix");
+define('_MI_CONTACT_PREFIX_TEXT_DEFAULT', "Contact");
+//2.21
+define('_MI_CONTACT_HEAD_CAPTCHA', "Options for Captcha");
+define('_MI_CONTACT_FORM_RECAPTCHA_USE', "Use Google reCaptcha?");
+define('_MI_CONTACT_FORM_RECAPTCHA_USE_DESC', "Select <em>Yes</em> to use Google reCaptcha in the submit form.<br />Default: <em>No</em>");
+define('_MI_CONTACT_FORM_RECAPTCHA_KEY', "Your reCaptcha website key");
+define('_MI_CONTACT_FORM_RECAPTCHA_KEY_DESC', "More about Google reCaptcha https://www.google.com/recaptcha <br>and under 'help'.");
+define('_MI_CONTACT_HEAD_DEPT', "Options for usage of departments/recipients");
+define('_MI_CONTACT_HEAD_MISC', "Misc options");
+define('_MI_CONTACT_MAIL_CONFIRM', "Send confirmation mail?");
+define('_MI_CONTACT_MAIL_CONFIRM_DESC', "If yes, a short confirmation mail with the basic information will be sent to given email-address.");
+define('_MI_CONTACT_RECIPIENT_STD', "Standard recipient");
+define('_MI_CONTACT_RECIPIENT_STD_DESC', "Each contact request will be sent to this e-mail-address");
+//2.3
+define('_MI_CONTACT_MAINTAINEDBY', "Maintained By");
+define('_MI_CONTACT_MAINTAINEDBY_DESC', "Allow url of support site or community");

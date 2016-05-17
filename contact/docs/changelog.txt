@@ -1,3 +1,14 @@
+Version 2.21 beta 1 NOT RELEASED
+=================================
+- fixed: deleted old module preferences (goffy)
+- created new module preferences for (goffy)
+-- reCaptcha
+-- standard email adress
+- fixed: various cleaning the code (goffy)
+- restructured module preferences (goffy)
+- added detail help files (en, de) with with detailed instruction for recaptcha and google maps iframe (goffy)
+- added new function to send a confirmation mail to contacting person (goffy)
+
 Version 2.2 beta 1 NOT RELEASED
 =================================
 - fixed: every Submitter was Admin (mamba)

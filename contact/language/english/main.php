@@ -36,3 +36,16 @@ define('_MD_CONTACT_PHONE_INFO', "Enter phone");
 define('_MD_CONTACT_SKYPE_NAME_INFO', "Enter skype name");
 define('_MD_CONTACT_SUBJECT_INFO', "Enter subject");
 define('_MD_CONTACT_MESSAGE_INFO', "Enter message");
+//2.21
+define('_MD_CONTACT_MAILCONFIRM_SUBJECT', "Confirmation mail");
+define('_MD_CONTACT_MAILCONFIRM_BODY', "
+Dear {NAME}
+
+We confirm the receipt of your mail
+
+Subject:{SUBJECT}
+Message: 
+{BODY}
+
+We will contact you as soon as possible.
+");
