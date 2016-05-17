@@ -1,5 +1,6 @@
+<!-- Header -->
+<{includeq file='db:contact_admin_header.tpl'}>
 <div class="contact">
-    <{$navigation}>
     <{if $form}><{$form}><{/if}>
     <{if $logs}>
     <div class="pad2">
@@ -11,3 +12,5 @@
     </div>
     <{/if}>
 </div>
+<!-- Footer -->
+<{includeq file='db:contact_admin_footer.tpl'}>
