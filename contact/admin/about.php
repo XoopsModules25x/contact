@@ -21,7 +21,7 @@
  * @version        $Id: 2.3 about.php 14020 Tue 2016-05-17 18:46:49Z Kazumi Ono (Onokazu), modified by Trabis, rewritten by Voltan, modified by Bleekk, Goffy, New GUI & version by Timgno $
  */
 include __DIR__ . '/header.php';
-$templateMain = 'contacts_admin_about.tpl';
+$templateMain = 'contact_admin_about.tpl';
 $GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('about.php'));
 $GLOBALS['xoopsTpl']->assign('about', $adminMenu->renderAbout('7LFE862PGJN88', false));
 include __DIR__ . '/footer.php';
