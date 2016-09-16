@@ -18,61 +18,57 @@
  * @author      Trabis <lusopoemas@gmail.com>
  * @author      Hossein Azizabadi (AKA Voltan)
  * @author      Mirza (AKA Bleekk)
- * @version     $Id: index.php 12285 2014-01-30 11:31:16Z beckmi $
  */
-include 'header.php';
-$xoopsOption['template_main'] = 'contact_index.html';
+include __DIR__ . '/header.php';
+$GLOBALS['xoopsOption']['template_main'] = 'contact_index.tpl';
 //unset($_SESSION);
-include XOOPS_ROOT_PATH . "/header.php";
+include XOOPS_ROOT_PATH . '/header.php';
 
 /** reCaptcha by google **/
-global $xoopsConfig;
+global $xoopsConfig, $xoopsModuleConfig;
+$captcha = '';
 
-if(isset($_POST['g-recaptcha-response'])){
-    $captcha=$_POST['g-recaptcha-response'];
+if ('' !== XoopsRequest::getString('g-recaptcha-response', '', 'POST')) {
+    $captcha = XoopsRequest::getString('g-recaptcha-response', '', 'POST');
 }
 
-if(!$captcha && $xoopsModuleConfig['useCaptcha']){
-    redirect_header("index.php", 2, _MD_CONTACT_MES_NOCAPTCHA);
-}
-else {
-    $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$xoopsModuleConfig['captchaSecretKey']."&response=".$captcha."&remoteip=".$_SERVER['REMOTE_ADDR']);
-    if($response.success==false && $xoopsModuleConfig['useCaptcha'])
-    {
-        redirect_header("index.php", 2, _MD_CONTACT_MES_CAPTCHAINCORRECT);
-    }else{
-
-    global $xoopsConfig, $xoopsOption, $xoopsTpl, $xoopsUser, $xoopsUserIsAdmin, $xoopsLogger;
-        $op         = $contact_handler->Contact_CleanVars($_POST, 'op', 'form', 'string');
-        $department = $contact_handler->Contact_CleanVars($_GET, 'department', '', 'string');
-        if($op == "save") {
-            if (empty($_POST['submit']) ) {
+if (!$captcha && $xoopsModuleConfig['recaptchause']) {
+    redirect_header('index.php', 2, _MD_CONTACT_MES_NOCAPTCHA);
+} else {
+    $response=file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $xoopsModuleConfig['recaptchakey'] . '&response=' . $captcha . '&remoteip=' . $_SERVER['REMOTE_ADDR']);
+    if ($response.success === false && $xoopsModuleConfig['recaptchause']) {
+        redirect_header('index.php', 2, _MD_CONTACT_MES_CAPTCHAINCORRECT);
+    } else {
+        global $xoopsConfig, $xoopsOption, $xoopsTpl, $xoopsUser, $xoopsUserIsAdmin, $xoopsLogger;
+        $op         = XoopsRequest::getString('op', 'form', 'POST');
+        $department = XoopsRequest::getString('department', '', 'GET');
+        if ($op === 'save') {
+            if (''== XoopsRequest::getString('submit', '', 'POST')) {
                 redirect_header(XOOPS_URL, 3, _MD_CONTACT_MES_ERROR);
-                exit();
             } else {
-                    
                 // check email
-                if (!$contact_handler->Contact_CleanVars($_POST, 'contact_mail', '', 'mail')) {
-                    redirect_header("index.php", 1, _MD_CONTACT_MES_NOVALIDEMAIL);
-                    exit();
+                if (''== XoopsRequest::getString('contact_mail', '', 'POST')) {
+                    redirect_header('index.php', 1, _MD_CONTACT_MES_NOVALIDEMAIL);
                 }
             
                 // Info Processing
-                $contact = $contact_handler->Contact_InfoProcessing($_POST);
-                
+                $contact = $contactHandler->contactInfoProcessing();
+              
                 // insert in DB
                 if ($saveinfo = true) {
-                    $obj = $contact_handler->create();
+                    $obj = $contactHandler->create();
                     $obj->setVars($contact);
-                    if (!$contact_handler->insert($obj)) {
-                        redirect_header("index.php", 3, _MD_CONTACT_MES_NOTSAVE);
-                        exit();
-                       }
+                    if (!$contactHandler->insert($obj)) {
+                        redirect_header('index.php', 3, _MD_CONTACT_MES_NOTSAVE);
+                    }
                 }
-            
+
                 // send mail can send message
                 if ($sendmail = true) {
-                    $message = $contact_handler->Contact_SendMail($contact);
+                    $message = $contactHandler->contactSendMail($contact);
+                    if ($xoopsModuleConfig['mailconfirm']) {
+                        $res_mailconfirm = $contactHandler->contactSendMailConfirm($contact);
+                    }
                 } elseif ($saveinfo = true) {
                     $message = _MD_CONTACT_MES_SAVEINDB;
                 } else {
@@ -80,11 +76,10 @@ else {
                 }
                 
                 redirect_header(XOOPS_URL, 3, $message);
-                exit();
             }
         }
-
     }
 }
 
-include XOOPS_ROOT_PATH . "/footer.php";
+
+include XOOPS_ROOT_PATH . '/footer.php';

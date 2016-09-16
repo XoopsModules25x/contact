@@ -17,18 +17,17 @@
  * @author      Kazumi Ono (aka Onokazu)
  * @author      Trabis <lusopoemas@gmail.com>
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id$
  */
 
-include 'header.php';
+include __DIR__ . '/header.php';
 
 if (!empty($_POST)) {
     // Info Processing
-    $contact = $contact_handler->Contact_InfoProcessing($_POST);
+    $contact = $contactHandler->contactInfoProcessing();
     // Save info
-    $obj = $contact_handler->create();
+    $obj = $contactHandler->create();
     $obj->setVars($contact);
-    $contact_handler->insert($obj);
+    $contactHandler->insert($obj);
     // send mail can seet message
-    $message = $contact_handler->Contact_SendMail($contact);
+    $message = $contactHandler->contactSendMail($contact);
 }

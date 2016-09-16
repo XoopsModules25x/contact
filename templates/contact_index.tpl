@@ -1,4 +1,6 @@
-<{if $captcha}>
+<link rel="stylesheet" href='<{xoAppUrl}>modules/contact/assets/css/contact.css' type="text/css" />
+
+<{if $recaptcha}>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <{/if}>
 
@@ -7,16 +9,25 @@
 </ol>
 
 <{if $info}>
-<div id="about" class="centered" style="padding-bottom: 20px; padding-top: 5px;">
+<div id="about" class="center bg-contact" style="padding-bottom: 20px; padding-top: 5px;">
 	<{$info}>
 </div>
 <{/if}>
 
 <{if $map}>
-	<div class="col-md-6 col-sm-12">
+<div class="col-md-6 col-sm-12 bg-contact">
 <{elseif !$map}>
-	<div class="col-sm-12">
+<div class="col-sm-12 bg-contact">
 <{/if}>
+    <{if $contact_default}>
+        <div id="contact-default" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 contact-default-text">
+            <{$contact_default}>
+        </div>
+        <div id="contact-form" class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+    <{else}>
+        <div id="contact-form" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <{/if}>
+
 	<form name="save" id="save" action="<{xoAppUrl}>modules/contact/send.php" onsubmit="return xoopsFormValidate_save();" method="post" enctype="multipart/form-data">
 		<div class="form-group">
 	    	<label for="contact_name"><{$lng_username}></label>
@@ -58,17 +69,16 @@
 	  	<{/if}>
         <{if $icq}>
 	  	<div class="form-group">
-	    	<label for="contact_url"><{$lng_icq}></label>
+	    	<label for="contact_icq"><{$lng_icq}></label>
 	    	<input type="text" class="form-control" id="contact_icq" name="contact_icq" placeholder="<{$lng_icq_info}>">
 	  	</div>
 	  	<{/if}>
 	  	<{if $skype}>
 	  	<div class="form-group">
-	    	<label for="contact_icq"><{$lng_skypename}></label>
-	    	<input type="text" class="form-control" id="contact_icq" name="contact_icq" placeholder="<{$lng_skypename_info}>">
+	    	<label for="contact_skype"><{$lng_skypename}></label>
+	    	<input type="text" class="form-control" id="contact_skype" name="contact_skype" placeholder="<{$lng_skypename_info}>">
 	  	</div>
 	  	<{/if}>
-	  	
 	  	<{if $depart}>
 	  	<div class="form-group">
 	  	<label for="contact_department"><{$lng_department}></label>
@@ -79,29 +89,31 @@
 		</select>
 		</div>
 	  	<{/if}>
-	  	
-	  	
 	  	<div class="form-group">
 	    	<label for="contact_subject"><{$lng_subject}></label>
 	    	<input type="text" class="form-control" id="contact_subject" name="contact_subject" placeholder="<{$lng_subject_info}>">
 	  	</div>
 	  	<div class="form-group">
-	    	<label for="contact_subject"><{$lng_message}></label>
+	    	<label for="contact_message"><{$lng_message}></label>
 	  		<textarea name="contact_message" id="contact_message" class="form-control" rows="3" placeholder="<{$lng_message_info}>"></textarea>
 	  	</div>
 	  	
 		<input type="hidden" name="op" id="op" value="save">
 	  	<input type="hidden" name="contact_id" id="contact_id" value="">
 	  	<input type="hidden" name="contact_uid" id="contact_uid" value="0">
-	  	<{if $captcha}>
-	  	<div class="g-recaptcha" data-sitekey="<{$captchakey}>"></div>
+
+	  	<{if $recaptcha}>
+	  	<div class="g-recaptcha" data-sitekey="<{$recaptchakey}>"></div>
 	  	<{/if}>
-	  	<input type="submit" class="btn btn-primary" name="submit" id="submit" value="<{$lng_submit}>" title="<{$lng_submit}>" style="margin: 10px 0" />
+	  	<div class="center">
+            <input type="submit" class="btn btn-primary center" name="submit" id="submit" value="<{$lng_submit}>" title="<{$lng_submit}>" style="margin: 10px 0;" />
+        </div>
 	</form>
 
 	</div>
+</div>
 <{if $map}>
-	<div class="col-md-6 col-sm-12">
+	<div class="col-md-6 col-sm-12 bg-contact">
 		<{$map}>
 	</div>
 <{/if}>
@@ -111,13 +123,13 @@
 
 <!--//
 function xoopsFormValidate_save() { var myform = window.document.save; 
-if (myform.contact_name.value == "") { window.alert("Please enter Name"); myform.contact_name.focus(); return false; }
+if (myform.contact_name.value == "") { window.alert("<{$lng_username_info}>"); myform.contact_name.focus(); return false; }
 
-if (myform.contact_mail.value == "") { window.alert("Please enter Email"); myform.contact_mail.focus(); return false; }
+if (myform.contact_mail.value == "") { window.alert("<{$lng_email_info}>"); myform.contact_mail.focus(); return false; }
 
-if (myform.contact_subject.value == "") { window.alert("Please enter Subject"); myform.contact_subject.focus(); return false; }
+if (myform.contact_subject.value == "") { window.alert("<{$lng_subject_info}>"); myform.contact_subject.focus(); return false; }
 
-if (myform.contact_message.value == "") { window.alert("Please enter Comment"); myform.contact_message.focus(); return false; }
+if (myform.contact_message.value == "") { window.alert("<{$lng_message_info}>"); myform.contact_message.focus(); return false; }
 return true;
 }
 //--></script>

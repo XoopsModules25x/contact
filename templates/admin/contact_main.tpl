@@ -12,7 +12,7 @@
     <tbody class="xo-contact">
     <{foreach item=contact from=$replylist}>
     <tr class="odd" id="mod_<{$contact.contact_id}>">
-        <td class="txtcenter bold"><a class="tooltip" title="<{$contact.contact_subject}>" href="contact.php?op=view&amp;id=<{$contact.contact_id}>"><{$contact.contact_subject}></a>
+        <td class="txtcenter bold"><a class="tooltip" title="<{$contact.contact_subject}>" href="main.php?op=view&amp;id=<{$contact.contact_id}>"><{$contact.contact_subject}></a>
         </td>
         <td class="txtcenter width10"><{$contact.contact_create}></td>
         <td class="txtcenter width15"><{$contact.contact_name}> ( <{if $contact.contact_uid}><a title="<{$contact.contact_owner}>"
@@ -22,9 +22,9 @@
         <td class="txtcenter width15 xo-actions">
             <img class="tooltip" onclick="display_dialog(<{$contact.contact_id}>, true, true, 'slide', 'slide', 300, 700);"
                  src="<{xoAdminIcons display.png}>" alt="<{$smarty.const._PREVIEW}>" title="<{$smarty.const._PREVIEW}>"/>
-            <a class="tooltip" title="<{$smarty.const._AM_CONTACT_VIEW}>" href="contact.php?op=view&amp;id=<{$contact.contact_id}>"><img
+            <a class="tooltip" title="<{$smarty.const._AM_CONTACT_VIEW}>" href="main.php?op=view&amp;id=<{$contact.contact_id}>"><img
                     src="<{xoAdminIcons view.png}>" alt="<{$smarty.const._AM_CONTACT_VIEW}>"/></a>
-            <a class="tooltip" title="<{$smarty.const._DELETE}>" href="contact.php?op=delete&amp;id=<{$contact.contact_id}>"><img
+            <a class="tooltip" title="<{$smarty.const._DELETE}>" href="main.php?op=delete&amp;id=<{$contact.contact_id}>"><img
                     src="<{xoAdminIcons delete.png}>" alt="<{$smarty.const._DELETE}>"/></a>
         </td>
     </tr>
@@ -144,9 +144,9 @@
     <tr class="odd">
         <td class="bold"><{$smarty.const._AM_CONTACT_ACTION}></td>
         <td class="xo-actions">
-            <a class="tooltip" title="<{$smarty.const._AM_CONTACT_REPLY}>" href="contact.php?op=reply&amp;id=<{$contact.contact_id}>"><img
+            <a class="tooltip" title="<{$smarty.const._AM_CONTACT_REPLY}>" href="main.php?op=reply&amp;id=<{$contact.contact_id}>"><img
                     src="<{xoAdminIcons mail_reply.png}>" alt="<{$smarty.const._AM_CONTACT_REPLY}>"/></a>
-            <a class="tooltip" title="<{$smarty.const._DELETE}>" href="contact.php?op=delete&amp;id=<{$contact.contact_id}>"><img
+            <a class="tooltip" title="<{$smarty.const._DELETE}>" href="main.php?op=delete&amp;id=<{$contact.contact_id}>"><img
                     src="<{xoAdminIcons delete.png}>" alt="<{$smarty.const._DELETE}>"/></a>
         </td>
     </tr>
@@ -165,7 +165,7 @@
     <tbody class="xo-contact">
     <{foreach item=contact from=$replylist}>
     <tr class="odd" id="mod_<{$contact.contact_id}>">
-        <td class="txtcenter bold"><a class="tooltip" title="<{$contact.contact_subject}>" href="contact.php?op=view&amp;id=<{$contact.contact_id}>"><{$contact.contact_subject}></a>
+        <td class="txtcenter bold"><a class="tooltip" title="<{$contact.contact_subject}>" href="main.php?op=view&amp;id=<{$contact.contact_id}>"><{$contact.contact_subject}></a>
         </td>
         <td class="txtcenter width10"><{$contact.contact_create}></td>
         <td class="txtcenter width15"><{$contact.contact_name}> ( <{if $contact.contact_uid}><a title="<{$contact.contact_owner}>"
@@ -175,9 +175,9 @@
         <td class="txtcenter width15 xo-actions">
             <img class="tooltip" onclick="display_dialog(<{$contact.contact_id}>, true, true, 'slide', 'slide', 300, 700);"
                  src="<{xoAdminIcons display.png}>" alt="<{$smarty.const._PREVIEW}>" title="<{$smarty.const._PREVIEW}>"/>
-            <a class="tooltip" title="<{$smarty.const._AM_CONTACT_VIEW}>" href="contact.php?op=view&amp;id=<{$contact.contact_id}>"><img
+            <a class="tooltip" title="<{$smarty.const._AM_CONTACT_VIEW}>" href="main.php?op=view&amp;id=<{$contact.contact_id}>"><img
                     src="<{xoAdminIcons view.png}>" alt="<{$smarty.const._AM_CONTACT_VIEW}>"/></a>
-            <a class="tooltip" title="<{$smarty.const._DELETE}>" href="contact.php?op=delete&amp;id=<{$contact.contact_id}>"><img
+            <a class="tooltip" title="<{$smarty.const._DELETE}>" href="main.php?op=delete&amp;id=<{$contact.contact_id}>"><img
                     src="<{xoAdminIcons delete.png}>" alt="<{$smarty.const._DELETE}>"/></a>
         </td>
     </tr>
@@ -229,7 +229,7 @@
     <tbody class="xo-contact">
     <{foreach item=contact from=$contacts}>
     <tr class="odd" id="mod_<{$contact.contact_id}>">
-        <td class="bold"><a class="tooltip" title="<{$contact.contact_subject}>" href="contact.php?op=view&amp;id=<{$contact.contact_id}>"><{$contact.contact_subject}></a>
+        <td class="bold"><a class="tooltip" title="<{$contact.contact_subject}>" href="main.php?op=view&amp;id=<{$contact.contact_id}>"><{$contact.contact_subject}></a>
         </td>
         <td class="txtcenter width10 bold"><{if $contact.contact_reply}><span class="green bold pad2"><{$smarty.const._AM_CONTACT_HAVEREPLY}></span><{else}><span
                 class="red bold pad2"><{$smarty.const._AM_CONTACT_HAVENTREPLY}></span><{/if}>
@@ -243,11 +243,11 @@
         <td class="txtcenter width15 xo-actions">
             <img class="tooltip" onclick="display_dialog(<{$contact.contact_id}>, true, true, 'slide', 'slide', 300, 700);"
                  src="<{xoAdminIcons display.png}>" alt="<{$smarty.const._PREVIEW}>" title="<{$smarty.const._PREVIEW}>"/>
-            <a class="tooltip" title="<{$smarty.const._AM_CONTACT_REPLY}>" href="contact.php?op=reply&amp;id=<{$contact.contact_id}>"><img
+            <a class="tooltip" title="<{$smarty.const._AM_CONTACT_REPLY}>" href="main.php?op=reply&amp;id=<{$contact.contact_id}>"><img
                     src="<{xoAdminIcons mail_reply.png}>" alt="<{$smarty.const._AM_CONTACT_REPLY}>"/></a>
-            <a class="tooltip" title="<{$smarty.const._AM_CONTACT_VIEW}>" href="contact.php?op=view&amp;id=<{$contact.contact_id}>"><img
+            <a class="tooltip" title="<{$smarty.const._AM_CONTACT_VIEW}>" href="main.php?op=view&amp;id=<{$contact.contact_id}>"><img
                     src="<{xoAdminIcons view.png}>" alt="<{$smarty.const._AM_CONTACT_VIEW}>"/></a>
-            <a class="tooltip" title="<{$smarty.const._DELETE}>" href="contact.php?op=delete&amp;id=<{$contact.contact_id}>"><img
+            <a class="tooltip" title="<{$smarty.const._DELETE}>" href="main.php?op=delete&amp;id=<{$contact.contact_id}>"><img
                     src="<{xoAdminIcons delete.png}>" alt="<{$smarty.const._DELETE}>"/></a>
         </td>
     </tr>

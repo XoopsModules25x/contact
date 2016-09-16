@@ -17,21 +17,20 @@
  * @author      Kazumi Ono (aka Onokazu)
  * @author      Trabis <lusopoemas@gmail.com>
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id$
  */
 
 // Call header
-require dirname(__FILE__) . '/admin_header.php';
+require __DIR__ . '/admin_header.php';
 // Display Admin header
 xoops_cp_header();
 
 // Display Admin menu class
-$admin_class->addInfoBox(_AM_CONTACT_INDEX_ADMENU1);
-$admin_class->addInfoBoxLine(_AM_CONTACT_INDEX_ADMENU1, _AM_CONTACT_INDEX_TOTAL, $contact_handler->Contact_GetCount('contact_cid'));
-$xoopsTpl->assign('navigation', $admin_class->addNavigation('index.php'));
-$xoopsTpl->assign('renderindex', $admin_class->renderIndex());
+$adminObject->addInfoBox(_AM_CONTACT_INDEX_ADMENU1);
+$adminObject->addInfoBoxLine(_AM_CONTACT_INDEX_ADMENU1, _AM_CONTACT_INDEX_TOTAL, $contactHandler->contactGetCount('contact_cid'));
+$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->addNavigation(basename(__FILE__)));
+$GLOBALS['xoopsTpl']->assign('renderindex', $adminObject->renderIndex());
 
 // Call template file
-$xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/contact/templates/admin/contact_index.html');
+$GLOBALS['xoopsTpl']->display(XOOPS_ROOT_PATH . '/modules/contact/templates/admin/contact_index.tpl');
 // Call footer
-require dirname(__FILE__) . '/admin_footer.php';
+require __DIR__ . '/admin_footer.php';

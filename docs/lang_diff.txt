@@ -3,6 +3,50 @@ LANGUAGE DIFFERENCES
 
 Below are language differences from a version to next version.
 
+//2.25 (mamba)
+admin.php
+define('_AM_CONTACT_CANTREPLY', 'Can not reply');
+
+//2.23 (goffy)
+modinfo.php:
+define('_MI_B_CONTACT_FORM', "Contact form");
+define('_MI_B_CONTACT_FORM_DESC', "Show contact form as block");
+define('_MI_B_CONTACT_MAP', "Location");
+define('_MI_B_CONTACT_MAP_DESC', "Show defined location in Google Maps as block");
+define('_MI_B_CONTACT_FORM_MAP', "Contact form and location");
+define('_MI_B_CONTACT_FORM_MAP_DESC', "Show contact form together with defined location in Google Maps as block");
+
+define('_MI_CONTACT_DEFAULT', "Default contact info");
+define('_MI_CONTACT_DEFAULT_DESC', "Here you can define additional information, which should be shown beside contact form (e.g name, address , phone number,...");
+
+//2.21 (goffy)
+modinfo.php:
+define('_MI_CONTACT_HEAD_CAPTCHA', "Options for Captcha");
+define('_MI_CONTACT_FORM_RECAPTCHA_USE', "Use Google reCaptcha?");
+define('_MI_CONTACT_FORM_RECAPTCHA_USE_DESC', "Select <em>Yes</em> to use Google reCaptcha in the submit form.<br />Default: <em>No</em>");
+define('_MI_CONTACT_FORM_RECAPTCHA_KEY', "Your reCaptcha website key");
+define('_MI_CONTACT_FORM_RECAPTCHA_KEY_DESC', "More about Google reCaptcha https://www.google.com/recaptcha <br>and under 'help'.");
+define('_MI_CONTACT_HEAD_DEPT', "Options for usage of departments/recipients");
+define('_MI_CONTACT_HEAD_MISC', "Misc options");
+define('_MI_CONTACT_MAIL_CONFIRM', "Send confirmation mail?");
+define('_MI_CONTACT_MAIL_CONFIRM_DESC', "If yes, a short confirmation mail with the basic information will be sent to given email-address.");
+define('_MI_CONTACT_RECIPIENT_STD', "Standard recipient");
+define('_MI_CONTACT_RECIPIENT_STD_DESC', "Each contact request will be sent to this e-mail-address");
+
+main.php
+define('_MD_CONTACT_MAILCONFIRM_SUBJECT', "Confirmation mail");
+define('_MD_CONTACT_MAILCONFIRM_BODY', "
+Dear {NAME}
+
+We confirm the receipt of your mail
+
+Subject:{SUBJECT}
+Message: 
+{BODY}
+
+We will contact you as soon as possible.
+");
+
 //2.1
 main.php
 define('_MD_CONTACT_SKYPE_NAME', "Skype Name");

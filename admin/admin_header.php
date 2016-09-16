@@ -17,10 +17,9 @@
  * @author      Kazumi Ono (aka Onokazu)
  * @author      Trabis <lusopoemas@gmail.com>
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id: admin_header.php 12165 2013-10-08 12:12:22Z beckmi $
  */
 
-$path = dirname(dirname(dirname(dirname(__FILE__))));
+$path = dirname(dirname(dirname(__DIR__)));
 
 include_once $path . '/mainfile.php';
 include_once XOOPS_ROOT_PATH . '/include/cp_functions.php';
@@ -29,18 +28,22 @@ include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
 include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 global $xoopsModule;
 
-$thisModuleDir = $GLOBALS['xoopsModule']->getVar('dirname');
+xoops_load('XoopsRequest');
+
+$moduleDirName = $GLOBALS['xoopsModule']->getVar('dirname');
 
 // Load language files
-xoops_loadLanguage('admin', $thisModuleDir);
-xoops_loadLanguage('modinfo', $thisModuleDir);
-xoops_loadLanguage('main', $thisModuleDir);
+xoops_loadLanguage('admin', $moduleDirName);
+xoops_loadLanguage('modinfo', $moduleDirName);
+xoops_loadLanguage('main', $moduleDirName);
 
 $pathIcon16 = XOOPS_URL . '/' . $xoopsModule->getInfo('icons16');
 $pathIcon32 = XOOPS_URL . '/' . $xoopsModule->getInfo('icons32');
 $pathModuleAdmin = XOOPS_ROOT_PATH . '/' . $xoopsModule->getInfo('dirmoduleadmin');
 require_once $pathModuleAdmin . '/moduleadmin/moduleadmin.php';
-$admin_class = new ModuleAdmin();
+
+$adminObject = new ModuleAdmin();
 
 // Contact Handler
-$contact_handler = & xoops_getModuleHandler('contact', 'contact');
+/** @var ContactContactHandler $contactHandler*/
+$contactHandler = xoops_getModuleHandler('contact', 'contact');

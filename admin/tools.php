@@ -17,15 +17,14 @@
  * @author      Kazumi Ono (aka Onokazu)
  * @author      Trabis <lusopoemas@gmail.com>
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id$
  */
 
 // Call header
-require dirname(__FILE__) . '/admin_header.php';
+require __DIR__ . '/admin_header.php';
 // Display Admin header
 xoops_cp_header();
 // Define default value
-$op = $contact_handler->Contact_CleanVars($_REQUEST, 'op', 'list', 'string');
+$op = XoopsRequest::getString('op', 'list');
 
 switch ($op) {
     case 'list':
@@ -37,23 +36,23 @@ switch ($op) {
         $form->addElement($onlyreply, false);
         $form->addElement(new XoopsFormHidden('op', 'prune'));
         $form->addElement(new XoopsFormButton('', 'post', _SUBMIT, 'submit'));
-        $xoopsTpl->assign('prune', $form->render());
+        $GLOBALS['xoopsTpl']->assign('prune', $form->render());
         break;
 
     case 'prune':
-        $timestamp = $contact_handler->Contact_CleanVars($_REQUEST, 'prune_date', '', 'int');
-        $onlyreply = $contact_handler->Contact_CleanVars($_REQUEST, 'onlyreply', 0, 'int');
+        $timestamp = XoopsRequest::getInt('prune_date', '');
+        $onlyreply = XoopsRequest::getInt('onlyreply', 0);
         $timestamp = strtotime($timestamp);
-        $count     = $contact_handler->Contact_PruneCount($timestamp, $onlyreply);
-        $contact_handler->Contact_DeleteBeforeDate($timestamp, $onlyreply);
+        $count     = $contactHandler->contactPruneCount($timestamp, $onlyreply);
+        $contactHandler->contactDeleteBeforeDate($timestamp, $onlyreply);
         redirect_header('tools.php', 1, sprintf(_AM_CONTACT_MSG_PRUNE_DELETED, $count));
-        xoops_cp_footer();
-        exit ();
-        break;
+//        xoops_cp_footer();
+//        exit();
+//        break;
 }
 
-$xoopsTpl->assign('navigation', $admin_class->addNavigation('tools.php'));
+$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->addNavigation(basename(__FILE__)));
 // Call template file
-$xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/contact/templates/admin/contact_tools.html');
+$GLOBALS['xoopsTpl']->display(XOOPS_ROOT_PATH . '/modules/contact/templates/admin/contact_tools.tpl');
 // Call footer
-require dirname(__FILE__) . '/admin_footer.php';
+require __DIR__ . '/admin_footer.php';
