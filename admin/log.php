@@ -17,39 +17,38 @@
  * @author      Kazumi Ono (aka Onokazu)
  * @author      Trabis <lusopoemas@gmail.com>
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id$
  */
 
 // Call header
-require dirname(__FILE__) . '/admin_header.php';
+require __DIR__ . '/admin_header.php';
 // Display Admin header
 xoops_cp_header();
 // Define default value
-$op = $contact_handler->Contact_CleanVars($_REQUEST, 'op', 'form', 'string');
+$op = XoopsRequest::getString('op', 'form');
 
 switch ($op) {
     case 'form':
         // prune manager
         $form   = new XoopsThemeForm(_AM_CONTACT_LOGS_FORM, 'logs', 'log.php', 'post');
         $column = new XoopsFormSelect(_AM_CONTACT_LOGS_COLUMN, 'column', 'contact_phone');
-        $column->addOption("contact_phone", _AM_CONTACT_LOGS_COLUMN_PHONE);
-        $column->addOption("contact_url", _AM_CONTACT_LOGS_COLUMN_URL);
-        $column->addOption("contact_mail", _AM_CONTACT_LOGS_COLUMN_MAIL);
+        $column->addOption('contact_phone', _AM_CONTACT_LOGS_COLUMN_PHONE);
+        $column->addOption('contact_url', _AM_CONTACT_LOGS_COLUMN_URL);
+        $column->addOption('contact_mail', _AM_CONTACT_LOGS_COLUMN_MAIL);
         $form->addElement($column);
         $form->addElement(new XoopsFormHidden('op', 'getlog'));
         $form->addElement(new XoopsFormButton('', 'post', _SUBMIT, 'submit'));
-        $xoopsTpl->assign('form', $form->render());
+        $GLOBALS['xoopsTpl']->assign('form', $form->render());
         break;
 
     case 'getlog':
-        $column = $contact_handler->Contact_CleanVars($_REQUEST, 'column', '', 'string');
-        $log    = $contact_handler->Contact_Logs($column);
-        $xoopsTpl->assign('logs', $log);
+        $column = XoopsRequest::getString('column', '');
+        $log    = $contactHandler->contactLogs($column);
+        $GLOBALS['xoopsTpl']->assign('logs', $log);
         break;
 }
 
-$xoopsTpl->assign('navigation', $admin_class->addNavigation('log.php'));
+$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->addNavigation(basename(__FILE__)));
 // Call template file
-$xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/contact/templates/admin/contact_logs.html');
+$GLOBALS['xoopsTpl']->display(XOOPS_ROOT_PATH . '/modules/contact/templates/admin/contact_logs.tpl');
 // Call footer
-require dirname(__FILE__) . '/admin_footer.php';
+require __DIR__ . '/admin_footer.php';

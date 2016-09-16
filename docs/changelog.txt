@@ -1,22 +1,86 @@
-Version 2.2 beta 1 NOT RELEASED
-=================================
+2.25 beta 2 NOT RELEASED
+================================
+- removed @version (mamba)
+- code cosmetics, PSR-2 (mamba)
+- addNavigation(basename(__FILE__))  (mamba)
+- dirname(__FILE__) to __DIR__ (mamba)
+- replaced < b /> with < b > (mamba)
+- Unnecessary double quotes (mamba)
+- reference mismatch (mamba)
+- Hardening to type safe (mamba)
+- update Help (mamba)
+- changed _handler to Handler (mamba)
+- renamed templates from .html to .tpl (mamba)
+- moved /images to /assets (mamba)
+- renamed $admin_class to $adminObject (mamba)
+- removed /admin/header.php (mamba)
+- removed /admin/footer.php (mamba)
+- replaced $xoopsTpl with $GLOBALS['xoopsTpl'] (mamba)
+- added type annotations for Handlers (mamba)
+- added few PhpDocs  (mamba)
+- replaced calls to contactCleanVars with XoopsRequest (mamba)
+- changed $hModule->getByDirname to static call $hModule::getByDirname (mamba)
+- updated deprecated HTML to CSS (mamba)
+- removed exit(); redirect_header has it already (mamba)
+- renamed /admin/contact.php to main.php (mamba)
+- renamed contact_slogo.png to logoModule.png (mamba)
+- updated min XOOPS (2.5.8), admin (1.2),and PHP (5.5) (mamba)
+- added info about reCaptcha testing key (mamba)
+- replaced "or die" with "|| exit" (mamba)
+- removed "Version" in changelog (mamba)
+- added strict boolean comparison (mamba)
+
+2.25 beta 1 NOT RELEASED
+================================
+- fixed notices php7 (goffy)
+- updated for xoops 2.5.8 (goffy)
+
+2.24 beta 1 NOT RELEASED
+================================
+- fixed bug in template 'contact_index.html' (goffy)
+  
+2.23 beta 1 NOT RELEASED
+================================
+- created new module preference 'contact_default' (goffy)
+- added new blocks (goffy)
+  -- block for contact form alone
+  -- block for map alone
+  -- block for contact form with map together
+
+2.22 beta 1 NOT RELEASED
+================================
+- fixed: various cleaning the code (goffy)
+
+2.21 beta 1 NOT RELEASED
+================================
+- fixed: deleted old module preferences (goffy)
+- created new module preferences for (goffy, bleek)
+  -- reCaptcha
+  -- standard email adress
+- fixed: various cleaning the code (goffy)
+- restructured module preferences (goffy)
+- added detail help files (en, de) with with detailed instruction for recaptcha and google maps iframe (goffy)
+- added new function to send a confirmation mail to contacting person (goffy)
+
+2.2 beta 1 NOT RELEASED
+===============================
 - fixed: every Submitter was Admin (mamba)
 - fixed: department selection was showing email as well (mamba)
 - fixed: with reply, the email was always from the admin, even if there could more admins (mamba)
 - added Prefix for Emails Subject, if Department is used: so it can show '[Contact Department]: ' (mamba)
 
-Version 2.1 from 2015-01-01
+2.1 from 2015-01-01
 =================================
 - fixed: bug in contact_index.html <{if $comapny}> (goffy)
 - template contact_index.html: replaced coded language word by language vars (goffy)
 - fixed: mix in module option form_skype/form_icq - splitted to two options (goffy)
 - fixed: bug, when there is no department used (goffy)
 
-Version 2.0 from ?
+2.0 from ?
 =================================
 - added bootstrap to contact_index.html (bleek)
 
-Version 1.81 from 2013-02-24
+1.81 from 2013-02-24
 =================================
 - Rebuild Module (Voltan)
 - English corrections (Cesag)
@@ -27,16 +91,16 @@ Version 1.81 from 2013-02-24
 - Fixed an error when sending Captcha (Montuy337513 alias black_beard)
 - Fixed bug with $_POST table (Montuy337513 alias black_beard)
 
-Version 1.80 from 2012-1-19
+1.80 from 2012-1-19
 =================================
 - Rebuild Module (Voltan)
 
-Version 1.71 from 2011-12-12
+1.71 from 2011-12-12
 =================================
 - converted to XOOPS Standard Module GUI (Mamba)
 - included ModuleAdmin class from (Mage)
 
-Version 1.70 from 11-08-2010
+1.70 from 11-08-2010
 =================================
 - added 2.4.x compatibilty (Trabis)
 - added php5.3 compatibilty (Trabis)

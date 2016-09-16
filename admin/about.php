@@ -17,18 +17,17 @@
  * @author      Kazumi Ono (aka Onokazu)
  * @author      Trabis <lusopoemas@gmail.com>
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id$
  */
 
 // Call header
-require dirname(__FILE__) . '/admin_header.php';
+require __DIR__ . '/admin_header.php';
 // Display Admin header
 xoops_cp_header();
 
-$xoopsTpl->assign('navigation', $admin_class->addNavigation('about.php'));
-$xoopsTpl->assign('renderabout', $admin_class->renderabout('6KJ7RW5DR3VTJ', false));
+$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->addNavigation(basename(__FILE__)));
+$GLOBALS['xoopsTpl']->assign('renderabout', $adminObject->renderAbout('6KJ7RW5DR3VTJ', false));
 
 // Call template file
-$xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/contact/templates/admin/contact_about.html');
+$GLOBALS['xoopsTpl']->display(XOOPS_ROOT_PATH . '/modules/contact/templates/admin/contact_about.tpl');
 // Call footer
-require dirname(__FILE__) . '/admin_footer.php';
+require __DIR__ . '/admin_footer.php';
