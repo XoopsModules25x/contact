@@ -26,7 +26,7 @@ require dirname(__FILE__) . '/admin_header.php';
 xoops_cp_header();
 
 $xoopsTpl->assign('navigation', $admin_class->addNavigation('about.php'));
-$xoopsTpl->assign('renderabout', $admin_class->renderabout('6KJ7RW5DR3VTJ', false));
+$xoopsTpl->assign('renderabout', $admin_class->renderabout('xoopsfoundation@gmail.com', false));
 
 // Call template file
 $xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/contact/templates/admin/contact_about.html');
