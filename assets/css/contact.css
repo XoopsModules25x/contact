@@ -1,0 +1,81 @@
+.bg-contact {
+	background-color: #ffffff;
+}
+
+.contact-row  {
+    margin:5px;
+}
+.contact-row  i{
+    font-size:20px;
+}
+
+.contact-info  {
+    margin-top:15px;
+    margin-bottom:15px;
+	color: #ff0000;
+    border: 1px solid #aa0022;
+
+}
+
+.contact-info-text  {
+    padding: 15px;
+	border-bottom: 0.5px solid #71a125;
+}
+
+.contact-default  {
+    margin-top:15px;
+    margin-bottom:15px;
+    border: 0 solid #71a125;
+}
+
+.contact-default-text  {
+    padding: 15px;
+    border: 0 solid #71a125;
+}
+ 
+.contact-form  {
+    margin-top:10px;
+    margin-bottom:10px;
+    padding-top:10px;
+    border: 0 solid #71a125;
+}
+
+.contact-map  {
+    margin-top:0;
+    margin-bottom:10px;
+    margin-right:5px;
+    border: 0 solid #71a125;
+}
+
+/* google maps iframe */
+.contact-map  iframe {
+    width:100% !important;
+}
+
+/* extra small device */
+@media (max-width: 767px) {
+    .contact-map iframe{
+        height:100px;
+    }
+}
+
+/* small device */
+@media (min-width: 768px) {
+    .contact-map iframe{
+        height:200px;
+    }
+}
+
+/* medium device */
+@media (min-width: 992px) {
+    .contact-map  iframe {
+        height:300px;
+    }
+}
+
+/* large device */
+@media (min-width: 1200px) {
+    .contact-map  iframe {
+        height:400px;
+    }
+}

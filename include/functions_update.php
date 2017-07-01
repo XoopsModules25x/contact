@@ -17,15 +17,16 @@
  * @author      Kazumi Ono (aka Onokazu)
  * @author      Trabis <lusopoemas@gmail.com>
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id$
+ * @param XoopsModule $module
+ * @param $version
  */
 
-function xoops_module_update_contact($module, $version)
+function xoops_module_update_contact(XoopsModule $module, $version)
 {
     $xoopsDB = XoopsDatabaseFactory::getDatabaseConnection();
 
     if ($version < 180) {
-        $sql = "CREATE TABLE " . $xoopsDB->prefix('contact') . " (
+        $sql = 'CREATE TABLE ' . $xoopsDB->prefix('contact') . ' (
         contact_id int(10) unsigned NOT NULL auto_increment,
         contact_uid int(10) NOT NULL,
         contact_cid int(10) NOT NULL,
@@ -44,37 +45,37 @@ function xoops_module_update_contact($module, $version)
         contact_address text NOT NULL,
         contact_reply tinyint(1) NOT NULL,
         PRIMARY KEY  (contact_id)
-        ) ENGINE=MyISAM;";
+        ) ENGINE=MyISAM;';
         $xoopsDB->query($sql);
     }
 
     if ($version < 181) {
         // Add contact_platform
-        $sql = "ALTER TABLE `" . $xoopsDB->prefix('contact') . "` ADD `contact_platform` ENUM('Android','Ios','Web') NOT NULL DEFAULT 'Web'";
+        $sql = 'ALTER TABLE `' . $xoopsDB->prefix('contact') . "` ADD `contact_platform` ENUM('Android','Ios','Web') NOT NULL DEFAULT 'Web'";
         $xoopsDB->query($sql);
         // Add contact_type
-        $sql = "ALTER TABLE `" . $xoopsDB->prefix('contact') . "` ADD `contact_type` ENUM('Contact','Phone','Mail') NOT NULL DEFAULT 'Contact'";
+        $sql = 'ALTER TABLE `' . $xoopsDB->prefix('contact') . "` ADD `contact_type` ENUM('Contact','Phone','Mail') NOT NULL DEFAULT 'Contact'";
         $xoopsDB->query($sql);
         // Add index contact_uid
-        $sql = "ALTER TABLE `" . $xoopsDB->prefix('contact') . "` ADD INDEX `contact_uid` ( `contact_uid` )";
+        $sql = 'ALTER TABLE `' . $xoopsDB->prefix('contact') . '` ADD INDEX `contact_uid` ( `contact_uid` )';
         $xoopsDB->query($sql);
         // Add index contact_cid
-        $sql = "ALTER TABLE `" . $xoopsDB->prefix('contact') . "` ADD INDEX `contact_cid` ( `contact_cid` )";
+        $sql = 'ALTER TABLE `' . $xoopsDB->prefix('contact') . '` ADD INDEX `contact_cid` ( `contact_cid` )';
         $xoopsDB->query($sql);
         // Add index contact_create
-        $sql = "ALTER TABLE `" . $xoopsDB->prefix('contact') . "` ADD INDEX `contact_create` ( `contact_create` )";
+        $sql = 'ALTER TABLE `' . $xoopsDB->prefix('contact') . '` ADD INDEX `contact_create` ( `contact_create` )';
         $xoopsDB->query($sql);
         // Add index contact_mail
-        $sql = "ALTER TABLE `" . $xoopsDB->prefix('contact') . "` ADD INDEX `contact_mail` ( `contact_mail` )";
+        $sql = 'ALTER TABLE `' . $xoopsDB->prefix('contact') . '` ADD INDEX `contact_mail` ( `contact_mail` )';
         $xoopsDB->query($sql);
         // Add index contact_phone
-        $sql = "ALTER TABLE `" . $xoopsDB->prefix('contact') . "` ADD INDEX `contact_phone` ( `contact_phone` )";
+        $sql = 'ALTER TABLE `' . $xoopsDB->prefix('contact') . '` ADD INDEX `contact_phone` ( `contact_phone` )';
         $xoopsDB->query($sql);
         // Add index contact_platform
-        $sql = "ALTER TABLE `" . $xoopsDB->prefix('contact') . "` ADD INDEX `contact_platform` ( `contact_platform` )";
+        $sql = 'ALTER TABLE `' . $xoopsDB->prefix('contact') . '` ADD INDEX `contact_platform` ( `contact_platform` )';
         $xoopsDB->query($sql);
         // Add index contact_type
-        $sql = "ALTER TABLE `" . $xoopsDB->prefix('contact') . "` ADD INDEX `contact_type` ( `contact_type` )";
+        $sql = 'ALTER TABLE `' . $xoopsDB->prefix('contact') . '` ADD INDEX `contact_type` ( `contact_type` )';
         $xoopsDB->query($sql);
     }
 }
