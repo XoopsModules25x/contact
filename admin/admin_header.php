@@ -19,31 +19,41 @@
  * @author      Hossein Azizabadi (AKA Voltan)
  */
 
-$path = dirname(dirname(dirname(__DIR__)));
-
-include_once $path . '/mainfile.php';
-include_once XOOPS_ROOT_PATH . '/include/cp_functions.php';
-include_once XOOPS_ROOT_PATH . '/include/cp_header.php';
-include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
-include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+require_once __DIR__ . '/../../../include/cp_header.php';
+require_once XOOPS_ROOT_PATH . '/class/pagenav.php';
+require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 global $xoopsModule;
-
-xoops_load('XoopsRequest');
 
 $moduleDirName = $GLOBALS['xoopsModule']->getVar('dirname');
 
+if (false !== ($moduleHelper = Xmf\Module\Helper::getHelper($moduleDirName))) {
+} else {
+    $moduleHelper = Xmf\Module\Helper::getHelper('system');
+}
+/** @var Xmf\Module\Admin $adminObject */
+$adminObject = Xmf\Module\Admin::getInstance();
+
+$myts = MyTextSanitizer::getInstance();
+
+if (!isset($GLOBALS['xoopsTpl']) || !($GLOBALS['xoopsTpl'] instanceof XoopsTpl)) {
+    require_once $GLOBALS['xoops']->path('class/template.php');
+    $xoopsTpl = new XoopsTpl();
+}
+
+$pathIcon16      = Xmf\Module\Admin::iconUrl('', 16);
+$pathIcon32      = Xmf\Module\Admin::iconUrl('', 32);
+$pathModIcon32 = $moduleHelper->getConfig('modicons32');
+
+// Local icons path
+$xoopsTpl->assign('pathModIcon16', $pathIcon16);
+$xoopsTpl->assign('pathModIcon32', $pathIcon32);
+
 // Load language files
-xoops_loadLanguage('admin', $moduleDirName);
-xoops_loadLanguage('modinfo', $moduleDirName);
-xoops_loadLanguage('main', $moduleDirName);
+$moduleHelper->loadLanguage('admin');
+$moduleHelper->loadLanguage('modinfo');
+$moduleHelper->loadLanguage('main');
 
-$pathIcon16 = XOOPS_URL . '/' . $xoopsModule->getInfo('icons16');
-$pathIcon32 = XOOPS_URL . '/' . $xoopsModule->getInfo('icons32');
-$pathModuleAdmin = XOOPS_ROOT_PATH . '/' . $xoopsModule->getInfo('dirmoduleadmin');
-require_once $pathModuleAdmin . '/moduleadmin/moduleadmin.php';
-
-$adminObject = new ModuleAdmin();
 
 // Contact Handler
 /** @var ContactContactHandler $contactHandler*/
-$contactHandler = xoops_getModuleHandler('contact', 'contact');
+$contactHandler = xoops_getModuleHandler('contact', $moduleDirName);

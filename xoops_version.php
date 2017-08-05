@@ -20,84 +20,139 @@
  * @author      Mirza (AKA Bleekk)
  */
 
-if (!defined('XOOPS_ROOT_PATH')) {
-    die('XOOPS root path not defined');
-}
+defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
 $moduleDirName = basename(__DIR__);
 
-$modversion['name']           = _MI_CONTACT_NAME;
-$modversion['version']        = 2.25;
-$modversion['description']    = _MI_CONTACT_DESC;
-$modversion['credits']        = 'The XOOPS Project, Mohtava Project';
-$modversion['author']         = 'Kazumi Ono (Onokazu), Trabis, Voltan, Bleekk, Goffy, Mamba';
-$modversion['nickname']       = '';
-$modversion['help']           = 'page=help';
-$modversion['license']        = 'GNU GPL 2.0';
-$modversion['license_url']    = 'www.gnu.org/licenses/gpl-2.0.html';
-$modversion['official']       = 2;
-$modversion['image']          = 'assets/images/logoModule.png';
-$modversion['dirname']        = basename(__DIR__);
-$modversion['onUpdate']       = 'include/functions_update.php';
-$modversion['dirmoduleadmin'] = 'Frameworks/moduleclasses';
-$modversion['icons16']        = 'Frameworks/moduleclasses/icons/16';
-$modversion['icons32']        = 'Frameworks/moduleclasses/icons/32';
+// ------------------- Informations ------------------- //
+$modversion = array(
+    'version'             => 2.25,
+    'module_status'       => 'Final',
+    'release_date'        => '2017/08/04',
+    'name'                => _MI_CONTACT_NAME,
+    'description'         => _MI_CONTACT_DESC,
+    'official'            => 0,
+    //1 indicates official XOOPS module supported by XOOPS Dev Team, 0 means 3rd party supported
+    'author'              => 'Kazumi Ono (Onokazu), Trabis, Voltan, Bleekk, Goffy, Mamba',
+    'credits'             => 'XOOPS Development Team, Mohtava Project',
+    'author_mail'         => 'author-email',
+    'author_website_url'  => 'https://xoops.org',
+    'author_website_name' => 'XOOPS',
+    'license'             => 'GPL 2.0 or later',
+    'license_url'         => 'www.gnu.org/licenses/gpl-2.0.html/',
+    'help'                => 'page=help',
+    // ------------------- Folders & Files -------------------
+    'release_info'        => 'Changelog',
+    'release_file'        => XOOPS_URL . "/modules/$moduleDirName/docs/changelog.txt",
+    //
+    'manual'              => 'link to manual file',
+    'manual_file'         => XOOPS_URL . "/modules/$moduleDirName/docs/install.txt",
+    // images
+    'image'               => 'assets/images/logoModule.png',
+    'dirname'             => $moduleDirName,
+    // Local path icons
+    'modicons16'          => 'assets/images/icons/16',
+    'modicons32'          => 'assets/images/icons/32',
+    //About
+    'demo_site_url'       => 'http://www.xoops.org',
+    'demo_site_name'      => 'XOOPS Demo Site',
+    'support_url'         => 'https://xoops.org/modules/newbb/viewforum.php?forum=28/',
+    'support_name'        => 'Support Forum',
+    'module_website_url'  => 'www.xoops.org',
+    'module_website_name' => 'XOOPS Project',
+    // ------------------- Min Requirements -------------------
+    'min_php'             => '5.5',
+    'min_xoops'           => '2.5.8',
+    'min_admin'           => '1.2',
+    'min_db'              => ['mysql' => '5.1'],
+    // ------------------- Admin Menu -------------------
+    'system_menu'         => 1,
+    'hasAdmin'            => 1,
+    'adminindex'          => 'admin/index.php',
+    'adminmenu'           => 'admin/menu.php',
+    // ------------------- Main Menu -------------------
+    'hasMain'             => 1,
+    // ------------------- Install/Update -------------------
+    'onInstall'           => 'include/oninstall.php',
+    'onUpdate'            => 'include/onupdate.php',
+    'onUninstall'         => 'include/onuninstall.php',
+    // -------------------  PayPal ---------------------------
+    'paypal'              => [
+        'business'      => 'foundation@xoops.org',
+        'item_name'     => 'Donation : ' . _MI_CONTACT_NAME,
+        'amount'        => 0,
+        'currency_code' => 'USD'
+    ],
+    // ------------------- Mysql -----------------------------
+    'sqlfile'             => ['mysql' => 'sql/mysql.sql'],
+    // ------------------- Tables ----------------------------
+    'tables'              => ['contact'],
+);
 
-// DB
-$modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
-$modversion['tables'][0]        = 'contact';
-
-//about
-$modversion['module_website_url']  = 'http://www.xoops.org/';
-$modversion['module_website_name'] = 'XOOPS';
-$modversion['release_date']        = '2016/08/23';
-$modversion['module_status']       = 'Beta 2';
-$modversion['author_website_url']  = 'http://www.xoops.org/';
-$modversion['author_website_name'] = 'XOOPS';
-$modversion['min_php']             = '5.5';
-$modversion['min_xoops']           = '2.5.8';
-$modversion['min_admin']           = '1.2';
-
-//Admin things
-$modversion['hasAdmin'] = 1;
-
-// Menu
-$modversion['hasMain']    = 1;
-$modversion['adminindex'] = 'admin/index.php';
-$modversion['adminmenu']  = 'admin/menu.php';
-
-// Set to 1 if you want to display menu generated by system module
-$modversion['system_menu'] = 1;
+// ------------------- Help files ------------------- //
+$modversion['helpsection'] = array(
+    ['name' => _MI_CONTACT_OVERVIEW, 'link' => 'page=help'],
+    ['name' => _MI_CONTACT_DISCLAIMER, 'link' => 'page=disclaimer'],
+    ['name' => _MI_CONTACT_LICENSE, 'link' => 'page=license'],
+    ['name' => _MI_CONTACT_SUPPORT, 'link' => 'page=support'],
+);
 
 // Templates
-$i                                          = 1;
-$modversion['templates'][$i]['file']        = 'contact_index.tpl';
-$modversion['templates'][$i]['description'] = '_MI_CONTACT_TEMPLATES';
+$modversion['templates'] = array(
+    array(
+        'file'                  =>  $moduleDirName . '_index.tpl',
+        'description'           =>  '_MI_CONTACT_TEMPLATES'
+    ),
+);
 
 // Blocks
-$b                                          = 1;
-$modversion['blocks'][$b]['file']        = 'block_contact_form_map.php';
-$modversion['blocks'][$b]['name']        = _MI_B_CONTACT_FORM;
-$modversion['blocks'][$b]['description'] = _MI_B_CONTACT_FORM_DESC;
-$modversion['blocks'][$b]['show_func']   = 'block_contact_form_show';
-$modversion['blocks'][$b]['options']     = '';
-$modversion['blocks'][$b]['template']    = 'block_contact_form.tpl';
-$b++;
-$modversion['blocks'][$b]['file']        = 'block_contact_form_map.php';
-$modversion['blocks'][$b]['name']        = _MI_B_CONTACT_MAP;
-$modversion['blocks'][$b]['description'] = _MI_B_CONTACT_MAP_DESC;
-$modversion['blocks'][$b]['show_func']   = 'block_contact_map_show';
-$modversion['blocks'][$b]['options']     = '';
-$modversion['blocks'][$b]['template']    = 'block_contact_map.tpl';
-$b++;
-$modversion['blocks'][$b]['file']        = 'block_contact_form_map.php';
-$modversion['blocks'][$b]['name']        = _MI_B_CONTACT_FORM_MAP;
-$modversion['blocks'][$b]['description'] = _MI_B_CONTACT_FORM_MAP_DESC;
-$modversion['blocks'][$b]['show_func']   = 'block_contact_form_map_show';
-$modversion['blocks'][$b]['options']     = '';
-$modversion['blocks'][$b]['template']    = 'block_contact_form_map.tpl';
+$modversion['blocks'][] = array(
+    'file'                  =>  'block_' . $moduleDirName . '_form_map.php',
+    'name'                  =>  _MI_B_CONTACT_FORM,
+    'description'           =>  _MI_B_CONTACT_FORM_DESC,
+    'show_func'             =>  'block_' . $moduleDirName . '_form_show',
+    'options'               =>  '',
+    'template'              =>  'block_' . $moduleDirName . '_form.tpl'
+);
+$modversion['blocks'][] = array(
+    'file'                  =>  'block_' . $moduleDirName . '_form_map.php',
+    'name'                  =>  _MI_B_CONTACT_MAP,
+    'description'           =>  _MI_B_CONTACT_MAP_DESC,
+    'show_func'             =>  'block_' . $moduleDirName . '_map_show',
+    'options'               =>  '',
+    'template'              =>  'block_' . $moduleDirName . '_map.tpl'
+);
+$modversion['blocks'][] = array(
+    'file'                  =>  'block_' . $moduleDirName . '_form_map.php',
+    'name'                  =>  _MI_B_CONTACT_FORM_MAP,
+    'description'           =>  _MI_B_CONTACT_FORM_MAP_DESC,
+    'show_func'             =>  'block_' . $moduleDirName . '_form_map_show',
+    'options'               =>  '',
+    'template'              =>  'block_' . $moduleDirName . '_form_map.tpl'
+);
+
 
 // Settings
+
+$modversion['config'][] = array(
+    'name'        => 'saveinfo',
+    'title'       => '_MI_CONTACT_MAIL_SAVE_DB',
+    'description' => '_MI_CONTACT_MAIL_SAVE_DB_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1
+);
+
+
+$modversion['config'][] = array(
+    'name'        => 'sendmail',
+    'title'       => '_MI_CONTACT_MAIL_SEND',
+    'description' => '_MI_CONTACT_MAIL_SEND_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1
+);
+
 $modversion['config'][] = array(
     'name'        => 'break',
     'title'       => '_MI_CONTACT_HEAD_CAPTCHA',

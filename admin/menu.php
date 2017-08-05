@@ -21,12 +21,10 @@
 
 defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
-/** @var XoopsModuleHandler $moduleHandler */
-$moduleHandler = xoops_getHandler('module');
-/** @var XoopsModule $module */
-$module        = $moduleHandler->getByDirname(basename(dirname(__DIR__)));
-$pathIcon32    = '../../' . $module->getInfo('icons32');
-xoops_loadLanguage('modinfo', $module->dirname());
+$moduleDirName = basename(dirname(__DIR__));
+$pathIcon32    = \Xmf\Module\Admin::menuIconPath('');
+
+xoops_loadLanguage('modinfo', $moduleDirName);
 
 $adminmenu[] = array(
     'title' => _MI_CONTACT_MENU_HOME,

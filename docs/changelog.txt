@@ -1,5 +1,25 @@
-2.25 beta 2 NOT RELEASED
-================================
+<h5>2.25 Final [2017-08-04]</h5>
+<hr>
++ added missing $moduleDirName in header.php (mamba)
++ rename Help file extensions to .tpl (mamba) 
+
+
+<h5>2.25 RC 1 [2017-06-30]</h5>
+<hr>
+- Updates for PayPal changes (zyspec)
+- added Contributing.md (mamba)
+- moved functions to Utility class (mamba)
+- added option to save to DB and/or email (mamba)
+- added install checks for PHP 5.5 and XOOPS 2.5.8 (mamba)
+- started conversion to XMF (mamba)
+    - Xmf\Request
+    - updated addInfoBoxLine entries (mamba)
+    - displayNavigation(basename(__FILE__))  (mamba)
+    - changed to ->displayButton('left') (mamba)
+
+
+<h5>2.25 beta 2 [NOT RELEASED]</h5>
+<hr>
 - removed @version (mamba)
 - code cosmetics, PSR-2 (mamba)
 - addNavigation(basename(__FILE__))  (mamba)
@@ -30,29 +50,29 @@
 - removed "Version" in changelog (mamba)
 - added strict boolean comparison (mamba)
 
-2.25 beta 1 NOT RELEASED
-================================
+<h5>2.25 beta 1 [NOT RELEASED]</h5>
+<hr>
 - fixed notices php7 (goffy)
 - updated for xoops 2.5.8 (goffy)
 
-2.24 beta 1 NOT RELEASED
-================================
+<h5>2.24 beta 1 [NOT RELEASED]</h5>
+<hr>
 - fixed bug in template 'contact_index.html' (goffy)
   
-2.23 beta 1 NOT RELEASED
-================================
+<h5>2.23 beta 1 [NOT RELEASED]</h5>
+<hr>
 - created new module preference 'contact_default' (goffy)
 - added new blocks (goffy)
   -- block for contact form alone
   -- block for map alone
   -- block for contact form with map together
 
-2.22 beta 1 NOT RELEASED
-================================
+<h5>2.22 beta 1 [NOT RELEASED]</h5>
+<hr>
 - fixed: various cleaning the code (goffy)
 
-2.21 beta 1 NOT RELEASED
-================================
+<h5>2.21 beta 1 [NOT RELEASED]</h5>
+<hr>
 - fixed: deleted old module preferences (goffy)
 - created new module preferences for (goffy, bleek)
   -- reCaptcha
@@ -62,26 +82,26 @@
 - added detail help files (en, de) with with detailed instruction for recaptcha and google maps iframe (goffy)
 - added new function to send a confirmation mail to contacting person (goffy)
 
-2.2 beta 1 NOT RELEASED
-===============================
+<h5>2.2 beta 1 [NOT RELEASED]</h5>
+<hr>
 - fixed: every Submitter was Admin (mamba)
 - fixed: department selection was showing email as well (mamba)
 - fixed: with reply, the email was always from the admin, even if there could more admins (mamba)
 - added Prefix for Emails Subject, if Department is used: so it can show '[Contact Department]: ' (mamba)
 
-2.1 from 2015-01-01
-=================================
+<h5>2.1 [2015-01-01]</h5>
+<hr>
 - fixed: bug in contact_index.html <{if $comapny}> (goffy)
 - template contact_index.html: replaced coded language word by language vars (goffy)
 - fixed: mix in module option form_skype/form_icq - splitted to two options (goffy)
 - fixed: bug, when there is no department used (goffy)
 
-2.0 from ?
-=================================
+<h5>2.0 [?]</h5>
+<hr>=
 - added bootstrap to contact_index.html (bleek)
 
-1.81 from 2013-02-24
-=================================
+<h5>1.81 [2013-02-24]</h5>
+<hr>
 - Rebuild Module (Voltan)
 - English corrections (Cesag)
 - fixed: bug when sending UTF-8 emails (cesag/mamba)
@@ -91,17 +111,17 @@
 - Fixed an error when sending Captcha (Montuy337513 alias black_beard)
 - Fixed bug with $_POST table (Montuy337513 alias black_beard)
 
-1.80 from 2012-1-19
-=================================
+<h5>1.80 [2012-1-19]</h5>
+<hr>
 - Rebuild Module (Voltan)
 
-1.71 from 2011-12-12
-=================================
+<h5>1.71 [2011-12-12]</h5>
+<hr>
 - converted to XOOPS Standard Module GUI (Mamba)
 - included ModuleAdmin class from (Mage)
 
-1.70 from 11-08-2010
-=================================
+<h5>1.70 [11-08-2010]</h5>
+<hr>
 - added 2.4.x compatibilty (Trabis)
 - added php5.3 compatibilty (Trabis)
 - added error checking while sending emails (Trabis)

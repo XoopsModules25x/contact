@@ -33,6 +33,6 @@ if (!defined('CONTACT_MODULE_PATH')) {
 $copyright = "<a href='http://xoops.wedega.com' title='WEDEGA Webdesign Gabor' target='_blank'>
                      <img src='". $local_logo."' alt='WEDEGA Webdesign Gabor' /></a>";
                      
-include_once XOOPS_ROOT_PATH.'/class/xoopsrequest.php';
-include_once CONTACT_PATH.'/class/helper.php';
-include_once CONTACT_PATH.'/include/functions.php';
+require_once XOOPS_ROOT_PATH.'/class/xoopsrequest.php';
+require_once CONTACT_PATH.'/class/helper.php';
+require_once CONTACT_PATH.'/include/functions.php';

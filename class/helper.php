@@ -63,14 +63,14 @@ class ContactHelper
         $this->dirname =  basename(dirname(__DIR__));
     }
     /*
-    *  @static function &getInstance
+    *  @static function getInstance
     *  @param mixed $debug
     */
     /**
      * @param bool $debug
      * @return bool|ContactHelper
      */
-    public static function &getInstance($debug = false)
+    public static function getInstance($debug = false)
     {
         static $instance = false;
         if (!$instance) {
@@ -85,7 +85,7 @@ class ContactHelper
     /**
      * @return string
      */
-    public function &getModule()
+    public function getModule()
     {
         if ($this->module === null) {
             $this->initModule();
@@ -143,7 +143,7 @@ class ContactHelper
      * @param $name
      * @return mixed
      */
-    public function &getHandler($name)
+    public function getHandler($name)
     {
         if (!isset($this->handler[$name . 'Handler'])) {
             $this->initHandler($name);
@@ -158,7 +158,7 @@ class ContactHelper
     public function initModule()
     {
         global $xoopsModule;
-        if (isset($xoopsModule) && is_object($xoopsModule) && $xoopsModule->getVar('dirname') == $this->dirname) {
+        if (null !== $xoopsModule && is_object($xoopsModule) && $xoopsModule->getVar('dirname') == $this->dirname) {
             $this->module = $xoopsModule;
         } else {
             /** @var XoopsModule $hModule */
