@@ -25,5 +25,3 @@ echo "<div class='adminfooter'>\n"
      ."  </div>\n"
      .'  ' . _AM_MODULEADMIN_ADMIN_FOOTER . "\n"
      .'</div>';
-
-xoops_cp_footer();

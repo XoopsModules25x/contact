@@ -19,7 +19,6 @@
  * @author      Hossein Azizabadi (AKA Voltan)
  * @author      Mirza (AKA Bleekk)
  */
-
 use Xmf\Request;
 
 include __DIR__ . '/header.php';
