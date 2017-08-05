@@ -19,10 +19,10 @@
  * @author      Hossein Azizabadi (AKA Voltan)
  */
 
-include __DIR__ . '/../../mainfile.php';
+$moduleDirName = basename(__DIR__);
+require_once __DIR__ . '/../../include/cp_header.php';
 include __DIR__ . '/class/contact.php';
-include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 
-xoops_load('XoopsRequest');
 /** @var ContactContactHandler $contactHandler*/
-$contactHandler = xoops_getModuleHandler('contact', basename(__DIR__));
+$contactHandler = xoops_getModuleHandler('contact', $moduleDirName);

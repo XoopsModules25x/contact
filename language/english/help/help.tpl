@@ -1,12 +1,7 @@
 <div id="help-template" class="outer">
-    <h1 class="head">Help:
-        <a class="ui-corner-all tooltip" href="<{$xoops_url}>/modules/contact/admin/index.php"
-           title="Back to the administration of Contact"> Contact
-            <img src="<{xoAdminIcons home.png}>"
-                 alt="Back to the Administration of Contact"/>
-        </a></h1>
+    <{include file=$smarty.const._MI_CONTACT_HELP_HEADER}>
 
-    <h4 class="odd">DESCRIPTION</h4><br/>
+    <h4 class="odd">DESCRIPTION</h4> <br>
 
     'Contact Us' is a very simple module. It provides a Main Menu link to a
     contact form that visitors can use to email the website Administrator.

@@ -19,17 +19,19 @@
  * @author      Hossein Azizabadi (AKA Voltan)
  */
 
+use Xmf\Request;
+
 // Call header
 require __DIR__ . '/admin_header.php';
 // Display Admin header
 xoops_cp_header();
 // Define default value
-$op = XoopsRequest::getString('op', 'list');
+$op = Request::getString('op', 'list');
 
 switch ($op) {
     case 'list':
         // prune manager
-        $form = new XoopsThemeForm(_AM_CONTACT_TOOLS_PRUNE, 'tools', 'tools.php', 'post');
+        $form = new XoopsThemeForm(_AM_CONTACT_TOOLS_PRUNE, 'tools', 'tools.php', 'post', true);
         $form->addElement(new XoopsFormTextDateSelect(_AM_CONTACT_TOOLS_PRUNE_BEFORE, 'prune_date', 15, time()));
         $onlyreply = new xoopsFormCheckBox('', 'onlyreply');
         $onlyreply->addOption(1, _AM_CONTACT_TOOLS_PRUNE_REPLYONLY);
@@ -40,8 +42,8 @@ switch ($op) {
         break;
 
     case 'prune':
-        $timestamp = XoopsRequest::getInt('prune_date', '');
-        $onlyreply = XoopsRequest::getInt('onlyreply', 0);
+        $timestamp = Request::getInt('prune_date', '');
+        $onlyreply = Request::getInt('onlyreply', 0);
         $timestamp = strtotime($timestamp);
         $count     = $contactHandler->contactPruneCount($timestamp, $onlyreply);
         $contactHandler->contactDeleteBeforeDate($timestamp, $onlyreply);
@@ -51,7 +53,7 @@ switch ($op) {
 //        break;
 }
 
-$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->addNavigation(basename(__FILE__)));
+$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation(basename(__FILE__)));
 // Call template file
 $GLOBALS['xoopsTpl']->display(XOOPS_ROOT_PATH . '/modules/contact/templates/admin/contact_tools.tpl');
 // Call footer

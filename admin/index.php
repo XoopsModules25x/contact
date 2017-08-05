@@ -25,10 +25,11 @@ require __DIR__ . '/admin_header.php';
 xoops_cp_header();
 
 // Display Admin menu class
+$adminObject = Xmf\Module\Admin::getInstance();
 $adminObject->addInfoBox(_AM_CONTACT_INDEX_ADMENU1);
-$adminObject->addInfoBoxLine(_AM_CONTACT_INDEX_ADMENU1, _AM_CONTACT_INDEX_TOTAL, $contactHandler->contactGetCount('contact_cid'));
-$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->addNavigation(basename(__FILE__)));
-$GLOBALS['xoopsTpl']->assign('renderindex', $adminObject->renderIndex());
+$adminObject->addInfoBoxLine(sprintf(_AM_CONTACT_INDEX_TOTAL, $contactHandler->contactGetCount('contact_cid')));
+$adminObject->displayNavigation(basename(__FILE__));
+$adminObject->displayIndex();
 
 // Call template file
 $GLOBALS['xoopsTpl']->display(XOOPS_ROOT_PATH . '/modules/contact/templates/admin/contact_index.tpl');

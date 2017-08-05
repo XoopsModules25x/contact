@@ -80,3 +80,21 @@ define('_MI_B_CONTACT_FORM_MAP_DESC', 'Show contact form together with defined l
 
 define('_MI_CONTACT_DEFAULT', 'Default contact info');
 define('_MI_CONTACT_DEFAULT_DESC', 'Here you can define additional information, which should be shown beside contact form (e.g name, address , phone number,...');
+//2.25 RC1
+//Help
+define('_MI_CONTACT_DIRNAME', basename(dirname(dirname(__DIR__))));
+define('_MI_CONTACT_HELP_HEADER', __DIR__.'/help/helpheader.tpl');
+define('_MI_CONTACT_BACK_2_ADMIN', 'Back to Administration of ');
+define('_MI_CONTACT_OVERVIEW', 'Overview');
+
+//define('_MI_CONTACT_HELP_DIR', __DIR__);
+
+//help multi-page
+define('_MI_CONTACT_DISCLAIMER', 'Disclaimer');
+define('_MI_CONTACT_LICENSE', 'License');
+define('_MI_CONTACT_SUPPORT', 'Support');
+//What to do with the Contact message
+define('_MI_CONTACT_MAIL_SAVE_DB', 'Save message to DB');
+define('_MI_CONTACT_MAIL_SAVE_DB_DESC', 'The received Contact message will be saved to a Database');
+define('_MI_CONTACT_MAIL_SEND', 'Send email to Admin');
+define('_MI_CONTACT_MAIL_SEND_DESC', 'The received Contact message will be send to the Admin');

@@ -19,14 +19,21 @@
  * @author      Hossein Azizabadi (AKA Voltan)
  */
 
+use Xmf\Request;
+
 // Call header
 require __DIR__ . '/admin_header.php';
 // Display Admin header
 xoops_cp_header();
+global $xoopsModuleConfig;
 // Define default value
-$level = '';
-$op         = XoopsRequest::getString('op', 'list');
-$contact_id = XoopsRequest::getInt('id', 0);
+$level      = '';
+
+$saveinfo = $xoopsModuleConfig['saveinfo'];
+$sendmail = $xoopsModuleConfig['sendmail'];
+
+$op         = Request::getString('op', 'list');
+$contact_id = Request::getInt('id', 0);
 
 // Define scripts
 $GLOBALS['xoTheme']->addScript('browse.php?Frameworks/jquery/jquery.js');
@@ -45,11 +52,10 @@ switch ($op) {
         $contact['sort']    = 'contact_id';
 
         // get limited information
-        $contact['limit'] = XoopsRequest::getInt('limit', 0);
+        $contact['limit'] = Request::getInt('limit', 0);
 
         // get start information
-        $contact['start'] = XoopsRequest::getInt('start', 0);
-
+        $contact['start'] = Request::getInt('start', 0);
 
         $contact_numrows = $contactHandler->contactGetCount('contact_cid');
         $contacts        = $contactHandler->contactGetAdminList($contact, 'contact_cid');
@@ -85,7 +91,7 @@ switch ($op) {
 
     case 'doreply':
         // check email
-        if (''== XoopsRequest::getString('contact_mailto', '', 'POST')) {
+        if ('' === Request::getString('contact_mailto', '', 'POST')) {
             redirect_header('main.php', 3, _MD_CONTACT_MES_NOVALIDEMAIL);
         }
 
@@ -93,7 +99,7 @@ switch ($op) {
         $contact = $contactHandler->contactInfoProcessing();
 
         // insert in DB
-        if ($saveinfo === true) {
+        if (1 === $saveinfo) {
             $obj = $contactHandler->create();
             $obj->setVars($contact);
 
@@ -105,12 +111,11 @@ switch ($op) {
         }
 
         // send mail can seet message
-        if ($sendmail === true) {
+        $message = _MD_CONTACT_MES_SENDERROR;
+        if (1 === $sendmail) {
             $message = $contactHandler->contactReplyMail($contact);
-        } elseif ($saveinfo === true) {
+        } elseif (1 === $saveinfo) {
             $message = _MD_CONTACT_MES_SAVEINDB;
-        } else {
-            $message = _MD_CONTACT_MES_SENDERROR;
         }
 
         redirect_header('main.php', 3, $message);
@@ -164,8 +169,8 @@ switch ($op) {
     case 'dodelete':
         if (!$contact_id > 0) {
             redirect_header('main.php', 3, _AM_CONTACT_MSG_EXIST);
-//            xoops_cp_footer();
-//            exit();
+            //            xoops_cp_footer();
+            //            exit();
         }
 
         $criteria = new CriteriaCompo();
@@ -174,17 +179,17 @@ switch ($op) {
 
         if (!$contactHandler->deleteAll($criteria)) {
             redirect_header('main.php', 1, _AM_CONTACT_MSG_DELETEERROR);
-//            xoops_cp_footer();
-//            exit();
+            //            xoops_cp_footer();
+            //            exit();
         }
 
         redirect_header('main.php', 1, _AM_CONTACT_MSG_DELETED);
-//        xoops_cp_footer();
-//        exit();
-//        break;
+    //        xoops_cp_footer();
+    //        exit();
+    //        break;
 }
 
-$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->addNavigation(basename(__FILE__)));
+$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation(basename(__FILE__)));
 $GLOBALS['xoopsTpl']->assign('level', $level);
 
 // Call template file

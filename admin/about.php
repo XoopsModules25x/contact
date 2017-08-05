@@ -20,14 +20,12 @@
  */
 
 // Call header
-require __DIR__ . '/admin_header.php';
-// Display Admin header
+require_once __DIR__ . '/admin_header.php';
 xoops_cp_header();
 
-$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->addNavigation(basename(__FILE__)));
-$GLOBALS['xoopsTpl']->assign('renderabout', $adminObject->renderAbout('6KJ7RW5DR3VTJ', false));
+$adminObject->displayNavigation(basename(__FILE__));
+$adminObject->setPaypal('xoopsfoundation@gmail.com');
+$adminObject->displayAbout(false);
 
-// Call template file
-$GLOBALS['xoopsTpl']->display(XOOPS_ROOT_PATH . '/modules/contact/templates/admin/contact_about.tpl');
-// Call footer
-require __DIR__ . '/admin_footer.php';
+require_once __DIR__ . '/admin_footer.php';
+

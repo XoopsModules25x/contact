@@ -9,20 +9,20 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
 
+use Xmf\Request;
+
 /**
  * Contact module
  *
- * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/
- * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
- * @author      Kazumi Ono (aka Onokazu)
- * @author      Trabis <lusopoemas@gmail.com>
- * @author      Hossein Azizabadi (AKA Voltan)
+ * @copyright     The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @license       http://www.fsf.org/copyleft/gpl.html GNU public license
+ * @author        Kazumi Ono (aka Onokazu)
+ * @author        Trabis <lusopoemas@gmail.com>
+ * @author        Hossein Azizabadi (AKA Voltan)
  * @author        Mirza (AKA Bleekk)
  */
 
-if (!defined('XOOPS_ROOT_PATH')) {
-    die('XOOPS root path not defined');
-}
+defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
 /**
  * Class contact
@@ -31,6 +31,7 @@ class Contact extends XoopsObject
 {
     private $db;
     private $table;
+
     /**
      * contact constructor.
      */
@@ -66,17 +67,14 @@ class Contact extends XoopsObject
      */
     public function contactReplyForm()
     {
-//        global $xoopsConfig;
+        //        global $xoopsConfig;
         $form = new XoopsThemeForm(_AM_CONTACT_REPLY, 'doreply', 'main.php', 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
         $form->addElement(new XoopsFormHidden('op', 'doreply'));
         $form->addElement(new XoopsFormHidden('contact_id', $this->getVar('contact_id', 'e')));
         $form->addElement(new XoopsFormHidden('contact_uid', $this->getVar('contact_uid', 'e')));
         $form->addElement(new XoopsFormLabel(_AM_CONTACT_FROM, '', ''));
-        $form->addElement(
-            new XoopsFormText(_AM_CONTACT_NAMEFROM, 'contact_name', 50, 255, XoopsUser::getUnameFromId($GLOBALS['xoopsUser']->uid())),
-            true
-        );
+        $form->addElement(new XoopsFormText(_AM_CONTACT_NAMEFROM, 'contact_name', 50, 255, XoopsUser::getUnameFromId($GLOBALS['xoopsUser']->uid())), true);
         $form->addElement(new XoopsFormText(_AM_CONTACT_MAILFROM, 'contact_mail', 50, 255, $GLOBALS['xoopsUser']->getVar('email')), true);
         $form->addElement(new XoopsFormLabel(_AM_CONTACT_TO, '', ''));
         $form->addElement(new XoopsFormText(_AM_CONTACT_NAMETO, 'contact_nameto', 50, 255, $this->getVar('contact_name')), true);
@@ -180,26 +178,26 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
     public function contactInfoProcessing()
     {
         $contact                       = array();
-        $contact['contact_cid']        = XoopsRequest::getInt('contact_id', 0, 'POST');
-        $contact['contact_uid']        = XoopsRequest::getInt('contact_uid', 0, 'POST');
-        $contact['contact_name']       = XoopsRequest::getString('contact_name', '', 'POST');
-        $contact['contact_nameto']     = XoopsRequest::getString('contact_nameto', '', 'POST');
-        $contact['contact_subject']    = XoopsRequest::getString('contact_subject', '', 'POST');
-        $contact['contact_mail']       = XoopsRequest::getString('contact_mail', '', 'POST');
-        $contact['contact_mailto']     = XoopsRequest::getEmail('contact_mailto', '', 'POST');
-        $contact['contact_url']        = XoopsRequest::getUrl('contact_url', '', 'POST');
+        $contact['contact_cid']        = Request::getInt('contact_id', 0, 'POST');
+        $contact['contact_uid']        = Request::getInt('contact_uid', 0, 'POST');
+        $contact['contact_name']       = Request::getString('contact_name', '', 'POST');
+        $contact['contact_nameto']     = Request::getString('contact_nameto', '', 'POST');
+        $contact['contact_subject']    = Request::getString('contact_subject', '', 'POST');
+        $contact['contact_mail']       = Request::getString('contact_mail', '', 'POST');
+        $contact['contact_mailto']     = Request::getEmail('contact_mailto', '', 'POST');
+        $contact['contact_url']        = Request::getUrl('contact_url', '', 'POST');
         $contact['contact_create']     = time();
-        $contact['contact_icq']        = XoopsRequest::getString('contact_icq', '', 'POST');
-        $contact['contact_company']    = XoopsRequest::getString('contact_company', '', 'POST');
-        $contact['contact_location']   = XoopsRequest::getString('contact_location', '', 'POST');
-        $contact['contact_phone']      = XoopsRequest::getString('contact_phone', '', 'int');
-        $contact['contact_department'] = XoopsRequest::getString('contact_department', _MD_CONTACT_DEFULTDEP, 'POST');
+        $contact['contact_icq']        = Request::getString('contact_icq', '', 'POST');
+        $contact['contact_company']    = Request::getString('contact_company', '', 'POST');
+        $contact['contact_location']   = Request::getString('contact_location', '', 'POST');
+        $contact['contact_phone']      = Request::getString('contact_phone', '', 'int');
+        $contact['contact_department'] = Request::getString('contact_department', _MD_CONTACT_DEFULTDEP, 'POST');
         $contact['contact_ip']         = getenv('REMOTE_ADDR');
-        $contact['contact_message']    = XoopsRequest::getText('contact_message', '', 'POST');
-        $contact['contact_address']    = XoopsRequest::getString('contact_address', '', 'POST');
-        $contact['contact_platform']   = XoopsRequest::getString('contact_platform', 'Web', 'POST');
-        $contact['contact_type']       = XoopsRequest::getString('contact_type', 'Contact', 'POST');
-        $contact['contact_reply']      = XoopsRequest::getInt('contact_reply', 0, 'POST');
+        $contact['contact_message']    = Request::getText('contact_message', '', 'POST');
+        $contact['contact_address']    = Request::getString('contact_address', '', 'POST');
+        $contact['contact_platform']   = Request::getString('contact_platform', 'Web', 'POST');
+        $contact['contact_type']       = Request::getString('contact_type', 'Contact', 'POST');
+        $contact['contact_reply']      = Request::getInt('contact_reply', 0, 'POST');
 
         return $contact;
     }
@@ -210,7 +208,7 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
      */
     public function contactSendMail($contact)
     {
-        $xoopsMailer =& xoops_getMailer();
+        $xoopsMailer = xoops_getMailer();
         $xoopsMailer->useMail();
         $xoopsMailer->setToEmails($this->contactToEmails($contact['contact_department']));
         $xoopsMailer->setFromEmail($contact['contact_mail']);
@@ -237,7 +235,7 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
      */
     public function contactSendMailConfirm($contact)
     {
-        $xoopsMailer =& xoops_getMailer();
+        $xoopsMailer = xoops_getMailer();
         $xoopsMailer->useMail();
         $xoopsMailer->setToEmails($contact['contact_mail']);
         $xoopsMailer->setFromEmail($this->contactToEmails($contact['contact_department']));
@@ -263,7 +261,7 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
      */
     public function contactReplyMail($contact)
     {
-        $xoopsMailer =& xoops_getMailer();
+        $xoopsMailer = xoops_getMailer();
         $xoopsMailer->useMail();
         $xoopsMailer->setToEmails($contact['contact_mailto']);
         $xoopsMailer->setFromEmail($contact['contact_mail']);
@@ -285,7 +283,7 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
      */
     public function contactToEmails($department = null)
     {
-//        global $xoopsConfig;
+        //        global $xoopsConfig;
         $department_mail[] = xoops_getModuleOption('contact_recipient_std', 'contact');
         if (!empty($department)) {
             $departments = xoops_getModuleOption('contact_dept', 'contact');
@@ -321,6 +319,8 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
      */
     public function contactGetReply($contact_id)
     {
+        $ret      = false;
+
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('contact_cid', $contact_id));
         $criteria->add(new Criteria('contact_type', 'Contact'));
@@ -335,11 +335,9 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
                 $tab['contact_create'] = formatTimestamp($root->getVar('contact_create'), _MEDIUMDATESTRING);
                 $ret []                = $tab;
             }
-
-            return $ret;
-        } else {
-            return false;
         }
+
+        return $ret;
     }
 
     /**
