@@ -10,7 +10,7 @@
 [![Latest Pre-Release](https://img.shields.io/github/tag/XoopsModules25x/contact.svg?style=flat)](https://github.com/XoopsModules25x/contact/tags/)
 [![Latest Version](https://img.shields.io/github/release/XoopsModules25x/contact.svg?style=flat)](https://github.com/XoopsModules25x/contact/releases/)
 
-Contact module for [XOOPS CMS](https://xoops.org) is a simple module helping visitors to contact the Website Administrator 
+**Contact** module for [XOOPS CMS](https://xoops.org) is a simple module helping visitors to contact the Website Administrator 
 
 [![Tutorial Available](https://xoops.org/images/tutorial-available-blue.svg)](https://www.gitbook.com/book/xoops/xoops-contact-module/) Tutorial: see [GitBook](https://www.gitbook.com/book/xoops/xoops-contact-module/). 
 To contribute to the Tutorial, [fork it on GitHub](https://github.com/XoopsDocs/contact-tutorial)
@@ -19,4 +19,4 @@ To contribute to the Tutorial, [fork it on GitHub](https://github.com/XoopsDocs/
 
 _Please visit us on https://xoops.org_
 
-**The upcoming "next generation" version of XOOPS CMS is being crafted on GitHub at: https://github.com/XOOPS**
+Current and upcoming "next generation" versions of XOOPS CMS are being crafted on GitHub at: https://github.com/XOOPS

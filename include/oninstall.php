@@ -29,7 +29,8 @@
 function xoops_module_pre_install_contact(XoopsModule $module)
 {
     $moduleDirName = basename(dirname(__DIR__));
-    $classUtility     = ucfirst($moduleDirName) . 'Utility';
+    /** @var \ContactUtility $classUtility */
+    $classUtility = ucfirst($moduleDirName) . 'Utility';
     if (!class_exists($classUtility)) {
         xoops_load('utility', $moduleDirName);
     }

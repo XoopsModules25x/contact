@@ -49,6 +49,7 @@ function tableExists($tablename)
 function xoops_module_pre_update_xxxx(XoopsModule $module)
 {
     $moduleDirName = basename(dirname(__DIR__));
+    /** @var \ContactUtility $classUtility */
     $classUtility     = ucfirst($moduleDirName) . 'Utility';
     if (!class_exists($classUtility)) {
         xoops_load('utility', $moduleDirName);
