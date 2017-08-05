@@ -1,6 +1,7 @@
 <h5>2.25 Final [2017-08-04]</h5>
 <hr>
 + added missing $moduleDirName in header.php (mamba)
++ rename Help file extensions to .tpl (mamba) 
 
 
 <h5>2.25 RC 1 [2017-06-30]</h5>
