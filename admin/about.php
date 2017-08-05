@@ -12,13 +12,14 @@
 /**
  * Contact module
  *
- * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @copyright   XOOPS Project (https://xoops.org)
  * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
  * @author      Kazumi Ono (aka Onokazu)
  * @author      Trabis <lusopoemas@gmail.com>
  * @author      Hossein Azizabadi (AKA Voltan)
  */
 
+// Call header
 require_once __DIR__ . '/admin_header.php';
 xoops_cp_header();
 

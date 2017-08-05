@@ -14,7 +14,7 @@ use Xmf\Request;
 /**
  * Contact module
  *
- * @copyright     The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @copyright     XOOPS Project (https://xoops.org)
  * @license       http://www.fsf.org/copyleft/gpl.html GNU public license
  * @author        Kazumi Ono (aka Onokazu)
  * @author        Trabis <lusopoemas@gmail.com>

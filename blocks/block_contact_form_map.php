@@ -11,7 +11,7 @@
 /**
  * wgSitenotice module for xoops
  *
- * @copyright       The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @copyright       XOOPS Project (https://xoops.org)
  * @license         GPL 2.0 or later
  * @package         wgsitenotice
  * @since           1.0
