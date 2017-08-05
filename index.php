@@ -31,7 +31,7 @@ if ($xoopsModuleConfig['form_dept'] == 1) {
     $departments    = xoops_getModuleOption('contact_dept', 'contact');
     foreach ($departments as $val) {
         list($name, $email) = explode(',', $val, 2); //split the name and email
-        array_push($departmentlist, $name);
+        $departmentlist[] = $name;
     }
     $GLOBALS['xoopsTpl']->assign('depart', $xoopsModuleConfig['form_dept']);
     $GLOBALS['xoopsTpl']->assign('departments', $departmentlist);

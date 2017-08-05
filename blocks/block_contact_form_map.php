@@ -25,7 +25,7 @@
 function block_contact_form_show($options)
 {
     $block = array();
-    ContactGetElements($block);
+    contactGetElements($block);
 
     return $block;
 }
@@ -38,7 +38,7 @@ function block_contact_form_show($options)
 function block_contact_map_show($options)
 {
     $block = array();
-    ContactGetElements($block);
+    contactGetElements($block);
 
     return $block;
 }
@@ -51,7 +51,7 @@ function block_contact_map_show($options)
 function block_contact_form_map_show($options)
 {
     $block = array();
-    ContactGetElements($block);
+    contactGetElements($block);
 
     return $block;
 }
@@ -59,7 +59,7 @@ function block_contact_form_map_show($options)
 /**
  * @param $block
  */
-function ContactGetElements(&$block)
+function contactGetElements(&$block)
 {
     /** @var XoopsModuleHandler $moduleHandler */
     $moduleHandler = xoops_getHandler('module');
@@ -70,7 +70,7 @@ function ContactGetElements(&$block)
 
     xoops_loadLanguage('main', 'contact');
 
-    include_once XOOPS_ROOT_PATH . '/modules/contact/class/contact.php';
+    require_once XOOPS_ROOT_PATH . '/modules/contact/class/contact.php';
 
     $block['lng_username'] = 'name';
 

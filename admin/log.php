@@ -19,17 +19,19 @@
  * @author      Hossein Azizabadi (AKA Voltan)
  */
 
+use Xmf\Request;
+
 // Call header
 require __DIR__ . '/admin_header.php';
 // Display Admin header
 xoops_cp_header();
 // Define default value
-$op = XoopsRequest::getString('op', 'form');
+$op = Request::getString('op', 'form');
 
 switch ($op) {
     case 'form':
         // prune manager
-        $form   = new XoopsThemeForm(_AM_CONTACT_LOGS_FORM, 'logs', 'log.php', 'post');
+        $form   = new XoopsThemeForm(_AM_CONTACT_LOGS_FORM, 'logs', 'log.php', 'post', true);
         $column = new XoopsFormSelect(_AM_CONTACT_LOGS_COLUMN, 'column', 'contact_phone');
         $column->addOption('contact_phone', _AM_CONTACT_LOGS_COLUMN_PHONE);
         $column->addOption('contact_url', _AM_CONTACT_LOGS_COLUMN_URL);
@@ -41,13 +43,13 @@ switch ($op) {
         break;
 
     case 'getlog':
-        $column = XoopsRequest::getString('column', '');
+        $column = Request::getString('column', '');
         $log    = $contactHandler->contactLogs($column);
         $GLOBALS['xoopsTpl']->assign('logs', $log);
         break;
 }
 
-$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->addNavigation(basename(__FILE__)));
+$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation(basename(__FILE__)));
 // Call template file
 $GLOBALS['xoopsTpl']->display(XOOPS_ROOT_PATH . '/modules/contact/templates/admin/contact_logs.tpl');
 // Call footer
