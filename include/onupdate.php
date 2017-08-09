@@ -46,25 +46,19 @@ function tableExists($tablename)
  *
  * @return bool true if ready to install, false if not
  */
-function xoops_module_pre_update_xxxx(XoopsModule $module)
+function xoops_module_pre_update_contact(XoopsModule $module)
 {
     $moduleDirName = basename(dirname(__DIR__));
-    /** @var \ContactUtility $classUtility */
-    $classUtility     = ucfirst($moduleDirName) . 'Utility';
-    if (!class_exists($classUtility)) {
+    /** @var ContactUtility $utilityClass */
+    $utilityClass = ucfirst($moduleDirName) . 'Utility';
+    if (!class_exists($utilityClass)) {
         xoops_load('utility', $moduleDirName);
     }
-    //check for minimum XOOPS version
-    if (!$classUtility::checkVerXoops($module)) {
-        return false;
-    }
 
-    // check for minimum PHP version
-    if (!$classUtility::checkVerPhp($module)) {
-        return false;
-    }
+    $xoopsSuccess = $utilityClass::checkVerXoops($module);
+    $phpSuccess   = $utilityClass::checkVerPhp($module);
 
-    return true;
+    return $xoopsSuccess && $phpSuccess;
 }
 
 /**
@@ -138,9 +132,10 @@ function xoops_module_update_contact(XoopsModule $module, $previousVersion = nul
 
     if ($previousVersion < 226) {
         require_once __DIR__ . '/config.php';
-        $configurator = new ContentConfigurator();
-        $classUtility    = ucfirst($moduleDirName) . 'Utility';
-        if (!class_exists($classUtility)) {
+        $configurator = new ContactConfigurator();
+        /** @var ContactUtility $utilityClass */
+        $utilityClass    = ucfirst($moduleDirName) . 'Utility';
+        if (!class_exists($utilityClass)) {
             xoops_load('utility', $moduleDirName);
         }
 
@@ -189,7 +184,7 @@ function xoops_module_update_contact(XoopsModule $module, $previousVersion = nul
         if (count($configurator->uploadFolders) > 0) {
             //    foreach (array_keys($GLOBALS['uploadFolders']) as $i) {
             foreach (array_keys($configurator->uploadFolders) as $i) {
-                $classUtility::createFolder($configurator->uploadFolders[$i]);
+                $utilityClass::createFolder($configurator->uploadFolders[$i]);
             }
         }
 
@@ -198,7 +193,7 @@ function xoops_module_update_contact(XoopsModule $module, $previousVersion = nul
             $file = __DIR__ . '/../assets/images/blank.png';
             foreach (array_keys($configurator->blankFiles) as $i) {
                 $dest = $configurator->blankFiles[$i] . '/blank.png';
-                $classUtility::copyFile($file, $dest);
+                $utilityClass::copyFile($file, $dest);
             }
         }
 
