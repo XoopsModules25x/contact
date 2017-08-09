@@ -29,27 +29,22 @@
 function xoops_module_pre_install_contact(XoopsModule $module)
 {
     $moduleDirName = basename(dirname(__DIR__));
-    /** @var \ContactUtility $classUtility */
-    $classUtility = ucfirst($moduleDirName) . 'Utility';
-    if (!class_exists($classUtility)) {
+    /** @var ContactUtility $utilityClass */
+    $utilityClass    = ucfirst($moduleDirName) . 'Utility';
+    if (!class_exists($utilityClass)) {
         xoops_load('utility', $moduleDirName);
     }
-    //check for minimum XOOPS version
-    if (!$classUtility::checkVerXoops($module)) {
-        return false;
-    }
 
-    // check for minimum PHP version
-    if (!$classUtility::checkVerPhp($module)) {
-        return false;
-    }
+    $xoopsSuccess = $utilityClass::checkVerXoops($module);
+    $phpSuccess   = $utilityClass::checkVerPhp($module);
 
-    $mod_tables =& $module->getInfo('tables');
-    foreach ($mod_tables as $table) {
-        $GLOBALS['xoopsDB']->queryF('DROP TABLE IF EXISTS ' . $GLOBALS['xoopsDB']->prefix($table) . ';');
+    if (false !== $xoopsSuccess && false !==  $phpSuccess) {
+        $mod_tables =& $module->getInfo('tables');
+        foreach ($mod_tables as $table) {
+            $GLOBALS['xoopsDB']->queryF('DROP TABLE IF EXISTS ' . $GLOBALS['xoopsDB']->prefix($table) . ';');
+        }
     }
-
-    return true;
+    return $xoopsSuccess && $phpSuccess;
 }
 
 /**
