@@ -130,7 +130,7 @@ function xoops_module_update_contact(XoopsModule $module, $previousVersion = nul
         $xoopsDB->query($sql);
     }
 
-    if ($previousVersion < 226) {
+    if ($previousVersion < 227) {
         require_once __DIR__ . '/config.php';
         $configurator = new ContactConfigurator();
         /** @var ContactUtility $utilityClass */
