@@ -48,7 +48,7 @@ class ContactHelper
     /**
      * @var array
      */
-    private $debugArray = array();
+    private $debugArray = [];
     /*
     *  @protected function constructor class
     *  @param mixed $debug

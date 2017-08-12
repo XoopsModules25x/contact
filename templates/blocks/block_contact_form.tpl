@@ -19,6 +19,7 @@
     <div id="contact-form" class="contact-form col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <{/if}>
         <form name="save" id="save" class="form-horizontal" action="<{xoAppUrl}>modules/contact/send.php" onsubmit="return xoopsFormValidate_save();" method="post" enctype="multipart/form-data">
+            <{securityToken}><{*//mb*}>
             <div class="form-group">
                 <label for="contact_name" class="col-sm-2 control-label"><{$block.lng_username}></label>
                 <div class="col-sm-10">

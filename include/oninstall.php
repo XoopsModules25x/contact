@@ -61,25 +61,28 @@ function xoops_module_install_contact(XoopsModule $module)
 
     $moduleDirName = basename(dirname(__DIR__));
 
-    if (false !== ($moduleHelper = Xmf\Module\Helper::getHelper($moduleDirName))) {
-    } else {
-        $moduleHelper = Xmf\Module\Helper::getHelper('system');
-    }
+//    if (false !== ($moduleHelper = Xmf\Module\Helper::getHelper($moduleDirName))) {
+//    } else {
+//        $moduleHelper = Xmf\Module\Helper::getHelper('system');
+//    }
+//    $moduleHelper = Xmf\Module\Helper::getHelper($moduleDirName);
 
     // Load language files
-    $moduleHelper->loadLanguage('admin');
-    $moduleHelper->loadLanguage('modinfo');
+//    $moduleHelper->loadLanguage('admin');
+//    $moduleHelper->loadLanguage('modinfo');
 
     $configurator = new ContactConfigurator();
-    $classUtility    = ucfirst($moduleDirName) . 'Utility';
-    if (!class_exists($classUtility)) {
+    /** @var ContactUtility $utilityClass */
+    $utilityClass    = ucfirst($moduleDirName) . 'Utility';
+    if (!class_exists($utilityClass)) {
         xoops_load('utility', $moduleDirName);
     }
 
     // default Permission Settings ----------------------
-    global $xoopsModule;
-    $moduleId     = $xoopsModule->getVar('mid');
-    $moduleId2    = $moduleHelper->getModule()->mid();
+//    global $xoopsModule;
+    $moduleId     = $module->getVar('mid');
+//    $moduleId2    = $moduleHelper->getModule()->mid();
+    /** @var \XoopsGroupPermHandler $gpermHandler */
     $gpermHandler = xoops_getHandler('groupperm');
     // access rights ------------------------------------------
     $gpermHandler->addRight($moduleDirName . '_approve', 1, XOOPS_GROUP_ADMIN, $moduleId);
@@ -92,7 +95,7 @@ function xoops_module_install_contact(XoopsModule $module)
     if (count($configurator->uploadFolders) > 0) {
         //    foreach (array_keys($GLOBALS['uploadFolders']) as $i) {
         foreach (array_keys($configurator->uploadFolders) as $i) {
-            $classUtility::createFolder($configurator->uploadFolders[$i]);
+            $utilityClass::createFolder($configurator->uploadFolders[$i]);
         }
     }
 
@@ -101,12 +104,12 @@ function xoops_module_install_contact(XoopsModule $module)
         $file = __DIR__ . '/../assets/images/blank.png';
         foreach (array_keys($configurator->blankFiles) as $i) {
             $dest = $configurator->blankFiles[$i] . '/blank.png';
-            $classUtility::copyFile($file, $dest);
+            $utilityClass::copyFile($file, $dest);
         }
     }
     //delete .html entries from the tpl table
-    $sql = 'DELETE FROM ' . $GLOBALS['xoopsDB']->prefix('tplfile') . " WHERE `tpl_module` = '" . $xoopsModule->getVar('dirname', 'n') . "' AND `tpl_file` LIKE '%.html%'";
-    $GLOBALS['xoopsDB']->queryF($sql);
+//    $sql = 'DELETE FROM ' . $GLOBALS['xoopsDB']->prefix('tplfile') . " WHERE `tpl_module` = '" . $xoopsModule->getVar('dirname', 'n') . "' AND `tpl_file` LIKE '%.html%'";
+//    $GLOBALS['xoopsDB']->queryF($sql);
 
     return true;
 }
