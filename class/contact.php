@@ -37,7 +37,7 @@ class Contact extends XoopsObject
      */
     public function __construct()
     {
-        // $this->XoopsObject();
+        // parent::__construct();
         $this->initVar('contact_id', XOBJ_DTYPE_INT, null, false, 11);
         $this->initVar('contact_uid', XOBJ_DTYPE_INT, null, false, 11);
         $this->initVar('contact_cid', XOBJ_DTYPE_INT, null, false, 11);
@@ -55,8 +55,8 @@ class Contact extends XoopsObject
         $this->initVar('contact_message', XOBJ_DTYPE_TXTAREA, null, false);
         $this->initVar('contact_address', XOBJ_DTYPE_TXTAREA, null, false);
         $this->initVar('contact_reply', XOBJ_DTYPE_INT, null, false, 1);
-        $this->initVar('contact_platform', XOBJ_DTYPE_ENUM, null, false, '', '', array('Android', 'Ios', 'Web'));
-        $this->initVar('contact_type', XOBJ_DTYPE_ENUM, null, false, '', '', array('Contact', 'Phone', 'Mail'));
+        $this->initVar('contact_platform', XOBJ_DTYPE_ENUM, null, false, '', '', ['Android', 'Ios', 'Web']);
+        $this->initVar('contact_type', XOBJ_DTYPE_ENUM, null, false, '', '', ['Contact', 'Phone', 'Mail']);
 
         $this->db    = $GLOBALS ['xoopsDB'];
         $this->table = $this->db->prefix('contact');
@@ -93,7 +93,7 @@ class Contact extends XoopsObject
      **/
     public function toArray()
     {
-        $ret  = array();
+        $ret  = [];
         $vars =& $this->getVars();
         foreach (array_keys($vars) as $i) {
             $ret [$i] = $this->getVar($i);
@@ -114,7 +114,7 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
      */
     public function __construct(XoopsDatabase $db)
     {
-        parent::__construct($db, 'contact', 'contact', 'contact_id', 'contact_mail');
+        parent::__construct($db, 'contact', 'Contact', 'contact_id', 'contact_mail');
     }
 
     /**
@@ -177,7 +177,7 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
      */
     public function contactInfoProcessing()
     {
-        $contact                       = array();
+        $contact                       = [];
         $contact['contact_cid']        = Request::getInt('contact_id', 0, 'POST');
         $contact['contact_uid']        = Request::getInt('contact_uid', 0, 'POST');
         $contact['contact_name']       = Request::getString('contact_name', '', 'POST');
@@ -326,10 +326,10 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
         $criteria->add(new Criteria('contact_type', 'Contact'));
         $contacts =& $this->getObjects($criteria, false);
         if ($contacts) {
-            $ret = array();
+            $ret = [];
             /** @var Contact $root */
             foreach ($contacts as $root) {
-                $tab                   = array();
+                $tab                   = [];
                 $tab                   = $root->toArray();
                 $tab['contact_owner']  = XoopsUser::getUnameFromId($root->getVar('contact_uid'));
                 $tab['contact_create'] = formatTimestamp($root->getVar('contact_create'), _MEDIUMDATESTRING);
@@ -347,7 +347,7 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
      */
     public function contactGetAdminList($contact, $id)
     {
-        $ret      = array();
+        $ret      = [];
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria($id, '0'));
         $criteria->add(new Criteria('contact_type', 'Contact'));
@@ -359,7 +359,7 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
         if ($contacts) {
             /** @var Contact $root */
             foreach ($contacts as $root) {
-                $tab                   = array();
+                $tab                   = [];
                 $tab                   = $root->toArray();
                 $tab['contact_owner']  = XoopsUser::getUnameFromId($root->getVar('contact_uid'));
                 $tab['contact_create'] = formatTimestamp($root->getVar('contact_create'), _MEDIUMDATESTRING);
@@ -484,8 +484,8 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
      */
     public function contactLogs($column, $timestamp = null)
     {
-        $ret = array();
-        if (!in_array($column, array('contact_mail', 'contact_url', 'contact_phone'))) {
+        $ret = [];
+        if (!in_array($column, ['contact_mail', 'contact_url', 'contact_phone'])) {
             return $ret;
         }
         $criteria = new CriteriaCompo();

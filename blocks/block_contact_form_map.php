@@ -24,7 +24,7 @@
 // Function show block form only
 function block_contact_form_show($options)
 {
-    $block = array();
+    $block = [];
     contactGetElements($block);
 
     return $block;
@@ -37,7 +37,7 @@ function block_contact_form_show($options)
  */
 function block_contact_map_show($options)
 {
-    $block = array();
+    $block = [];
     contactGetElements($block);
 
     return $block;
@@ -50,7 +50,7 @@ function block_contact_map_show($options)
  */
 function block_contact_form_map_show($options)
 {
-    $block = array();
+    $block = [];
     contactGetElements($block);
 
     return $block;
@@ -77,7 +77,7 @@ function contactGetElements(&$block)
     /*Modules Options*/
     if ($xoopsModuleConfig['form_dept'] == 1) {
         // show a drop down with the correct departments listed
-        $departmentlist = array();
+        $departmentlist = [];
         $departments    = xoops_getModuleOption('contact_dept', 'contact');
         foreach ($departments as $val) {
             list($name, $email) = explode(',', $val, 2); //split the name and email

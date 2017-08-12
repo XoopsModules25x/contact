@@ -19,7 +19,9 @@
  * @author      Hossein Azizabadi (AKA Voltan)
  * @author      Mirza (AKA Bleekk)
   */
-include __DIR__ . '/header.php';
+
+require __DIR__ . '/../../mainfile.php';
+require_once  __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'contact_index.tpl';
 //unset($_SESSION);
 include XOOPS_ROOT_PATH . '/header.php';
@@ -27,7 +29,7 @@ global $xoopsModuleConfig, $xoopsModule;
 /*Modules Options*/
 if ($xoopsModuleConfig['form_dept'] == 1) {
     // show a drop down with the correct departments listed
-    $departmentlist = array();
+    $departmentlist = [];
     $departments    = xoops_getModuleOption('contact_dept', 'contact');
     foreach ($departments as $val) {
         list($name, $email) = explode(',', $val, 2); //split the name and email

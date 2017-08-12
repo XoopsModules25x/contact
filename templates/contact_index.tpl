@@ -29,6 +29,7 @@
     <{/if}>
 
 	<form name="save" id="save" action="<{xoAppUrl}>modules/contact/send.php" onsubmit="return xoopsFormValidate_save();" method="post" enctype="multipart/form-data">
+        <{securityToken}><{*//mb*}>
 		<div class="form-group">
 	    	<label for="contact_name"><{$lng_username}></label>
 	    	<input type="text" class="form-control" id="contact_name" name="contact_name" placeholder="<{$lng_username_info}>">

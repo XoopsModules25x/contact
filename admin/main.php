@@ -46,7 +46,7 @@ $GLOBALS['xoTheme']->addStylesheet(XOOPS_URL . '/modules/system/css/admin.css');
 
 switch ($op) {
     case 'list':
-        $contact            = array();
+        $contact            = [];
         $contact['perpage'] = xoops_getModuleOption('admin_perpage', 'contact');
         $contact['order']   = 'DESC';
         $contact['sort']    = 'contact_id';
@@ -130,7 +130,7 @@ switch ($op) {
             redirect_header('main.php', 3, _AM_CONTACT_MSG_EXIST);
         }
 
-        $contact                       = array();
+        $contact                       = [];
         $contact                       = $obj->toArray();
         $contact['contact_id']         = $obj->getVar('contact_id');
         $contact['contact_uid']        = $obj->getVar('contact_uid');
@@ -158,7 +158,7 @@ switch ($op) {
     case 'delete':
         if ($contact_id > 0) {
             // Prompt message
-            xoops_confirm(array('id' => $contact_id), 'main.php?op=dodelete', _AM_CONTACT_MSG_DELETE);
+            xoops_confirm(['id' => $contact_id], 'main.php?op=dodelete', _AM_CONTACT_MSG_DELETE);
         } else {
             redirect_header('main.php', 3, _AM_CONTACT_MSG_EXIST);
         }

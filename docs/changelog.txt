@@ -2,6 +2,8 @@
 <hr>
 + fixed ContactConfigurator (aerograf/mamba)
 + updated pre_update functions (mamba)
++ fixed anonymous access (aerograf/mamba)
++ short array syntax (mamba)
 
 
 <h5>2.25 Final [2017-08-04]</h5>

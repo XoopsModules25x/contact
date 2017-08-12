@@ -20,7 +20,7 @@
  */
 
 $moduleDirName = basename(__DIR__);
-require_once __DIR__ . '/../../include/cp_header.php';
+include __DIR__ . '/../../mainfile.php';
 include __DIR__ . '/class/contact.php';
 require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 
