@@ -54,7 +54,7 @@ $modversion = [
     'modicons16'          => 'assets/images/icons/16',
     'modicons32'          => 'assets/images/icons/32',
     //About
-    'demo_site_url'       => 'http://www.xoops.org',
+    'demo_site_url'       => 'https://xoops.org',
     'demo_site_name'      => 'XOOPS Demo Site',
     'support_url'         => 'https://xoops.org/modules/newbb/viewforum.php?forum=28/',
     'support_name'        => 'Support Forum',
