@@ -42,13 +42,13 @@ if (!$captcha && $xoopsModuleConfig['recaptchause']) {
     redirect_header('index.php', 2, _MD_CONTACT_MES_NOCAPTCHA);
 } else {
     $response = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $xoopsModuleConfig['recaptchakey'] . '&response=' . $captcha . '&remoteip=' . $_SERVER['REMOTE_ADDR']);
-    if ($response['success'] === false && $xoopsModuleConfig['recaptchause']) {
+    if (false === $response['success'] && $xoopsModuleConfig['recaptchause']) {
         redirect_header('index.php', 2, _MD_CONTACT_MES_CAPTCHAINCORRECT);
     } else {
         global $xoopsConfig, $xoopsOption, $xoopsTpl, $xoopsUser, $xoopsUserIsAdmin, $xoopsLogger;
         $op         = Request::getString('op', 'form', 'POST');
         $department = Request::getString('department', '', 'GET');
-        if ($op === 'save') {
+        if ('save' === $op) {
             if ('' === Request::getString('submit', '', 'POST')) {
                 redirect_header(XOOPS_URL, 3, _MD_CONTACT_MES_ERROR);
             } else {

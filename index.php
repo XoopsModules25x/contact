@@ -27,7 +27,7 @@ $GLOBALS['xoopsOption']['template_main'] = 'contact_index.tpl';
 include XOOPS_ROOT_PATH . '/header.php';
 global $xoopsModuleConfig, $xoopsModule;
 /*Modules Options*/
-if ($xoopsModuleConfig['form_dept'] == 1) {
+if (1 == $xoopsModuleConfig['form_dept']) {
     // show a drop down with the correct departments listed
     $departmentlist = [];
     $departments    = xoops_getModuleOption('contact_dept', 'contact');

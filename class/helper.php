@@ -87,7 +87,7 @@ class ContactHelper
      */
     public function getModule()
     {
-        if ($this->module === null) {
+        if (null === $this->module) {
             $this->initModule();
         }
         return $this->module;
@@ -102,7 +102,7 @@ class ContactHelper
      */
     public function getConfig($name = null)
     {
-        if ($this->config === null) {
+        if (null === $this->config) {
             $this->initConfig();
         }
         if (!$name) {
@@ -128,7 +128,7 @@ class ContactHelper
      */
     public function setConfig($name = null, $value = null)
     {
-        if ($this->config === null) {
+        if (null === $this->config) {
             $this->initConfig();
         }
         $this->config[$name] = $value;

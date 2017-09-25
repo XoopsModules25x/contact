@@ -75,7 +75,7 @@ function contactGetElements(&$block)
     $block['lng_username'] = 'name';
 
     /*Modules Options*/
-    if ($xoopsModuleConfig['form_dept'] == 1) {
+    if (1 == $xoopsModuleConfig['form_dept']) {
         // show a drop down with the correct departments listed
         $departmentlist = [];
         $departments    = xoops_getModuleOption('contact_dept', 'contact');

@@ -76,7 +76,7 @@ switch ($op) {
         if ($contact_id > 0) {
             /** @var Contact $obj */
             $obj = $contactHandler->get($contact_id);
-            if ($obj->getVar('contact_cid') != 0) {
+            if (0 != $obj->getVar('contact_cid')) {
                 redirect_header('main.php', 3, _AM_CONTACT_CANTREPLY);
             }
             /** @var XoopsThemeForm $form */
