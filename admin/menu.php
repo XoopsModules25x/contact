@@ -19,12 +19,14 @@
  * @author      Hossein Azizabadi (AKA Voltan)
  */
 
-defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
+use XoopsModules\Contact;
 
-$moduleDirName = basename(dirname(__DIR__));
-$pathIcon32    = \Xmf\Module\Admin::menuIconPath('');
+require_once __DIR__ . '/../class/Helper.php';
+//require_once __DIR__ . '/../include/common.php';
+$helper = Contact\Helper::getInstance();
 
-xoops_loadLanguage('modinfo', $moduleDirName);
+$pathIcon32 = \Xmf\Module\Admin::menuIconPath('');
+$pathModIcon32 = $helper->getModule()->getInfo('modicons32');
 
 $adminmenu[] = [
     'title' => _MI_CONTACT_MENU_HOME,

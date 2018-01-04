@@ -25,15 +25,11 @@ require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 global $xoopsModule;
 
 $moduleDirName = $GLOBALS['xoopsModule']->getVar('dirname');
-
-if (false !== ($moduleHelper = Xmf\Module\Helper::getHelper($moduleDirName))) {
-} else {
-    $moduleHelper = Xmf\Module\Helper::getHelper('system');
-}
+$helper = \Xmf\Module\Helper::getHelper($moduleDirName);
 /** @var Xmf\Module\Admin $adminObject */
 $adminObject = Xmf\Module\Admin::getInstance();
 
-$myts = MyTextSanitizer::getInstance();
+$myts = \MyTextSanitizer::getInstance();
 
 if (!isset($GLOBALS['xoopsTpl']) || !($GLOBALS['xoopsTpl'] instanceof XoopsTpl)) {
     require_once $GLOBALS['xoops']->path('class/template.php');
@@ -42,16 +38,16 @@ if (!isset($GLOBALS['xoopsTpl']) || !($GLOBALS['xoopsTpl'] instanceof XoopsTpl))
 
 $pathIcon16      = Xmf\Module\Admin::iconUrl('', 16);
 $pathIcon32      = Xmf\Module\Admin::iconUrl('', 32);
-$pathModIcon32 = $moduleHelper->getConfig('modicons32');
+$pathModIcon32 = $helper->getConfig('modicons32');
 
 // Local icons path
 $xoopsTpl->assign('pathModIcon16', $pathIcon16);
 $xoopsTpl->assign('pathModIcon32', $pathIcon32);
 
 // Load language files
-$moduleHelper->loadLanguage('admin');
-$moduleHelper->loadLanguage('modinfo');
-$moduleHelper->loadLanguage('main');
+$helper->loadLanguage('admin');
+$helper->loadLanguage('modinfo');
+$helper->loadLanguage('main');
 
 
 // Contact Handler

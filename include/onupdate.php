@@ -48,16 +48,14 @@ function tableExists($tablename)
  */
 function xoops_module_pre_update_contact(XoopsModule $module)
 {
+    /** @var Contact\Helper $helper */
+    /** @var Contact\Utility $utility */
     $moduleDirName = basename(dirname(__DIR__));
-    /** @var ContactUtility $utilityClass */
-    $utilityClass = ucfirst($moduleDirName) . 'Utility';
-    if (!class_exists($utilityClass)) {
-        xoops_load('utility', $moduleDirName);
-    }
+    $helper       = Contact\Helper::getInstance();
+    $utility      = new Contact\Utility();
 
-    $xoopsSuccess = $utilityClass::checkVerXoops($module);
-    $phpSuccess   = $utilityClass::checkVerPhp($module);
-
+    $xoopsSuccess = $utility::checkVerXoops($module);
+    $phpSuccess   = $utility::checkVerPhp($module);
     return $xoopsSuccess && $phpSuccess;
 }
 
@@ -73,6 +71,13 @@ function xoops_module_update_contact(XoopsModule $module, $previousVersion = nul
 {
     $moduleDirName = basename(dirname(__DIR__));
     $capsDirName   = strtoupper($moduleDirName);
+
+    /** @var Contact\Helper $helper */
+    /** @var Contact\Utility $utility */
+    /** @var Contact\Configurator $configurator */
+    $helper  = Contact\Helper::getInstance();
+    $utility = new Contact\Utility();
+    $configurator = new Contact\Configurator();
 
     $xoopsDB = XoopsDatabaseFactory::getDatabaseConnection();
 

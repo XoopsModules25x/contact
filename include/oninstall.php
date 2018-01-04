@@ -61,27 +61,17 @@ function xoops_module_install_contact(XoopsModule $module)
 
     $moduleDirName = basename(dirname(__DIR__));
 
-//    if (false !== ($moduleHelper = Xmf\Module\Helper::getHelper($moduleDirName))) {
-//    } else {
-//        $moduleHelper = Xmf\Module\Helper::getHelper('system');
-//    }
-//    $moduleHelper = Xmf\Module\Helper::getHelper($moduleDirName);
-
+    $helper       = Contact\Helper::getInstance();
+    $utility      = new Contact\Utility();
+    $configurator = new Contact\Configurator();
     // Load language files
-//    $moduleHelper->loadLanguage('admin');
-//    $moduleHelper->loadLanguage('modinfo');
-
-    $configurator = new ContactConfigurator();
-    /** @var ContactUtility $utilityClass */
-    $utilityClass    = ucfirst($moduleDirName) . 'Utility';
-    if (!class_exists($utilityClass)) {
-        xoops_load('utility', $moduleDirName);
-    }
+    $helper->loadLanguage('admin');
+    $helper->loadLanguage('modinfo');
 
     // default Permission Settings ----------------------
 //    global $xoopsModule;
     $moduleId     = $module->getVar('mid');
-//    $moduleId2    = $moduleHelper->getModule()->mid();
+//    $moduleId2    = $helper->getModule()->mid();
     /** @var \XoopsGroupPermHandler $gpermHandler */
     $gpermHandler = xoops_getHandler('groupperm');
     // access rights ------------------------------------------
