@@ -21,7 +21,7 @@
  * @param $version
  */
 
-if ((!defined('XOOPS_ROOT_PATH')) || !($GLOBALS['xoopsUser'] instanceof XoopsUser)
+if ((!defined('XOOPS_ROOT_PATH')) || !($GLOBALS['xoopsUser'] instanceof \XoopsUser)
     || !$GLOBALS['xoopsUser']->IsAdmin()
 ) {
     exit('Restricted access' . PHP_EOL);
@@ -46,7 +46,7 @@ function tableExists($tablename)
  *
  * @return bool true if ready to install, false if not
  */
-function xoops_module_pre_update_contact(XoopsModule $module)
+function xoops_module_pre_update_contact(\XoopsModule $module)
 {
     /** @var Contact\Helper $helper */
     /** @var Contact\Utility $utility */
@@ -67,7 +67,7 @@ function xoops_module_pre_update_contact(XoopsModule $module)
  *
  * @return bool true if update successful, false if not
  */
-function xoops_module_update_contact(XoopsModule $module, $previousVersion = null)
+function xoops_module_update_contact(\XoopsModule $module, $previousVersion = null)
 {
     $moduleDirName = basename(dirname(__DIR__));
     $capsDirName   = strtoupper($moduleDirName);
@@ -79,7 +79,7 @@ function xoops_module_update_contact(XoopsModule $module, $previousVersion = nul
     $utility = new Contact\Utility();
     $configurator = new Contact\Configurator();
 
-    $xoopsDB = XoopsDatabaseFactory::getDatabaseConnection();
+    $xoopsDB = \XoopsDatabaseFactory::getDatabaseConnection();
 
     if ($previousVersion < 180) {
         $sql = 'CREATE TABLE ' . $xoopsDB->prefix('contact') . ' (
@@ -151,7 +151,7 @@ function xoops_module_update_contact(XoopsModule $module, $previousVersion = nul
                 if (is_dir($templateFolder)) {
                     $templateList = array_diff(scandir($templateFolder, SCANDIR_SORT_NONE), ['..', '.']);
                     foreach ($templateList as $k => $v) {
-                        $fileInfo = new SplFileInfo($templateFolder . $v);
+                        $fileInfo = new \SplFileInfo($templateFolder . $v);
                         if ('html' === $fileInfo->getExtension() && 'index.html' !== $fileInfo->getFilename()) {
                             if (file_exists($templateFolder . $v)) {
                                 unlink($templateFolder . $v);
@@ -194,10 +194,10 @@ function xoops_module_update_contact(XoopsModule $module, $previousVersion = nul
         }
 
         //  ---  COPY blank.png FILES ---------------
-        if (count($configurator->blankFiles) > 0) {
+        if (count($configurator->copyBlankFiles) > 0) {
             $file = __DIR__ . '/../assets/images/blank.png';
-            foreach (array_keys($configurator->blankFiles) as $i) {
-                $dest = $configurator->blankFiles[$i] . '/blank.png';
+            foreach (array_keys($configurator->copyBlankFiles) as $i) {
+                $dest = $configurator->copyBlankFiles[$i] . '/blank.png';
                 $utilityClass::copyFile($file, $dest);
             }
         }

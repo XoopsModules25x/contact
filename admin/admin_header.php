@@ -19,13 +19,15 @@
  * @author      Hossein Azizabadi (AKA Voltan)
  */
 
+use XoopsModules\Contact;
+
 require_once __DIR__ . '/../../../include/cp_header.php';
 require_once XOOPS_ROOT_PATH . '/class/pagenav.php';
 require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 global $xoopsModule;
 
 $moduleDirName = $GLOBALS['xoopsModule']->getVar('dirname');
-$helper = \Xmf\Module\Helper::getHelper($moduleDirName);
+$helper = Contact\Helper::getInstance();
 /** @var Xmf\Module\Admin $adminObject */
 $adminObject = Xmf\Module\Admin::getInstance();
 
@@ -33,7 +35,7 @@ $myts = \MyTextSanitizer::getInstance();
 
 if (!isset($GLOBALS['xoopsTpl']) || !($GLOBALS['xoopsTpl'] instanceof XoopsTpl)) {
     require_once $GLOBALS['xoops']->path('class/template.php');
-    $xoopsTpl = new XoopsTpl();
+    $xoopsTpl = new \XoopsTpl();
 }
 
 $pathIcon16      = Xmf\Module\Admin::iconUrl('', 16);
@@ -52,4 +54,4 @@ $helper->loadLanguage('main');
 
 // Contact Handler
 /** @var ContactContactHandler $contactHandler*/
-$contactHandler = xoops_getModuleHandler('contact', $moduleDirName);
+$contactHandler = Contact\Helper::getInstance()->getHandler('Contact');

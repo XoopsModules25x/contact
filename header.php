@@ -25,4 +25,4 @@ include __DIR__ . '/class/contact.php';
 require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 
 /** @var ContactContactHandler $contactHandler*/
-$contactHandler = xoops_getModuleHandler('contact', $moduleDirName);
+$contactHandler = Contact\Helper::getInstance()->getHandler('Contact');

@@ -31,13 +31,13 @@ $op = Request::getString('op', 'list');
 switch ($op) {
     case 'list':
         // prune manager
-        $form = new XoopsThemeForm(_AM_CONTACT_TOOLS_PRUNE, 'tools', 'tools.php', 'post', true);
-        $form->addElement(new XoopsFormTextDateSelect(_AM_CONTACT_TOOLS_PRUNE_BEFORE, 'prune_date', 15, time()));
+        $form = new \XoopsThemeForm(_AM_CONTACT_TOOLS_PRUNE, 'tools', 'tools.php', 'post', true);
+        $form->addElement(new \XoopsFormTextDateSelect(_AM_CONTACT_TOOLS_PRUNE_BEFORE, 'prune_date', 15, time()));
         $onlyreply = new xoopsFormCheckBox('', 'onlyreply');
         $onlyreply->addOption(1, _AM_CONTACT_TOOLS_PRUNE_REPLYONLY);
         $form->addElement($onlyreply, false);
-        $form->addElement(new XoopsFormHidden('op', 'prune'));
-        $form->addElement(new XoopsFormButton('', 'post', _SUBMIT, 'submit'));
+        $form->addElement(new \XoopsFormHidden('op', 'prune'));
+        $form->addElement(new \XoopsFormButton('', 'post', _SUBMIT, 'submit'));
         $GLOBALS['xoopsTpl']->assign('prune', $form->render());
         break;
 

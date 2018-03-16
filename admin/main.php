@@ -61,7 +61,7 @@ switch ($op) {
         $contacts        = $contactHandler->contactGetAdminList($contact, 'contact_cid');
 
         if ($contact_numrows > $contact['limit']) {
-            $contact_pagenav = new XoopsPageNav($contact_numrows, $contact['limit'], $contact['start'], 'start', 'limit=' . $contact['limit']);
+            $contact_pagenav = new \XoopsPageNav($contact_numrows, $contact['limit'], $contact['start'], 'start', 'limit=' . $contact['limit']);
             $contact_pagenav = $contact_pagenav->renderNav(4);
         } else {
             $contact_pagenav = '';
@@ -173,9 +173,9 @@ switch ($op) {
             //            exit();
         }
 
-        $criteria = new CriteriaCompo();
-        $criteria->add(new Criteria('contact_id', $contact_id));
-        $criteria->add(new Criteria('contact_cid', $contact_id), 'OR');
+        $criteria = new \CriteriaCompo();
+        $criteria->add(new \Criteria('contact_id', $contact_id));
+        $criteria->add(new \Criteria('contact_cid', $contact_id), 'OR');
 
         if (!$contactHandler->deleteAll($criteria)) {
             redirect_header('main.php', 1, _AM_CONTACT_MSG_DELETEERROR);

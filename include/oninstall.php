@@ -26,7 +26,7 @@
  *
  * @return bool true if ready to install, false if not
  */
-function xoops_module_pre_install_contact(XoopsModule $module)
+function xoops_module_pre_install_contact(\XoopsModule $module)
 {
     $moduleDirName = basename(dirname(__DIR__));
     /** @var ContactUtility $utilityClass */
@@ -54,7 +54,7 @@ function xoops_module_pre_install_contact(XoopsModule $module)
  *
  * @return bool true if installation successful, false if not
  */
-function xoops_module_install_contact(XoopsModule $module)
+function xoops_module_install_contact(\XoopsModule $module)
 {
     require_once  __DIR__ . '/../../../mainfile.php';
     require_once  __DIR__ . '/../include/config.php';
@@ -90,10 +90,10 @@ function xoops_module_install_contact(XoopsModule $module)
     }
 
     //  ---  COPY blank.png FILES ---------------
-    if (count($configurator->blankFiles) > 0) {
+    if (count($configurator->copyBlankFiles) > 0) {
         $file = __DIR__ . '/../assets/images/blank.png';
-        foreach (array_keys($configurator->blankFiles) as $i) {
-            $dest = $configurator->blankFiles[$i] . '/blank.png';
+        foreach (array_keys($configurator->copyBlankFiles) as $i) {
+            $dest = $configurator->copyBlankFiles[$i] . '/blank.png';
             $utilityClass::copyFile($file, $dest);
         }
     }

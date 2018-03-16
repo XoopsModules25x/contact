@@ -18,7 +18,7 @@
  * @min_xoops       2.5.7
  * @author          Goffy (xoops.wedega.com) - Email:<webmaster@wedega.com> - Website:<http://xoops.wedega.com>
  */
-defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+defined('XOOPS_ROOT_PATH') || die('Restricted access');
 if (!defined('CONTACT_MODULE_PATH')) {
     define('CONTACT_DIRNAME', basename(dirname(__DIR__)));
     define('CONTACT_PATH', XOOPS_ROOT_PATH.'/modules/'.CONTACT_DIRNAME);
