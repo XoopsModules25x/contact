@@ -21,6 +21,9 @@
  */
 
 use Xmf\Request;
+use XoopsModules\Contact;
+/** @var Contact\Helper $helper */
+$helper = Contact\Helper::getInstance();
 
 include __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'contact_index.tpl';
@@ -31,18 +34,18 @@ include XOOPS_ROOT_PATH . '/header.php';
 global $xoopsConfig, $xoopsModuleConfig;
 $captcha = '';
 
-$saveinfo = $xoopsModuleConfig['saveinfo'];
-$sendmail = $xoopsModuleConfig['sendmail'];
+$saveinfo = $helper->getConfig('saveinfo');
+$sendmail = $helper->getConfig('sendmail');
 
 if ('' !== Request::getString('g-recaptcha-response', '', 'POST')) {
     $captcha = Request::getString('g-recaptcha-response', '', 'POST');
 }
 
-if (!$captcha && $xoopsModuleConfig['recaptchause']) {
+if (!$captcha && $helper->getConfig('recaptchause')) {
     redirect_header('index.php', 2, _MD_CONTACT_MES_NOCAPTCHA);
 } else {
-    $response = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $xoopsModuleConfig['recaptchakey'] . '&response=' . $captcha . '&remoteip=' . $_SERVER['REMOTE_ADDR']);
-    if (false === $response['success'] && $xoopsModuleConfig['recaptchause']) {
+    $response = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $helper->getConfig('recaptchakey') . '&response=' . $captcha . '&remoteip=' . $_SERVER['REMOTE_ADDR']);
+    if (false === $response['success'] && $helper->getConfig('recaptchause')) {
         redirect_header('index.php', 2, _MD_CONTACT_MES_CAPTCHAINCORRECT);
     } else {
         global $xoopsConfig, $xoopsOption, $xoopsTpl, $xoopsUser, $xoopsUserIsAdmin, $xoopsLogger;
@@ -72,7 +75,7 @@ if (!$captcha && $xoopsModuleConfig['recaptchause']) {
                 // send mail can send message
                 if (1 === $sendmail) {
                     $message = $contactHandler->contactSendMail($contact);
-                    if ($xoopsModuleConfig['mailconfirm']) {
+                    if ($helper->getConfig('mailconfirm')) {
                         $res_mailconfirm = $contactHandler->contactSendMailConfirm($contact);
                     }
                 } elseif (1 === $saveinfo) {

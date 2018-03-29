@@ -20,6 +20,9 @@
  */
 
 use Xmf\Request;
+use XoopsModules\Contact;
+/** @var Contact\Helper $helper */
+$helper = Contact\Helper::getInstance();
 
 // Call header
 require __DIR__ . '/admin_header.php';
@@ -29,8 +32,8 @@ global $xoopsModuleConfig;
 // Define default value
 $level      = '';
 
-$saveinfo = $xoopsModuleConfig['saveinfo'];
-$sendmail = $xoopsModuleConfig['sendmail'];
+$saveinfo = $helper->getConfig('saveinfo');
+$sendmail = $helper->getConfig('sendmail');
 
 $op         = Request::getString('op', 'list');
 $contact_id = Request::getInt('id', 0);

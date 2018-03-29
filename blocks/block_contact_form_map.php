@@ -21,6 +21,8 @@
  * @return array
  */
 
+use XoopsModules\Contact;
+
 // Function show block form only
 function block_contact_form_show($options)
 {
@@ -61,12 +63,8 @@ function block_contact_form_map_show($options)
  */
 function contactGetElements(&$block)
 {
-    /** @var XoopsModuleHandler $moduleHandler */
-    $moduleHandler = xoops_getHandler('module');
-    $xoopsModule   = $moduleHandler->getByDirname('contact');
-    /** @var XoopsConfigHandler $configHandler */
-    $configHandler     = xoops_getHandler('config');
-    $xoopsModuleConfig = $configHandler->getConfigsByCat(0, $xoopsModule->mid());
+    /** @var Contact\Helper $helper */
+    $helper = Contact\Helper::getInstance();
 
     xoops_loadLanguage('main', 'contact');
 
@@ -75,7 +73,7 @@ function contactGetElements(&$block)
     $block['lng_username'] = 'name';
 
     /*Modules Options*/
-    if (1 == $xoopsModuleConfig['form_dept']) {
+    if (1 == $helper->getConfig('form_dept')) {
         // show a drop down with the correct departments listed
         $departmentlist = [];
         $departments    = xoops_getModuleOption('contact_dept', 'contact');
@@ -83,21 +81,21 @@ function contactGetElements(&$block)
             list($name, $email) = explode(',', $val, 2); //split the name and email
             array_push($departmentlist, $name);
         }
-        $block['depart']      = $xoopsModuleConfig['form_dept'];
+        $block['depart']      = $helper->getConfig('form_dept');
         $block['departments'] = $departmentlist;
     }
-    $block['recaptcha']       = $xoopsModuleConfig['recaptchause'];
-    $block['recaptchakey']    = $xoopsModuleConfig['recaptchakey'];
-    $block['url']             = $xoopsModuleConfig['form_url'];
-    $block['icq']             = $xoopsModuleConfig['form_icq'];
-    $block['skype']           = $xoopsModuleConfig['form_skype'];
-    $block['company']         = $xoopsModuleConfig['form_company'];
-    $block['location']        = $xoopsModuleConfig['form_location'];
-    $block['phone']           = $xoopsModuleConfig['form_phone'];
-    $block['address']         = $xoopsModuleConfig['form_address'];
-    $block['info']            = $xoopsModuleConfig['contact_info'];
-    $block['contact_default'] = $xoopsModuleConfig['contact_default'];
-    $block['map']             = $xoopsModuleConfig['embed_maps'];
+    $block['recaptcha']       = $helper->getConfig('recaptchause');
+    $block['recaptchakey']    = $helper->getConfig('recaptchakey');
+    $block['url']             = $helper->getConfig('form_url');
+    $block['icq']             = $helper->getConfig('form_icq');
+    $block['skype']           = $helper->getConfig('form_skype');
+    $block['company']         = $helper->getConfig('form_company');
+    $block['location']        = $helper->getConfig('form_location');
+    $block['phone']           = $helper->getConfig('form_phone');
+    $block['address']         = $helper->getConfig('form_address');
+    $block['info']            = $helper->getConfig('contact_info');
+    $block['contact_default'] = $helper->getConfig('contact_default');
+    $block['map']             = $helper->getConfig('embed_maps');
     /*end Modules options*/
 
     /* get language vars*/

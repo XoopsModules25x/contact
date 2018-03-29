@@ -20,6 +20,10 @@
  * @author      Mirza (AKA Bleekk)
   */
 
+use XoopsModules\Contact;
+/** @var Contact\Helper $helper */
+$helper = Contact\Helper::getInstance();
+
 require __DIR__ . '/../../mainfile.php';
 require_once  __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'contact_index.tpl';
@@ -27,7 +31,7 @@ $GLOBALS['xoopsOption']['template_main'] = 'contact_index.tpl';
 include XOOPS_ROOT_PATH . '/header.php';
 global $xoopsModuleConfig, $xoopsModule;
 /*Modules Options*/
-if (1 == $xoopsModuleConfig['form_dept']) {
+if (1 == $helper->getConfig('form_dept')) {
     // show a drop down with the correct departments listed
     $departmentlist = [];
     $departments    = xoops_getModuleOption('contact_dept', 'contact');
@@ -35,20 +39,20 @@ if (1 == $xoopsModuleConfig['form_dept']) {
         list($name, $email) = explode(',', $val, 2); //split the name and email
         $departmentlist[] = $name;
     }
-    $GLOBALS['xoopsTpl']->assign('depart', $xoopsModuleConfig['form_dept']);
+    $GLOBALS['xoopsTpl']->assign('depart', $helper->getConfig('form_dept'));
     $GLOBALS['xoopsTpl']->assign('departments', $departmentlist);
 }
-$GLOBALS['xoopsTpl']->assign('recaptcha', $xoopsModuleConfig['recaptchause']);
-$GLOBALS['xoopsTpl']->assign('recaptchakey', $xoopsModuleConfig['recaptchakey']);
-$GLOBALS['xoopsTpl']->assign('url', $xoopsModuleConfig['form_url']);
-$GLOBALS['xoopsTpl']->assign('icq', $xoopsModuleConfig['form_icq']);
-$GLOBALS['xoopsTpl']->assign('skype', $xoopsModuleConfig['form_skype']);
-$GLOBALS['xoopsTpl']->assign('company', $xoopsModuleConfig['form_company']);
-$GLOBALS['xoopsTpl']->assign('location', $xoopsModuleConfig['form_location']);
-$GLOBALS['xoopsTpl']->assign('phone', $xoopsModuleConfig['form_phone']);
-$GLOBALS['xoopsTpl']->assign('address', $xoopsModuleConfig['form_address']);
+$GLOBALS['xoopsTpl']->assign('recaptcha', $helper->getConfig('recaptchause'));
+$GLOBALS['xoopsTpl']->assign('recaptchakey', $helper->getConfig('recaptchakey'));
+$GLOBALS['xoopsTpl']->assign('url', $helper->getConfig('form_url'));
+$GLOBALS['xoopsTpl']->assign('icq', $helper->getConfig('form_icq'));
+$GLOBALS['xoopsTpl']->assign('skype', $helper->getConfig('form_skype'));
+$GLOBALS['xoopsTpl']->assign('company', $helper->getConfig('form_company'));
+$GLOBALS['xoopsTpl']->assign('location', $helper->getConfig('form_location'));
+$GLOBALS['xoopsTpl']->assign('phone', $helper->getConfig('form_phone'));
+$GLOBALS['xoopsTpl']->assign('address', $helper->getConfig('form_address'));
 
-$GLOBALS['xoopsTpl']->assign('map', $xoopsModuleConfig['embed_maps']);
+$GLOBALS['xoopsTpl']->assign('map', $helper->getConfig('embed_maps'));
 /*end Modules options*/
 
 $GLOBALS['xoopsTpl']->assign('breadcrumb', '<li><a href="' . XOOPS_URL . '">' . _YOURHOME . '</a></li> <li class="active">' . $xoopsModule->name().'</li>');
