@@ -324,7 +324,7 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
         $criteria = new \CriteriaCompo();
         $criteria->add(new \Criteria('contact_cid', $contact_id));
         $criteria->add(new \Criteria('contact_type', 'Contact'));
-        $contacts =& $this->getObjects($criteria, false);
+        $contacts = $this->getObjects($criteria, false);
         if ($contacts) {
             $ret = [];
             /** @var Contact $root */
@@ -355,7 +355,7 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
         $criteria->setOrder($contact['order']);
         $criteria->setStart($contact['start']);
         $criteria->setLimit($contact['limit']);
-        $contacts =& $this->getObjects($criteria, false);
+        $contacts = $this->getObjects($criteria, false);
         if ($contacts) {
             /** @var Contact $root */
             foreach ($contacts as $root) {
@@ -495,7 +495,7 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
         }
         $criteria->setSort('contact_create');
         $criteria->setOrder('DESC');
-        $contacts =& $this->getObjects($criteria, false);
+        $contacts = $this->getObjects($criteria, false);
         if ($contacts) {
             /** @var Contact $root */
             foreach ($contacts as $root) {
