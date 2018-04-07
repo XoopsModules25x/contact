@@ -18,6 +18,9 @@
  * @min_xoops       2.5.7
  * @author          Goffy (xoops.wedega.com) - Email:<webmaster@wedega.com> - Website:<http://xoops.wedega.com>
  */
+
+use Xmf\Request;
+
 defined('XOOPS_ROOT_PATH') || die('Restricted access');
 if (!defined('CONTACT_MODULE_PATH')) {
     define('CONTACT_DIRNAME', basename(dirname(__DIR__)));
@@ -33,6 +36,5 @@ if (!defined('CONTACT_MODULE_PATH')) {
 $copyright = "<a href='http://xoops.wedega.com' title='WEDEGA Webdesign Gabor' target='_blank'>
                      <img src='". $local_logo."' alt='WEDEGA Webdesign Gabor' /></a>";
                      
-require_once XOOPS_ROOT_PATH.'/class/xoopsrequest.php';
 require_once CONTACT_PATH.'/class/helper.php';
 require_once CONTACT_PATH.'/include/functions.php';
