@@ -20,9 +20,9 @@
  */
 
 $moduleDirName = basename(__DIR__);
-include __DIR__ . '/../../mainfile.php';
-include __DIR__ . '/class/contact.php';
+include  dirname(dirname(__DIR__)) . '/mainfile.php';
+//include __DIR__ . '/class/contact.php';
 require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 
-/** @var ContactContactHandler $contactHandler*/
-$contactHandler = Contact\Helper::getInstance()->getHandler('Contact');
+/** @var ContactHandler $contactHandler*/
+//$contactHandler = \XoopsModules\Contact\Helper::getInstance()->getHandler('Contact');

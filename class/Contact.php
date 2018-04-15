@@ -74,7 +74,7 @@ class Contact extends \XoopsObject
         $form->addElement(new \XoopsFormHidden('contact_id', $this->getVar('contact_id', 'e')));
         $form->addElement(new \XoopsFormHidden('contact_uid', $this->getVar('contact_uid', 'e')));
         $form->addElement(new \XoopsFormLabel(_AM_CONTACT_FROM, '', ''));
-        $form->addElement(new \XoopsFormText(_AM_CONTACT_NAMEFROM, 'contact_name', 50, 255, XoopsUser::getUnameFromId($GLOBALS['xoopsUser']->uid())), true);
+        $form->addElement(new \XoopsFormText(_AM_CONTACT_NAMEFROM, 'contact_name', 50, 255, \XoopsUser::getUnameFromId($GLOBALS['xoopsUser']->uid())), true);
         $form->addElement(new \XoopsFormText(_AM_CONTACT_MAILFROM, 'contact_mail', 50, 255, $GLOBALS['xoopsUser']->getVar('email')), true);
         $form->addElement(new \XoopsFormLabel(_AM_CONTACT_TO, '', ''));
         $form->addElement(new \XoopsFormText(_AM_CONTACT_NAMETO, 'contact_nameto', 50, 255, $this->getVar('contact_name')), true);

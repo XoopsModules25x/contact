@@ -22,14 +22,14 @@
 
 use Xmf\Request;
 use XoopsModules\Contact;
-/** @var Contact\Helper $helper */
-$helper = Contact\Helper::getInstance();
 
 include __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'contact_index.tpl';
 //unset($_SESSION);
 include XOOPS_ROOT_PATH . '/header.php';
 
+/** @var Contact\Helper $helper */
+$helper = Contact\Helper::getInstance();
 /** reCaptcha by google **/
 global $xoopsConfig, $xoopsModuleConfig;
 $captcha = '';

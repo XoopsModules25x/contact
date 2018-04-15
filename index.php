@@ -21,14 +21,14 @@
   */
 
 use XoopsModules\Contact;
-/** @var Contact\Helper $helper */
-$helper = Contact\Helper::getInstance();
 
-require __DIR__ . '/../../mainfile.php';
+require  dirname(dirname(__DIR__)) . '/mainfile.php';
 require_once  __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'contact_index.tpl';
 //unset($_SESSION);
 include XOOPS_ROOT_PATH . '/header.php';
+/** @var Contact\Helper $helper */
+$helper = Contact\Helper::getInstance();
 global $xoopsModuleConfig, $xoopsModule;
 /*Modules Options*/
 if (1 == $helper->getConfig('form_dept')) {

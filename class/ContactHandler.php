@@ -26,12 +26,12 @@ defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 
 /**
- * Class ContactContactHandler
+ * Class ContactHandler
  */
-class ContactContactHandler extends XoopsPersistableObjectHandler
+class ContactHandler extends \XoopsPersistableObjectHandler
 {
     /**
-     * ContactContactHandler constructor.
+     * ContactHandler constructor.
      * @param null|\XoopsDatabase $db
      */
     public function __construct(\XoopsDatabase $db)
@@ -253,7 +253,7 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
             foreach ($contacts as $root) {
                 $tab                   = [];
                 $tab                   = $root->toArray();
-                $tab['contact_owner']  = XoopsUser::getUnameFromId($root->getVar('contact_uid'));
+                $tab['contact_owner']  = \XoopsUser::getUnameFromId($root->getVar('contact_uid'));
                 $tab['contact_create'] = formatTimestamp($root->getVar('contact_create'), _MEDIUMDATESTRING);
                 $ret []                = $tab;
             }
@@ -283,7 +283,7 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
             foreach ($contacts as $root) {
                 $tab                   = [];
                 $tab                   = $root->toArray();
-                $tab['contact_owner']  = XoopsUser::getUnameFromId($root->getVar('contact_uid'));
+                $tab['contact_owner']  = \XoopsUser::getUnameFromId($root->getVar('contact_uid'));
                 $tab['contact_create'] = formatTimestamp($root->getVar('contact_create'), _MEDIUMDATESTRING);
                 $ret []                = $tab;
             }

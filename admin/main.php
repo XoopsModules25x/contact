@@ -21,13 +21,15 @@
 
 use Xmf\Request;
 use XoopsModules\Contact;
-/** @var Contact\Helper $helper */
-$helper = Contact\Helper::getInstance();
 
 // Call header
 require __DIR__ . '/admin_header.php';
+
 // Display Admin header
 xoops_cp_header();
+
+/** @var Contact\Helper $helper */
+$helper = Contact\Helper::getInstance();
 global $xoopsModuleConfig;
 // Define default value
 $level      = '';
@@ -138,7 +140,7 @@ switch ($op) {
         $contact['contact_id']         = $obj->getVar('contact_id');
         $contact['contact_uid']        = $obj->getVar('contact_uid');
         $contact['contact_name']       = $obj->getVar('contact_name');
-        $contact['contact_owner']      = XoopsUser::getUnameFromId($obj->getVar('contact_uid'));
+        $contact['contact_owner']      = \XoopsUser::getUnameFromId($obj->getVar('contact_uid'));
         $contact['contact_subject']    = $obj->getVar('contact_subject');
         $contact['contact_mail']       = $obj->getVar('contact_mail');
         $contact['contact_url']        = $obj->getVar('contact_url');

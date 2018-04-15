@@ -21,6 +21,8 @@
  * @param $version
  */
 
+use XoopsModules\Contact;
+
 if ((!defined('XOOPS_ROOT_PATH')) || !($GLOBALS['xoopsUser'] instanceof \XoopsUser)
     || !$GLOBALS['xoopsUser']->IsAdmin()
 ) {
@@ -138,11 +140,8 @@ function xoops_module_update_contact(\XoopsModule $module, $previousVersion = nu
     if ($previousVersion < 227) {
         require_once __DIR__ . '/config.php';
         $configurator = new ContactConfigurator();
-        /** @var ContactUtility $utility */
-        $utility    = ucfirst($moduleDirName) . 'Utility';
-        if (!class_exists($utility)) {
-            xoops_load('utility', $moduleDirName);
-        }
+        /** @var Contact\Utility $utility */
+        $utility = new \XoopsModules\Contact\Utility();
 
         //delete old HTML templates
         if (count($configurator->templateFolders) > 0) {
@@ -195,7 +194,7 @@ function xoops_module_update_contact(\XoopsModule $module, $previousVersion = nu
 
         //  ---  COPY blank.png FILES ---------------
         if (count($configurator->copyBlankFiles) > 0) {
-            $file = __DIR__ . '/../assets/images/blank.png';
+            $file =  dirname(__DIR__) . '/assets/images/blank.png';
             foreach (array_keys($configurator->copyBlankFiles) as $i) {
                 $dest = $configurator->copyBlankFiles[$i] . '/blank.png';
                 $utility::copyFile($file, $dest);
