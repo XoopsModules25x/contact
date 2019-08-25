@@ -4,7 +4,8 @@
 + updated pre_update functions (mamba)
 + fixed anonymous access (aerograf/mamba)
 + short array syntax (mamba)
-
++ fixed bug for default sender mail address, if there are no departments (goffy)
++ fixed bug with missing additional infos in sended mail (alian/goffy)
 
 <h5>2.25 Final [2017-08-04]</h5>
 <hr>
