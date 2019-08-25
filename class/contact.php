@@ -215,36 +215,40 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
         $xoopsMailer->setFromEmail($contact['contact_mail']);
         $xoopsMailer->setFromName(html_entity_decode($contact['contact_name'], ENT_QUOTES, 'UTF-8'));
         
-        $body = '';
+        $info = '';
         $subjectPrefix = '';
         if ($GLOBALS['xoopsModuleConfig']['form_dept'] && $GLOBALS['xoopsModuleConfig']['subject_prefix'] && $GLOBALS['xoopsModuleConfig']['contact_dept']) {
             $subjectPrefix = '[' . $GLOBALS['xoopsModuleConfig']['prefix_text'] . ' ' . $contact['contact_department'] . ']: ';
-        } else {
-            if ($contact['contact_department']) {
-                $body .= _MD_CONTACT_DEPARTMENT . ': ' . $contact['contact_department'] . '<br>';
-            }
+            $info .= _MD_CONTACT_DEPARTMENT . ': ' . $contact['contact_department'] . "\n";
         }
         $xoopsMailer->setSubject($subjectPrefix . html_entity_decode($contact['contact_subject'], ENT_QUOTES, 'UTF-8'));
         
         if ($contact['contact_url']) {
-            $body .= _MD_CONTACT_URL . ': ' . $contact['contact_url'] . '<br>';
+            $info .= _MD_CONTACT_URL . ': ' . $contact['contact_url'] . "\n";
         }
         if ($contact['contact_icq']) {
-            $body .= _MD_CONTACT_ICQ . ': ' . $contact['contact_icq'] . '<br>';
-        }
-        if ($contact['contact_company']) {
-            $body .= _MD_CONTACT_COMPANY . ': ' . $contact['contact_company'] . '<br>';
-        }
-        if ($contact['contact_location']) {
-            $body .= _MD_CONTACT_LOCATION . ': ' . $contact['contact_location'] . '<br>';
+            $info .= _MD_CONTACT_ICQ . ': ' . $contact['contact_icq'] . "\n";
         }
         if ($contact['contact_phone']) {
-            $body .= _MD_CONTACT_PHONE . ': ' . $contact['contact_phone'] . '<br>';
+            $info .= _MD_CONTACT_PHONE . ': ' . $contact['contact_phone'] . "\n";
         }
-        if ($contact['contact_skype']) {
-            $body .= _MD_CONTACT_SKYPE . ': ' . $contact['contact_skype'] . '<br>';
+        if ($contact['contact_company']) {
+            $info .= _MD_CONTACT_COMPANY . ': ' . $contact['contact_company'] . "\n";
         }
-        $body .= html_entity_decode($contact['contact_message'], ENT_QUOTES, 'UTF-8');
+        if ($contact['contact_location']) {
+            $info .= _MD_CONTACT_LOCATION . ': ' . $contact['contact_location'] . "\n";
+        }
+        if ($contact['contact_address']) {
+            $info .= _MD_CONTACT_ADDRESS . ': ' . $contact['contact_address'] . "\n";
+        }
+        if ('' !== $info) {
+            $info = "\n" . $info . "\n";
+        }
+        
+        $body = str_replace('{BODY}', html_entity_decode($contact['contact_message'], ENT_QUOTES, 'UTF-8'), _MD_CONTACT_MAIL_BODY);
+        $body = str_replace('{INFO}', $info, $body);
+        $body = str_replace('{WEBSITE}', XOOPS_URL, $body);
+
         $xoopsMailer->setBody($body);
         if ($xoopsMailer->send()) {
             $message = _MD_CONTACT_MES_SEND;
@@ -268,8 +272,33 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
         $xoopsMailer->setFromName(html_entity_decode($GLOBALS['xoopsConfig']['sitename'], ENT_QUOTES, 'UTF-8'));
 
         $xoopsMailer->setSubject(_MD_CONTACT_MAILCONFIRM_SUBJECT);
+        
+        $info = '';
+        if ($contact['contact_url']) {
+            $info .= _MD_CONTACT_URL . ': ' . $contact['contact_url'] . "\n";
+        }
+        if ($contact['contact_icq']) {
+            $info .= _MD_CONTACT_ICQ . ': ' . $contact['contact_icq'] . "\n";
+        }
+        if ($contact['contact_phone']) {
+            $info .= _MD_CONTACT_PHONE . ': ' . $contact['contact_phone'] . "\n";
+        }
+        if ($contact['contact_company']) {
+            $info .= _MD_CONTACT_COMPANY . ': ' . $contact['contact_company'] . "\n";
+        }
+        if ($contact['contact_location']) {
+            $info .= _MD_CONTACT_LOCATION . ': ' . $contact['contact_location'] . "\n";
+        }
+        if ($contact['contact_address']) {
+            $info .= _MD_CONTACT_ADDRESS . ': ' . $contact['contact_address'] . "\n";
+        }
+        if ('' !== $info) {
+            $info = "\n" . $info . "\n";
+        }
+        
         $body = str_replace('{NAME}', html_entity_decode($contact['contact_name'], ENT_QUOTES, 'UTF-8'), _MD_CONTACT_MAILCONFIRM_BODY);
         $body = str_replace('{SUBJECT}', html_entity_decode($contact['contact_subject'], ENT_QUOTES, 'UTF-8'), $body);
+        $body = str_replace('{INFO}', $info, $body);
         $body = str_replace('{BODY}', html_entity_decode($contact['contact_message'], ENT_QUOTES, 'UTF-8'), $body);
         $xoopsMailer->setBody($body);
         if ($xoopsMailer->send()) {

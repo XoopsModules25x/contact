@@ -49,3 +49,10 @@ Message:
 
 We will contact you as soon as possible.
 ');
+//2.26
+define('_MD_CONTACT_MAIL_BODY', '
+On {WEBSITE} a new contact request came in:
+{INFO}
+Message:
+{BODY}
+');

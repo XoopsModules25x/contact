@@ -204,7 +204,7 @@ $modversion['config'][] = [
     'valuetype'   => 'int',
     'default'     => 0
 ];
-
+/* 
 $modversion['config'][] = [
     'name'        => 'form_skype',
     'title'       => '_MI_CONTACT_FORM_SKYPE',
@@ -212,7 +212,7 @@ $modversion['config'][] = [
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => 0
-];
+]; */
 
 $modversion['config'][] = [
     'name'        => 'form_company',
