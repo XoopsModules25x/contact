@@ -1,11 +1,16 @@
+<h5>2.27 RC-1 NOT RELEASED</h5>
+<hr>
++ fixed bug for default sender mail address, if there are no departments (goffy)
++ fixed bug with missing contact_skype in database (goffy)
++ fixed bug with missing additional infos in sended mail (alian/goffy)
++ fixed bug with missing contact_uid when sending (goffy)
+
 <h5>2.26 RC-1 [2017-08-09]</h5>
 <hr>
 + fixed ContactConfigurator (aerograf/mamba)
 + updated pre_update functions (mamba)
 + fixed anonymous access (aerograf/mamba)
 + short array syntax (mamba)
-+ fixed bug for default sender mail address, if there are no departments (goffy)
-+ fixed bug with missing additional infos in sended mail (alian/goffy)
 
 <h5>2.25 Final [2017-08-04]</h5>
 <hr>

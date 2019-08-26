@@ -8,6 +8,7 @@ CREATE TABLE contact (
   contact_mail       VARCHAR(255)                      NOT NULL,
   contact_url        VARCHAR(255)                      NOT NULL,
   contact_icq        VARCHAR(255)                      NOT NULL,
+  contact_skype      VARCHAR(255)                      NOT NULL,
   contact_company    VARCHAR(255)                      NOT NULL,
   contact_location   VARCHAR(255)                      NOT NULL,
   contact_department VARCHAR(60)                       NOT NULL,

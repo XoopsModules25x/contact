@@ -13,6 +13,7 @@ define('_AM_CONTACT_EMAIL', "E-Mail");
 define('_AM_CONTACT_URL', "URL");
 define('_AM_CONTACT_VIEWURL', "URL besuchen");
 define('_AM_CONTACT_ICQ', "ICQ");
+define('_AM_CONTACT_SKYPE', 'Skype');
 define('_AM_CONTACT_COMPANY', "Firma");
 define('_AM_CONTACT_LOCATION', "Ort");
 define('_AM_CONTACT_IP', "IP");

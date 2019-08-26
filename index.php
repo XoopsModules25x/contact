@@ -25,7 +25,8 @@ require_once  __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'contact_index.tpl';
 //unset($_SESSION);
 include XOOPS_ROOT_PATH . '/header.php';
-global $xoopsModuleConfig, $xoopsModule;
+global $xoopsModuleConfig, $xoopsModule, $xoopsUser;
+  
 /*Modules Options*/
 if ($xoopsModuleConfig['form_dept'] == 1) {
     // show a drop down with the correct departments listed
@@ -54,6 +55,9 @@ $GLOBALS['xoopsTpl']->assign('map', $xoopsModuleConfig['embed_maps']);
 $GLOBALS['xoopsTpl']->assign('breadcrumb', '<li><a href="' . XOOPS_URL . '">' . _YOURHOME . '</a></li> <li class="active">' . $xoopsModule->name().'</li>');
 $GLOBALS['xoopsTpl']->assign('info', xoops_getModuleOption('contact_info', 'contact'));
 $GLOBALS['xoopsTpl']->assign('contact_default', xoops_getModuleOption('contact_default', 'contact'));
+
+$uid = is_object($xoopsUser) ? $xoopsUser->getVar('uid') : 0;
+$GLOBALS['xoopsTpl']->assign('contact_uid', $uid);
 
 /* lang vars, added by goffy */
 $GLOBALS['xoopsTpl']->assign('lng_username', _MD_CONTACT_NAME);

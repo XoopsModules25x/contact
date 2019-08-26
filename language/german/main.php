@@ -42,7 +42,6 @@ define('_MD_CONTACT_MAILCONFIRM_BODY', '
 Hallo {NAME}
 
 Wir haben deine Mail wie folgt erhalten:
-
 {INFO}
 Titel:{SUBJECT}
 
@@ -53,7 +52,7 @@ Wir werden uns, sofern notwendig, umgehend melden.
 Bitte antworte nicht auf diese Mail, da diese Adresse nur zum
 Versenden von Nachrichten ist.
 ');
-//2.26
+//2.27
 define('_MD_CONTACT_MAIL_BODY', '
 Auf {WEBSITE} ist folgende Anfrage eingelangt:
 {INFO}

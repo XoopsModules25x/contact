@@ -47,6 +47,7 @@ class Contact extends XoopsObject
         $this->initVar('contact_url', XOBJ_DTYPE_TXTBOX, null, false);
         $this->initVar('contact_create', XOBJ_DTYPE_INT, null, false);
         $this->initVar('contact_icq', XOBJ_DTYPE_TXTBOX, null, false);
+        $this->initVar('contact_skype', XOBJ_DTYPE_TXTBOX, null, false);
         $this->initVar('contact_company', XOBJ_DTYPE_TXTBOX, null, false);
         $this->initVar('contact_location', XOBJ_DTYPE_TXTBOX, null, false);
         $this->initVar('contact_phone', XOBJ_DTYPE_TXTBOX, null, false);
@@ -229,6 +230,9 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
         if ($contact['contact_icq']) {
             $info .= _MD_CONTACT_ICQ . ': ' . $contact['contact_icq'] . "\n";
         }
+        if ($contact['contact_skype']) {
+            $info .= _MD_CONTACT_SKYPE . ': ' . $contact['contact_skype'] . "\n";
+        }
         if ($contact['contact_phone']) {
             $info .= _MD_CONTACT_PHONE . ': ' . $contact['contact_phone'] . "\n";
         }
@@ -279,6 +283,9 @@ class ContactContactHandler extends XoopsPersistableObjectHandler
         }
         if ($contact['contact_icq']) {
             $info .= _MD_CONTACT_ICQ . ': ' . $contact['contact_icq'] . "\n";
+        }
+        if ($contact['contact_skype']) {
+            $info .= _MD_CONTACT_SKYPE . ': ' . $contact['contact_skype'] . "\n";
         }
         if ($contact['contact_phone']) {
             $info .= _MD_CONTACT_PHONE . ': ' . $contact['contact_phone'] . "\n";

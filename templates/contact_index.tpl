@@ -101,7 +101,7 @@
 	  	
 		<input type="hidden" name="op" id="op" value="save">
 	  	<input type="hidden" name="contact_id" id="contact_id" value="">
-	  	<input type="hidden" name="contact_uid" id="contact_uid" value="0">
+	  	<input type="hidden" name="contact_uid" id="contact_uid" value="<{$contact_uid}>">
 
 	  	<{if $recaptcha}>
 	  	<div class="g-recaptcha" data-sitekey="<{$recaptchakey}>"></div>

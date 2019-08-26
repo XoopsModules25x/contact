@@ -26,7 +26,7 @@ $moduleDirName = basename(__DIR__);
 
 // ------------------- Informations ------------------- //
 $modversion = [
-    'version'             => 2.26,
+    'version'             => 2.27,
     'module_status'       => 'RC-1',
     'release_date'        => '2017/08/09',
     'name'                => _MI_CONTACT_NAME,
@@ -204,7 +204,7 @@ $modversion['config'][] = [
     'valuetype'   => 'int',
     'default'     => 0
 ];
-/* 
+
 $modversion['config'][] = [
     'name'        => 'form_skype',
     'title'       => '_MI_CONTACT_FORM_SKYPE',
@@ -212,7 +212,7 @@ $modversion['config'][] = [
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => 0
-]; */
+];
 
 $modversion['config'][] = [
     'name'        => 'form_company',
