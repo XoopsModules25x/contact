@@ -375,3 +375,12 @@ $modversion['config'][] = [
     'valuetype'   => 'int',
     'default'     => 10
 ];
+// Show breadcrumb
+$modversion['config'][] = [
+    'name'        => 'show_breadcrumbs',
+    'title'       => '_MI_CONTACT_SHOWBCRUMBS',
+    'description' => '_MI_CONTACT_SHOWBCRUMBS_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+];

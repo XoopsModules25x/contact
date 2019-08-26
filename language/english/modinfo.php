@@ -98,3 +98,6 @@ define('_MI_CONTACT_MAIL_SAVE_DB', 'Save message to DB');
 define('_MI_CONTACT_MAIL_SAVE_DB_DESC', 'The received Contact message will be saved to a Database');
 define('_MI_CONTACT_MAIL_SEND', 'Send email to Admin');
 define('_MI_CONTACT_MAIL_SEND_DESC', 'The received Contact message will be send to the Admin');
+// 2.27
+define('_MI_CONTACT_SHOWBCRUMBS', 'Show breadcrumb navigation');
+define('_MI_CONTACT_SHOWBCRUMBS_DESC', "Breadcrumb navigation displays the current page's context within the site structure.");

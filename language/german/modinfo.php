@@ -100,3 +100,6 @@ define('_MI_CONTACT_MAIL_SAVE_DB', 'Nachricht in DB speichern');
 define('_MI_CONTACT_MAIL_SAVE_DB_DESC', 'Erhaltene Kontaktanfragen werden in der Datenbank gespeichert');
 define('_MI_CONTACT_MAIL_SEND', 'Email an Admin');
 define('_MI_CONTACT_MAIL_SEND_DESC', 'Erhaltene Kontaktanfragen werden an den Admin weitergeleitet');
+// 2.27
+define('_MI_CONTACT_SHOWBCRUMBS', 'Brotkrumen-Navigation (breadcrumbs) anzeigen');
+define('_MI_CONTACT_SHOWBCRUMBS_DESC', 'Eine Brotkrumen-Navigation zeigt den aktuellen Seitenstand innerhalb der Websitestruktur');
