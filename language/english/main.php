@@ -42,10 +42,17 @@ define('_MD_CONTACT_MAILCONFIRM_BODY', '
 Dear {NAME}
 
 We confirm the receipt of your mail
-
+{INFO}
 Subject:{SUBJECT}
 Message: 
 {BODY}
 
 We will contact you as soon as possible.
+');
+//2.27
+define('_MD_CONTACT_MAIL_BODY', '
+On {WEBSITE} a new contact request came in:
+{INFO}
+Message:
+{BODY}
 ');

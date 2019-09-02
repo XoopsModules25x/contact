@@ -26,7 +26,7 @@ $moduleDirName = basename(__DIR__);
 
 // ------------------- Informations ------------------- //
 $modversion = [
-    'version'             => 2.26,
+    'version'             => 2.27,
     'module_status'       => 'RC-1',
     'release_date'        => '2017/08/09',
     'name'                => _MI_CONTACT_NAME,
@@ -374,4 +374,13 @@ $modversion['config'][] = [
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 10
+];
+// Show breadcrumb
+$modversion['config'][] = [
+    'name'        => 'show_breadcrumbs',
+    'title'       => '_MI_CONTACT_SHOWBCRUMBS',
+    'description' => '_MI_CONTACT_SHOWBCRUMBS_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
 ];
