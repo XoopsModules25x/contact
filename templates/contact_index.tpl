@@ -4,9 +4,11 @@
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <{/if}>
 
-<ol class="breadcrumb">
-	<{$breadcrumb}>
-</ol>
+<{if $show_breadcrumbs}>
+    <ol class="breadcrumb">
+        <{$breadcrumb}>
+    </ol>
+<{/if}>
 
 <{if $info}>
 <div id="about" class="center bg-contact" style="padding-bottom: 20px; padding-top: 5px;">
