@@ -1,5 +1,5 @@
 <div class="contact">
-<{if $level == reply}>
+<{if $level == 'reply'}>
 <{$navigation}>
 <{if $replylist}>
 <table class="outer">
@@ -62,9 +62,9 @@
 <{/if}>
 
 <{$replyform}>
-<{elseif $level == doreply}>
+<{elseif $level == 'doreply'}>
 
-<{elseif $level == view}>
+<{elseif $level == 'view'}>
 <{$navigation}>
 <table class="outer">
     <thead>
@@ -220,7 +220,7 @@
 <{/foreach}>
 <{/if}>
 
-<{elseif $level == delete}>
+<{elseif $level == 'delete'}>
 
 <{else}>
 <{$navigation}>
