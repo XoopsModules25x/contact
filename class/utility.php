@@ -87,33 +87,13 @@ class ContactUtility extends XoopsObject
      */
     public static function checkVerXoops(XoopsModule $module)
     {
-        xoops_loadLanguage('admin', $module->dirname());
-        //check for minimum XOOPS version
-        $currentVer  = substr(XOOPS_VERSION, 6); // get the numeric part of string
-        $currArray   = explode('.', $currentVer);
-        $requiredVer = '' . $module->getInfo('min_xoops'); //making sure it's a string
-        $reqArray    = explode('.', $requiredVer);
-        $success     = true;
-        foreach ($reqArray as $k => $v) {
-            if (isset($currArray[$k])) {
-                if ($currArray[$k] > $v) {
-                    break;
-                } elseif ($currArray[$k] == $v) {
-                    continue;
-                } else {
-                    $success = false;
-                    break;
-                }
-            } else {
-                if ((int)$v > 0) { // handles things like x.x.x.0_RC2
-                    $success = false;
-                    break;
-                }
-            }
-        }
-
-        if (!$success) {
-            $module->setErrors(sprintf(_AM_CONTACT_ERROR_BAD_XOOPS, $requiredVer, $currentVer));
+        $currentVersion  = strtolower(str_replace('XOOPS ', '', XOOPS_VERSION));
+        $requiredVersion = strtolower($module->getInfo('min_xoops'));
+        $vc              = version_compare($currentVersion, $requiredVersion);
+        $success         = ($vc >= 0);
+        if (false === $success) {
+            xoops_loadLanguage('admin', $module->dirname());
+            $module->setErrors(sprintf(_AM_XOOPSFAQ_ERROR_BAD_XOOPS, $requiredVersion, $currentVersion));
         }
 
         return $success;
