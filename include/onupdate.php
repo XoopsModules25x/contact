@@ -208,4 +208,10 @@ function xoops_module_update_contact(\XoopsModule $module, $previousVersion = nu
 
         return $grouppermHandler->deleteByModule($module->getVar('mid'), 'item_read');
     }
+    
+     if ($previousVersion < 227) {
+        // Add contact_skype
+        $sql = 'ALTER TABLE `' . $xoopsDB->prefix('contact') . "` ADD `contact_skype` VARCHAR(255) NULL AFTER `contact_icq`";
+        $xoopsDB->query($sql);
+    }
 }
