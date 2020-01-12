@@ -1,8 +1,6 @@
-<?php namespace XoopsModules\Contact;
+<?php
 
-use Xmf\Request;
-use XoopsModules\Contact;
-use XoopsModules\Contact\Common;
+namespace XoopsModules\Contact;
 
 /**
  * Class Utility

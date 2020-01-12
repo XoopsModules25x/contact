@@ -10,7 +10,7 @@
         <{$block.info}>
     </div>
 <{/if}>
-	<{if $block.contact_default}>
+    <{if $block.contact_default}>
     <div id="contact-default" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 contact-default-text">
         <{$block.contact_default}>
     </div>
@@ -112,7 +112,7 @@
                     <textarea name="contact_message" id="contact_message" class="form-control" rows="3" placeholder="<{$block.lng_message_info}>"></textarea>
                 </div>
             </div>
-            
+
             <input type="hidden" name="op" id="op" value="save">
             <input type="hidden" name="contact_id" id="contact_id" value="">
             <input type="hidden" name="contact_uid" id="contact_uid" value="0">
@@ -131,7 +131,7 @@
 <script type='text/javascript'>
 
 <!--//
-function xoopsFormValidate_save() { var myform = window.document.save; 
+function xoopsFormValidate_save() { var myform = window.document.save;
 if (myform.contact_name.value == "") { window.alert("<{$block.lng_username_info}>"); myform.contact_name.focus(); return false; }
 
 if (myform.contact_mail.value == "") { window.alert("<{$block.lng_email_info}>"); myform.contact_mail.focus(); return false; }

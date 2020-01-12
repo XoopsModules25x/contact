@@ -11,19 +11,13 @@
 
 /**
  * @copyright    XOOPS Project https://xoops.org/
- * @license      GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
+ * @license      GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
  * @package
  * @since
- * @author     XOOPS Development Team
+ * @author       XOOPS Development Team
  */
+$pathIcon32 = Xmf\Module\Admin::iconUrl('', 32);
 
-$pathIcon32      = Xmf\Module\Admin::iconUrl('', 32);
-
-echo "<div class='adminfooter'>\n"
-     ."  <div style='text-align: center;'>\n"
-     ."    <a href='https://xoops.org' rel='external'><img src='{$pathIcon32}/xoopsmicrobutton.gif' alt='XOOPS' title='XOOPS'></a>\n"
-     ."  </div>\n"
-     .'  ' . _AM_MODULEADMIN_ADMIN_FOOTER . "\n"
-     .'</div>';
+echo "<div class='adminfooter'>\n" . "  <div style='text-align: center;'>\n" . "    <a href='https://xoops.org' rel='external'><img src='{$pathIcon32}/xoopsmicrobutton.gif' alt='XOOPS' title='XOOPS'></a>\n" . "  </div>\n" . '  ' . _AM_MODULEADMIN_ADMIN_FOOTER . "\n" . '</div>';
 
 xoops_cp_footer();

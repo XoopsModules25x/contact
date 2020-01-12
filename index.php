@@ -18,15 +18,15 @@
  * @author      Trabis <lusopoemas@gmail.com>
  * @author      Hossein Azizabadi (AKA Voltan)
  * @author      Mirza (AKA Bleekk)
-  */
+ */
 
 use XoopsModules\Contact;
 
-require  dirname(dirname(__DIR__)) . '/mainfile.php';
-require_once  __DIR__ . '/header.php';
+require_once dirname(dirname(__DIR__)) . '/mainfile.php';
+require_once __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'contact_index.tpl';
 //unset($_SESSION);
-include XOOPS_ROOT_PATH . '/header.php';
+require_once XOOPS_ROOT_PATH . '/header.php';
 /** @var Contact\Helper $helper */
 $helper = Contact\Helper::getInstance();
 global $xoopsModuleConfig, $xoopsModule;
@@ -55,7 +55,7 @@ $GLOBALS['xoopsTpl']->assign('address', $helper->getConfig('form_address'));
 $GLOBALS['xoopsTpl']->assign('map', $helper->getConfig('embed_maps'));
 /*end Modules options*/
 
-$GLOBALS['xoopsTpl']->assign('breadcrumb', '<li><a href="' . XOOPS_URL . '">' . _YOURHOME . '</a></li> <li class="active">' . $xoopsModule->name().'</li>');
+$GLOBALS['xoopsTpl']->assign('breadcrumb', '<li><a href="' . XOOPS_URL . '">' . _YOURHOME . '</a></li> <li class="active">' . $xoopsModule->name() . '</li>');
 $GLOBALS['xoopsTpl']->assign('info', xoops_getModuleOption('contact_info', 'contact'));
 $GLOBALS['xoopsTpl']->assign('contact_default', xoops_getModuleOption('contact_default', 'contact'));
 
@@ -85,5 +85,5 @@ $GLOBALS['xoopsTpl']->assign('lng_icq_info', _MD_CONTACT_ICQ_INFO);
 $GLOBALS['xoopsTpl']->assign('lng_skypename_info', _MD_CONTACT_SKYPE_NAME_INFO);
 $GLOBALS['xoopsTpl']->assign('lng_subject_info', _MD_CONTACT_SUBJECT_INFO);
 $GLOBALS['xoopsTpl']->assign('lng_message_info', _MD_CONTACT_MESSAGE_INFO);
-               
-include XOOPS_ROOT_PATH . '/footer.php';
+
+require_once XOOPS_ROOT_PATH . '/footer.php';

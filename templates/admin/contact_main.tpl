@@ -1,5 +1,5 @@
 <div class="contact">
-<{if $level == reply}>
+<{if $level == 'reply'}>
 <{$navigation}>
 <{if $replylist}>
 <table class="outer">
@@ -46,6 +46,7 @@
             <{if $contact.contact_phone}><span class="bold"><{$smarty.const._AM_CONTACT_PHONE}> : </span><{$contact.contact_phone}> | <{/if}>
             <{if $contact.contact_mail}><span class="bold"><{$smarty.const._AM_CONTACT_EMAIL}> : </span><{$contact.contact_mail}> | <{/if}>
             <{if $contact.contact_icq}><span class="bold"><{$smarty.const._AM_CONTACT_ICQ}> : </span><{$contact.contact_icq}> | <{/if}>
+            <{if $contact.contact_skype}><span class="bold"><{$smarty.const._AM_CONTACT_SKYPE}> : </span><{$contact.contact_skype}> | <{/if}>
             <{if $contact.contact_company}><span class="bold"><{$smarty.const._AM_CONTACT_COMPANY}> : </span><{$contact.contact_company}> | <{/if}>
             <{if $contact.contact_location}><span class="bold"><{$smarty.const._AM_CONTACT_LOCATION}> : </span><{$contact.contact_location}> | <{/if}>
             <{if $contact.contact_url}><span class="bold"><{$smarty.const._AM_CONTACT_URL}> : </span><a title="<{$smarty.const._AM_CONTACT_VIEWURL}>"
@@ -61,9 +62,9 @@
 <{/if}>
 
 <{$replyform}>
-<{elseif $level == doreply}>
+<{elseif $level == 'doreply'}>
 
-<{elseif $level == view}>
+<{elseif $level == 'view'}>
 <{$navigation}>
 <table class="outer">
     <thead>
@@ -106,6 +107,12 @@
     <tr class="odd">
         <td class="bold"><{$smarty.const._AM_CONTACT_ICQ}></td>
         <td><{$contact.contact_icq}></td>
+    </tr>
+    <{/if}>
+    <{if $contact.contact_skype}>
+    <tr class="odd">
+        <td class="bold"><{$smarty.const._AM_CONTACT_SKYPE}></td>
+        <td><{$contact.contact_skype}></td>
     </tr>
     <{/if}>
     <{if $contact.contact_company}>
@@ -213,7 +220,7 @@
 <{/foreach}>
 <{/if}>
 
-<{elseif $level == delete}>
+<{elseif $level == 'delete'}>
 
 <{else}>
 <{$navigation}>

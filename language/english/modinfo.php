@@ -83,7 +83,7 @@ define('_MI_CONTACT_DEFAULT_DESC', 'Here you can define additional information, 
 //2.25 RC1
 //Help
 define('_MI_CONTACT_DIRNAME', basename(dirname(dirname(__DIR__))));
-define('_MI_CONTACT_HELP_HEADER', __DIR__.'/help/helpheader.tpl');
+define('_MI_CONTACT_HELP_HEADER', __DIR__ . '/help/helpheader.tpl');
 define('_MI_CONTACT_BACK_2_ADMIN', 'Back to Administration of ');
 define('_MI_CONTACT_OVERVIEW', 'Overview');
 

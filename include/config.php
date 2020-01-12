@@ -11,33 +11,32 @@
 
 /**
  * @copyright    XOOPS Project https://xoops.org/
- * @license      GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
+ * @license      GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
  * @package
  * @since
  * @author       XOOPS Development Team
  */
+require_once dirname(dirname(dirname(__DIR__))) . '/mainfile.php';
 
-require_once  dirname(dirname(dirname(__DIR__))) . '/mainfile.php';
+$moduleDirName      = basename(dirname(__DIR__));
+$moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
-$moduleDirName = basename(dirname(__DIR__));
-$capsDirName   = strtoupper($moduleDirName);
-
-if (!defined($capsDirName . '_DIRNAME')) {
+if (!defined($moduleDirNameUpper . '_DIRNAME')) {
     //if (!defined(constant($capsDirName . '_DIRNAME'))) {
-    define($capsDirName . '_DIRNAME', $GLOBALS['xoopsModule']->dirname());
-    define($capsDirName . '_PATH', XOOPS_ROOT_PATH . '/modules/' . constant($capsDirName . '_DIRNAME'));
-    define($capsDirName . '_URL', XOOPS_URL . '/modules/' . constant($capsDirName . '_DIRNAME'));
-    define($capsDirName . '_ADMIN', constant($capsDirName . '_URL') . '/admin/index.php');
-    define($capsDirName . '_ROOT_PATH', XOOPS_ROOT_PATH . '/modules/' . constant($capsDirName . '_DIRNAME'));
-    define($capsDirName . '_AUTHOR_LOGOIMG', constant($capsDirName . '_URL') . '/assets/images/logoModule.png');
+    define($moduleDirNameUpper . '_DIRNAME', $GLOBALS['xoopsModule']->dirname());
+    define($moduleDirNameUpper . '_PATH', XOOPS_ROOT_PATH . '/modules/' . constant($moduleDirNameUpper . '_DIRNAME'));
+    define($moduleDirNameUpper . '_URL', XOOPS_URL . '/modules/' . constant($moduleDirNameUpper . '_DIRNAME'));
+    define($moduleDirNameUpper . '_ADMIN', constant($moduleDirNameUpper . '_URL') . '/admin/index.php');
+    define($moduleDirNameUpper . '_ROOT_PATH', XOOPS_ROOT_PATH . '/modules/' . constant($moduleDirNameUpper . '_DIRNAME'));
+    define($moduleDirNameUpper . '_AUTHOR_LOGOIMG', constant($moduleDirNameUpper . '_URL') . '/assets/images/logoModule.png');
 }
 
 // Define here the place where main upload path
 
 //$img_dir = $GLOBALS['xoopsModuleConfig']['uploaddir'];
 
-define($capsDirName . '_UPLOAD_URL', XOOPS_UPLOAD_URL . '/' . $moduleDirName); // WITHOUT Trailing slash
-define($capsDirName . '_UPLOAD_PATH', XOOPS_UPLOAD_PATH . '/' . $moduleDirName); // WITHOUT Trailing slash
+define($moduleDirNameUpper . '_UPLOAD_URL', XOOPS_UPLOAD_URL . '/' . $moduleDirName); // WITHOUT Trailing slash
+define($moduleDirNameUpper . '_UPLOAD_PATH', XOOPS_UPLOAD_PATH . '/' . $moduleDirName); // WITHOUT Trailing slash
 
 //constant($cloned_lang . '_CATEGORY_NOTIFY')
 
@@ -58,7 +57,6 @@ define($capsDirName . '_UPLOAD_PATH', XOOPS_UPLOAD_PATH . '/' . $moduleDirName);
 //    '/include/install_functions.php'
 //];
 
-
 /**
  * Class ModuleConfigurator
  */
@@ -69,6 +67,7 @@ class ContactConfigurator
     public $templateFolders = [];
     public $oldFiles        = [];
     public $oldFolders      = [];
+    public $renameTables    = [];
     public $name;
 
     /**
@@ -77,7 +76,7 @@ class ContactConfigurator
     public function __construct()
     {
         $moduleDirName       = basename(dirname(__DIR__));
-        $capsDirName         = strtoupper($moduleDirName);
+        $moduleDirNameUpper  = mb_strtoupper($moduleDirName);
         $this->name          = 'Contact Module Configurator';
         $this->uploadFolders = [
             //            constant($capsDirName . '_UPLOAD_PATH'),
@@ -93,8 +92,7 @@ class ContactConfigurator
         $this->templateFolders = [
             '/templates/',
             '/templates/blocks/',
-            '/templates/admin/'
-
+            '/templates/admin/',
         ];
         $this->oldFiles        = [
             // '/include/functions.php',
@@ -112,4 +110,4 @@ class ContactConfigurator
 
 // module information
 $modCopyright = "<a href='https://xoops.org' title='XOOPS Project' target='_blank'>
-                     <img src='" . constant($capsDirName . '_AUTHOR_LOGOIMG') . '\' alt=\'XOOPS Project\' /></a>';
+                     <img src='" . constant($moduleDirNameUpper . '_AUTHOR_LOGOIMG') . '\' alt=\'XOOPS Project\' /></a>';

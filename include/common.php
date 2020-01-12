@@ -8,6 +8,7 @@
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
+
 /**
  * contact module for xoops
  *
@@ -20,11 +21,11 @@
  */
 
 use XoopsModules\Contact;
-include __DIR__ . '/../preloads/autoloader.php';
 
-$moduleDirName = basename(dirname(__DIR__));
-$moduleDirNameUpper   = strtoupper($moduleDirName); //$capsDirName
+require_once __DIR__ . '/../preloads/autoloader.php';
 
+$moduleDirName      = basename(dirname(__DIR__));
+$moduleDirNameUpper = mb_strtoupper($moduleDirName); //$capsDirName
 
 /** @var \XoopsDatabase $db */
 /** @var Contact\Helper $helper */
@@ -56,8 +57,8 @@ if (!defined($moduleDirNameUpper . '_CONSTANTS_DEFINED')) {
     define($moduleDirNameUpper . '_CONSTANTS_DEFINED', 1);
 }
 
-$pathIcon16    = \Xmf\Module\Admin::iconUrl('', 16);
-$pathIcon32    = \Xmf\Module\Admin::iconUrl('', 32);
+$pathIcon16 = \Xmf\Module\Admin::iconUrl('', 16);
+$pathIcon32 = \Xmf\Module\Admin::iconUrl('', 32);
 //$pathModIcon16 = $helper->getModule()->getInfo('modicons16');
 //$pathModIcon32 = $helper->getModule()->getInfo('modicons32');
 
@@ -95,7 +96,7 @@ if (is_object($helper->getModule())) {
 
 // module information
 $copyright = "<a href='http://xoops.wedega.com' title='WEDEGA Webdesign Gabor' target='_blank'>
-                     <img src='". $local_logo."' alt='WEDEGA Webdesign Gabor' /></a>";
-                     
+                     <img src='" . $local_logo . "' alt='WEDEGA Webdesign Gabor' /></a>";
+
 //require_once CONTACT_PATH.'/class/helper.php';
-require_once CONTACT_PATH.'/include/functions.php';
+require_once CONTACT_PATH . '/include/functions.php';

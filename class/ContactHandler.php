@@ -21,9 +21,7 @@ use Xmf\Request;
  * @author        Hossein Azizabadi (AKA Voltan)
  * @author        Mirza (AKA Bleekk)
  */
-
-defined('XOOPS_ROOT_PATH') || die('Restricted access');
-
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 /**
  * Class ContactHandler
@@ -34,7 +32,7 @@ class ContactHandler extends \XoopsPersistableObjectHandler
      * ContactHandler constructor.
      * @param null|\XoopsDatabase $db
      */
-    public function __construct(\XoopsDatabase $db)
+    public function __construct(\XoopsDatabase $db = null)
     {
         parent::__construct($db, 'contact', Contact::class, 'contact_id', 'contact_mail');
     }
@@ -58,7 +56,11 @@ class ContactHandler extends \XoopsPersistableObjectHandler
                 $ret = isset($global[$key]) ? strtotime($global[$key]) : $default;
                 break;
             case 'string':
+                            if(defined('FILTER_SANITIZE_ADD_SLASHES')){
+                $ret = isset($global[$key]) ? filter_var($global[$key], FILTER_SANITIZE_ADD_SLASHES) : $default;
+            } else {
                 $ret = isset($global[$key]) ? filter_var($global[$key], FILTER_SANITIZE_MAGIC_QUOTES) : $default;
+            }
                 break;
             case 'mail':
                 $ret = isset($global[$key]) ? filter_var($global[$key], FILTER_VALIDATE_EMAIL) : $default;
@@ -241,7 +243,7 @@ class ContactHandler extends \XoopsPersistableObjectHandler
      */
     public function contactGetReply($contact_id)
     {
-        $ret      = false;
+        $ret = false;
 
         $criteria = new \CriteriaCompo();
         $criteria->add(new \Criteria('contact_cid', $contact_id));
@@ -353,16 +355,14 @@ class ContactHandler extends \XoopsPersistableObjectHandler
      */
     public function contactPlatform($platform)
     {
-        $platform = strtolower($platform);
+        $platform = mb_strtolower($platform);
         switch ($platform) {
             case 'Android':
                 $ret = 'Android';
                 break;
-
             case 'Ios':
                 $ret = 'Ios';
                 break;
-
             case 'Web':
             default:
                 $ret = 'Web';
@@ -379,16 +379,14 @@ class ContactHandler extends \XoopsPersistableObjectHandler
      */
     public function contactType($type)
     {
-        $type = strtolower($type);
+        $type = mb_strtolower($type);
         switch ($type) {
             case 'Mail':
                 $ret = 'Mail';
                 break;
-
             case 'Phone':
                 $ret = 'Phone';
                 break;
-
             case 'Contact':
             default:
                 $ret = 'Contact';

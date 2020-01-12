@@ -22,7 +22,7 @@
 use Xmf\Request;
 
 // Call header
-require __DIR__ . '/admin_header.php';
+require_once __DIR__ . '/admin_header.php';
 // Display Admin header
 xoops_cp_header();
 // Define default value
@@ -41,7 +41,6 @@ switch ($op) {
         $form->addElement(new \XoopsFormButton('', 'post', _SUBMIT, 'submit'));
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
         break;
-
     case 'getlog':
         $column = Request::getString('column', '');
         $log    = $contactHandler->contactLogs($column);
@@ -53,4 +52,4 @@ $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation(basen
 // Call template file
 $GLOBALS['xoopsTpl']->display(XOOPS_ROOT_PATH . '/modules/contact/templates/admin/contact_logs.tpl');
 // Call footer
-require __DIR__ . '/admin_footer.php';
+require_once __DIR__ . '/admin_footer.php';

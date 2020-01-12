@@ -18,7 +18,7 @@
  * @min_xoops       2.5.7
  * @author          Goffy (xoops.wedega.com) - Email:<webmaster@wedega.com> - Website:<http://xoops.wedega.com>
  */
-defined('XOOPS_ROOT_PATH') || die('Restricted access');
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 /**
  * Class ContactHelper
@@ -53,19 +53,22 @@ class ContactHelper
     *  @protected function constructor class
     *  @param mixed $debug
     */
+
     /**
      * ContactHelper constructor.
      * @param $debug
      */
     protected function __construct($debug)
     {
-        $this->debug = $debug;
-        $this->dirname =  basename(dirname(__DIR__));
+        $this->debug   = $debug;
+        $this->dirname = basename(dirname(__DIR__));
     }
+
     /*
     *  @static function getInstance
     *  @param mixed $debug
     */
+
     /**
      * @param bool $debug
      * @return bool|ContactHelper
@@ -76,12 +79,15 @@ class ContactHelper
         if (!$instance) {
             $instance = new self($debug);
         }
+
         return $instance;
     }
+
     /*
     *  @static function getModule
     *  @param null
     */
+
     /**
      * @return string
      */
@@ -90,12 +96,15 @@ class ContactHelper
         if (null === $this->module) {
             $this->initModule();
         }
+
         return $this->module;
     }
+
     /*
     *  @static function getConfig
     *  @param string $name
     */
+
     /**
      * @param null $name
      * @return null|string
@@ -107,20 +116,25 @@ class ContactHelper
         }
         if (!$name) {
             $this->addLog('Getting all config');
+
             return $this->config;
         }
         if (!isset($this->config[$name])) {
             $this->addLog("ERROR :: CONFIG '{$name}' does not exist");
+
             return null;
         }
         $this->addLog("Getting config '{$name}' : " . $this->config[$name]);
+
         return $this->config[$name];
     }
+
     /*
     *  @static function setConfig
     *  @param string $name
     *  @param mixed $value
     */
+
     /**
      * @param null $name
      * @param null $value
@@ -133,12 +147,15 @@ class ContactHelper
         }
         $this->config[$name] = $value;
         $this->addLog("Setting config '{$name}' : " . $this->config[$name]);
+
         return $this->config[$name];
     }
+
     /*
     *  @static function getHandler
     *  @param string $name
     */
+
     /**
      * @param $name
      * @return mixed
@@ -149,8 +166,10 @@ class ContactHelper
             $this->initHandler($name);
         }
         $this->addLog("Getting handler '{$name}'");
+
         return $this->handler[$name . 'Handler'];
     }
+
     /*
     *  @static function initModule
     *  @param null
@@ -161,12 +180,13 @@ class ContactHelper
         if (null !== $xoopsModule && is_object($xoopsModule) && $xoopsModule->getVar('dirname') == $this->dirname) {
             $this->module = $xoopsModule;
         } else {
-            /** @var XoopsModule $hModule */
-            $hModule = xoops_getHandler('module');
-            $this->module = $hModule::getByDirname($this->dirname);
+            /** @var \XoopsModule $moduleHandler */
+            $moduleHandler = xoops_getHandler('module');
+            $this->module  = $moduleHandler::getByDirname($this->dirname);
         }
         $this->addLog('INIT MODULE');
     }
+
     /*
     *  @static function initConfig
     *  @param null
@@ -174,14 +194,16 @@ class ContactHelper
     public function initConfig()
     {
         $this->addLog('INIT CONFIG');
-        /** @var XoopsConfigHandler $hModConfig */
-        $hModConfig = xoops_getHandler('config');
+        /** @var \XoopsConfigHandler $hModConfig */
+        $hModConfig   = xoops_getHandler('config');
         $this->config = $hModConfig->getConfigsByCat(0, $this->getModule()->getVar('mid'));
     }
+
     /*
     *  @static function initHandler
     *  @param string $name
     */
+
     /**
      * @param $name
      */
@@ -190,10 +212,12 @@ class ContactHelper
         $this->addLog('INIT ' . $name . ' HANDLER');
         $this->handler[$name . 'Handler'] = xoops_getModuleHandler($name, $this->dirname);
     }
+
     /*
     *  @static function addLog
     *  @param string $log
     */
+
     /**
      * @param $log
      */

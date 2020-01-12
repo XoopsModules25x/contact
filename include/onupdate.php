@@ -17,15 +17,14 @@
  * @author      Kazumi Ono (aka Onokazu)
  * @author      Trabis <lusopoemas@gmail.com>
  * @author      Hossein Azizabadi (AKA Voltan)
- * @param XoopsModule $module
- * @param $version
+ * @param \XoopsModule $module
+ * @param             $version
  */
 
 use XoopsModules\Contact;
 
 if ((!defined('XOOPS_ROOT_PATH')) || !($GLOBALS['xoopsUser'] instanceof \XoopsUser)
-    || !$GLOBALS['xoopsUser']->IsAdmin()
-) {
+    || !$GLOBALS['xoopsUser']->IsAdmin()) {
     exit('Restricted access' . PHP_EOL);
 }
 
@@ -42,9 +41,8 @@ function tableExists($tablename)
 }
 
 /**
- *
  * Prepares system prior to attempting to install module
- * @param XoopsModule $module {@link XoopsModule}
+ * @param \XoopsModule $module {@link XoopsModule}
  *
  * @return bool true if ready to install, false if not
  */
@@ -53,33 +51,33 @@ function xoops_module_pre_update_contact(\XoopsModule $module)
     /** @var Contact\Helper $helper */
     /** @var Contact\Utility $utility */
     $moduleDirName = basename(dirname(__DIR__));
-    $helper       = Contact\Helper::getInstance();
-    $utility      = new Contact\Utility();
+    $helper        = Contact\Helper::getInstance();
+    $utility       = new Contact\Utility();
 
     $xoopsSuccess = $utility::checkVerXoops($module);
     $phpSuccess   = $utility::checkVerPhp($module);
+
     return $xoopsSuccess && $phpSuccess;
 }
 
 /**
- *
  * Performs tasks required during update of the module
- * @param XoopsModule $module {@link XoopsModule}
+ * @param \XoopsModule $module {@link XoopsModule}
  * @param null        $previousVersion
  *
  * @return bool true if update successful, false if not
  */
 function xoops_module_update_contact(\XoopsModule $module, $previousVersion = null)
 {
-    $moduleDirName = basename(dirname(__DIR__));
-    $capsDirName   = strtoupper($moduleDirName);
+    $moduleDirName      = basename(dirname(__DIR__));
+    $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
     /** @var Contact\Helper $helper */
     /** @var Contact\Utility $utility */
-    /** @var Contact\Configurator $configurator */
-    $helper  = Contact\Helper::getInstance();
-    $utility = new Contact\Utility();
-    $configurator = new Contact\Configurator();
+    /** @var Contact\Common\Configurator $configurator */
+    $helper       = Contact\Helper::getInstance();
+    $utility      = new Contact\Utility();
+    $configurator = new Contact\Common\Configurator();
 
     $xoopsDB = \XoopsDatabaseFactory::getDatabaseConnection();
 
@@ -178,7 +176,7 @@ function xoops_module_update_contact(\XoopsModule $module, $previousVersion = nu
             //    foreach (array_keys($GLOBALS['uploadFolders']) as $i) {
             foreach (array_keys($configurator->oldFolders) as $i) {
                 $tempFolder = $GLOBALS['xoops']->path('modules/' . $moduleDirName . $configurator->oldFolders[$i]);
-                /* @var $folderHandler XoopsObjectHandler */
+                /* @var XoopsObjectHandler $folderHandler */
                 $folderHandler = XoopsFile::getHandler('folder', $tempFolder);
                 $folderHandler->delete($tempFolder);
             }
@@ -194,7 +192,7 @@ function xoops_module_update_contact(\XoopsModule $module, $previousVersion = nu
 
         //  ---  COPY blank.png FILES ---------------
         if (count($configurator->copyBlankFiles) > 0) {
-            $file =  dirname(__DIR__) . '/assets/images/blank.png';
+            $file = dirname(__DIR__) . '/assets/images/blank.png';
             foreach (array_keys($configurator->copyBlankFiles) as $i) {
                 $dest = $configurator->copyBlankFiles[$i] . '/blank.png';
                 $utility::copyFile($file, $dest);
@@ -205,8 +203,9 @@ function xoops_module_update_contact(\XoopsModule $module, $previousVersion = nu
         $sql = 'DELETE FROM ' . $GLOBALS['xoopsDB']->prefix('tplfile') . " WHERE `tpl_module` = '" . $module->getVar('dirname', 'n') . '\' AND `tpl_file` LIKE \'%.html%\'';
         $GLOBALS['xoopsDB']->queryF($sql);
 
-        /** @var XoopsGroupPermHandler $grouppermHandler */
+        /** @var \XoopsGroupPermHandler $grouppermHandler */
         $grouppermHandler = xoops_getHandler('groupperm');
+
         return $grouppermHandler->deleteByModule($module->getVar('mid'), 'item_read');
     }
 }

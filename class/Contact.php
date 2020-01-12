@@ -9,8 +9,6 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
 
-use Xmf\Request;
-
 /**
  * Contact module
  *
@@ -21,8 +19,7 @@ use Xmf\Request;
  * @author        Hossein Azizabadi (AKA Voltan)
  * @author        Mirza (AKA Bleekk)
  */
-
-defined('XOOPS_ROOT_PATH') || die('Restricted access');
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 /**
  * Class contact
@@ -94,7 +91,7 @@ class Contact extends \XoopsObject
     public function toArray()
     {
         $ret  = [];
-        $vars =& $this->getVars();
+        $vars = &$this->getVars();
         foreach (array_keys($vars) as $i) {
             $ret [$i] = $this->getVar($i);
         }

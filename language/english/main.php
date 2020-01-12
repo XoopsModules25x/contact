@@ -44,7 +44,7 @@ Dear {NAME}
 We confirm the receipt of your mail
 
 Subject:{SUBJECT}
-Message: 
+Message:
 {BODY}
 
 We will contact you as soon as possible.

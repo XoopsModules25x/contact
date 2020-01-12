@@ -22,7 +22,7 @@
 use Xmf\Request;
 
 // Call header
-require __DIR__ . '/admin_header.php';
+require_once __DIR__ . '/admin_header.php';
 // Display Admin header
 xoops_cp_header();
 // Define default value
@@ -40,7 +40,6 @@ switch ($op) {
         $form->addElement(new \XoopsFormButton('', 'post', _SUBMIT, 'submit'));
         $GLOBALS['xoopsTpl']->assign('prune', $form->render());
         break;
-
     case 'prune':
         $timestamp = Request::getInt('prune_date', '');
         $onlyreply = Request::getInt('onlyreply', 0);
@@ -48,13 +47,13 @@ switch ($op) {
         $count     = $contactHandler->contactPruneCount($timestamp, $onlyreply);
         $contactHandler->contactDeleteBeforeDate($timestamp, $onlyreply);
         redirect_header('tools.php', 1, sprintf(_AM_CONTACT_MSG_PRUNE_DELETED, $count));
-//        xoops_cp_footer();
-//        exit();
-//        break;
+    //        xoops_cp_footer();
+    //        exit();
+    //        break;
 }
 
 $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation(basename(__FILE__)));
 // Call template file
 $GLOBALS['xoopsTpl']->display(XOOPS_ROOT_PATH . '/modules/contact/templates/admin/contact_tools.tpl');
 // Call footer
-require __DIR__ . '/admin_footer.php';
+require_once __DIR__ . '/admin_footer.php';

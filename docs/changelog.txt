@@ -9,7 +9,7 @@
 <h5>2.25 Final [2017-08-04]</h5>
 <hr>
 + added missing $moduleDirName in header.php (mamba)
-+ rename Help file extensions to .tpl (mamba) 
++ rename Help file extensions to .tpl (mamba)
 
 
 <h5>2.25 RC 1 [2017-06-30]</h5>
@@ -47,7 +47,7 @@
 - added type annotations for Handlers (mamba)
 - added few PhpDocs  (mamba)
 - replaced calls to contactCleanVars with XoopsRequest (mamba)
-- changed $hModule->getByDirname to static call $hModule::getByDirname (mamba)
+- changed $moduleHandler->getByDirname to static call $moduleHandler::getByDirname (mamba)
 - updated deprecated HTML to CSS (mamba)
 - removed exit(); redirect_header has it already (mamba)
 - renamed /admin/contact.php to main.php (mamba)
@@ -66,7 +66,7 @@
 <h5>2.24 beta 1 [NOT RELEASED]</h5>
 <hr>
 - fixed bug in template 'contact_index.html' (goffy)
-  
+
 <h5>2.23 beta 1 [NOT RELEASED]</h5>
 <hr>
 - created new module preference 'contact_default' (goffy)

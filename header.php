@@ -18,11 +18,10 @@
  * @author      Trabis <lusopoemas@gmail.com>
  * @author      Hossein Azizabadi (AKA Voltan)
  */
-
 $moduleDirName = basename(__DIR__);
-include  dirname(dirname(__DIR__)) . '/mainfile.php';
-//include __DIR__ . '/class/contact.php';
+require_once dirname(dirname(__DIR__)) . '/mainfile.php';
+//require_once __DIR__   . '/class/contact.php';
 require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 
-/** @var ContactHandler $contactHandler*/
+/** @var ContactHandler $contactHandler */
 //$contactHandler = \XoopsModules\Contact\Helper::getInstance()->getHandler('Contact');

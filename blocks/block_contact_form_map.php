@@ -8,6 +8,7 @@
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
+
 /**
  * wgSitenotice module for xoops
  *
@@ -16,7 +17,7 @@
  * @package         wgsitenotice
  * @since           1.0
  * @min_xoops       2.5.7
- * @author          Goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<http://wedega.com>
+ * @author          Goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<https://wedega.com>
  * @param $options
  * @return array
  */

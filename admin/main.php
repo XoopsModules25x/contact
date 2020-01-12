@@ -23,7 +23,7 @@ use Xmf\Request;
 use XoopsModules\Contact;
 
 // Call header
-require __DIR__ . '/admin_header.php';
+require_once __DIR__ . '/admin_header.php';
 
 // Display Admin header
 xoops_cp_header();
@@ -32,7 +32,7 @@ xoops_cp_header();
 $helper = Contact\Helper::getInstance();
 global $xoopsModuleConfig;
 // Define default value
-$level      = '';
+$level = '';
 
 $saveinfo = $helper->getConfig('saveinfo');
 $sendmail = $helper->getConfig('sendmail');
@@ -76,7 +76,6 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('contact_pagenav', $contact_pagenav);
         $level = 'list';
         break;
-
     case 'reply':
         if ($contact_id > 0) {
             /** @var Contact $obj */
@@ -84,7 +83,7 @@ switch ($op) {
             if (0 != $obj->getVar('contact_cid')) {
                 redirect_header('main.php', 3, _AM_CONTACT_CANTREPLY);
             }
-            /** @var XoopsThemeForm $form */
+            /** @var \XoopsThemeForm $form */
             $form = $obj->contactReplyForm();
             $GLOBALS['xoopsTpl']->assign('replyform', $form->render());
             $GLOBALS['xoopsTpl']->assign('replylist', $contactHandler->contactGetReply($contact_id));
@@ -93,7 +92,6 @@ switch ($op) {
         }
         $level = 'reply';
         break;
-
     case 'doreply':
         // check email
         if ('' === Request::getString('contact_mailto', '', 'POST')) {
@@ -127,7 +125,6 @@ switch ($op) {
 
         $level = 'doreply';
         break;
-
     case 'view':
         $obj = $contactHandler->get($contact_id);
 
@@ -159,7 +156,6 @@ switch ($op) {
 
         $level = 'view';
         break;
-
     case 'delete':
         if ($contact_id > 0) {
             // Prompt message
@@ -170,7 +166,6 @@ switch ($op) {
 
         $level = 'delete';
         break;
-
     case 'dodelete':
         if (!$contact_id > 0) {
             redirect_header('main.php', 3, _AM_CONTACT_MSG_EXIST);
@@ -200,4 +195,4 @@ $GLOBALS['xoopsTpl']->assign('level', $level);
 // Call template file
 $GLOBALS['xoopsTpl']->display(XOOPS_ROOT_PATH . '/modules/contact/templates/admin/contact_main.tpl');
 // Call footer
-require __DIR__ . '/admin_footer.php';
+require_once __DIR__ . '/admin_footer.php';
