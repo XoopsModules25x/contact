@@ -77,6 +77,8 @@ define('_MI_B_CONTACT_MAP', 'Location');
 define('_MI_B_CONTACT_MAP_DESC', 'Show defined location in Google Maps as XOOPS block');
 define('_MI_B_CONTACT_FORM_MAP', 'Contact form and location');
 define('_MI_B_CONTACT_FORM_MAP_DESC', 'Show contact form together with defined location in Google Maps as block');
+define('_MI_B_CONTACT_INFO_MAP', 'Contact info and location');
+define('_MI_B_CONTACT_INFO_MAP_DESC', 'Show contact info together with defined location in Google Maps as block');
 
 define('_MI_CONTACT_DEFAULT', 'Default contact info');
 define('_MI_CONTACT_DEFAULT_DESC', 'Here you can define additional information, which should be shown beside contact form (e.g name, address , phone number,...');
