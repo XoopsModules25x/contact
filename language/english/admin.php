@@ -1,4 +1,5 @@
 <?php
+
 // index
 define('_AM_CONTACT_INDEX_ADMENU1', 'Messages');
 define('_AM_CONTACT_INDEX_TOTAL', "There are <span class='green'>%s</span> Messages in our database");

@@ -62,7 +62,7 @@ $modversion = [
     'module_website_url'  => 'www.xoops.org',
     'module_website_name' => 'XOOPS Project',
     // ------------------- Min Requirements -------------------
-    'min_php'             => '5.5',
+    'min_php'             => '7.2',
     'min_xoops'           => '2.5.10',
     'min_admin'           => '1.2',
     'min_db'              => ['mysql' => '5.1'],
@@ -98,15 +98,12 @@ $modversion['helpsection'] = [
     ['name' => _MI_CONTACT_SUPPORT, 'link' => 'page=support'],
 ];
 
-// Templates
+// ------------------- Templates ------------------- //
 $modversion['templates'] = [
-    [
-        'file'        => $moduleDirName . '_index.tpl',
-        'description' => '_MI_CONTACT_TEMPLATES',
-    ],
+    ['file' => $moduleDirName . '_index.tpl', 'description' => '_MI_CONTACT_TEMPLATES',],
 ];
 
-// Blocks
+// ------------------- Blocks ------------------- //
 $modversion['blocks'][] = [
     'file'        => 'block_' . $moduleDirName . '_form_map.php',
     'name'        => _MI_B_CONTACT_FORM,

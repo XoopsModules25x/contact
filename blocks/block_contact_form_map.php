@@ -10,7 +10,7 @@
 */
 
 /**
- * wgSitenotice module for xoops
+ * Contact module for xoops
  *
  * @copyright       XOOPS Project (https://xoops.org)
  * @license         GPL 2.0 or later
@@ -79,7 +79,7 @@ function contactGetElements(&$block)
         $departmentlist = [];
         $departments    = xoops_getModuleOption('contact_dept', 'contact');
         foreach ($departments as $val) {
-            list($name, $email) = explode(',', $val, 2); //split the name and email
+            [$name, $email] = explode(',', $val, 2); //split the name and email
             array_push($departmentlist, $name);
         }
         $block['depart']      = $helper->getConfig('form_dept');

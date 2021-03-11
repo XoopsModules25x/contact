@@ -18,27 +18,18 @@
  * @author      Trabis <lusopoemas@gmail.com>
  * @author      Hossein Azizabadi (AKA Voltan)
  * @param \XoopsModule $module
- * @param             $version
+ * @param              $version
  */
 
 use XoopsModules\Contact;
+use XoopsModules\Contact\Utility;
 
 if ((!defined('XOOPS_ROOT_PATH')) || !($GLOBALS['xoopsUser'] instanceof \XoopsUser)
-    || !$GLOBALS['xoopsUser']->IsAdmin()) {
+    || !$GLOBALS['xoopsUser']->isAdmin()) {
     exit('Restricted access' . PHP_EOL);
 }
 
-/**
- * @param string $tablename
- *
- * @return bool
- */
-function tableExists($tablename)
-{
-    $result = $GLOBALS['xoopsDB']->queryF("SHOW TABLES LIKE '$tablename'");
 
-    return $GLOBALS['xoopsDB']->getRowsNum($result) > 0;
-}
 
 /**
  * Prepares system prior to attempting to install module
@@ -50,9 +41,9 @@ function xoops_module_pre_update_contact(\XoopsModule $module)
 {
     /** @var Contact\Helper $helper */
     /** @var Contact\Utility $utility */
-    $moduleDirName = basename(dirname(__DIR__));
+    $moduleDirName = \basename(\dirname(__DIR__));
     $helper        = Contact\Helper::getInstance();
-    $utility       = new Contact\Utility();
+    $utility       = new Utility();
 
     $xoopsSuccess = $utility::checkVerXoops($module);
     $phpSuccess   = $utility::checkVerPhp($module);
@@ -63,20 +54,19 @@ function xoops_module_pre_update_contact(\XoopsModule $module)
 /**
  * Performs tasks required during update of the module
  * @param \XoopsModule $module {@link XoopsModule}
- * @param null        $previousVersion
+ * @param null         $previousVersion
  *
  * @return bool true if update successful, false if not
  */
 function xoops_module_update_contact(\XoopsModule $module, $previousVersion = null)
 {
-    $moduleDirName      = basename(dirname(__DIR__));
+    $moduleDirName      = \basename(\dirname(__DIR__));
     $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
-    /** @var Contact\Helper $helper */
-    /** @var Contact\Utility $utility */
+    /** @var Contact\Helper $helper */ /** @var Contact\Utility $utility */
     /** @var Contact\Common\Configurator $configurator */
     $helper       = Contact\Helper::getInstance();
-    $utility      = new Contact\Utility();
+    $utility      = new Utility();
     $configurator = new Contact\Common\Configurator();
 
     $xoopsDB = \XoopsDatabaseFactory::getDatabaseConnection();
@@ -139,7 +129,7 @@ function xoops_module_update_contact(\XoopsModule $module, $previousVersion = nu
         require_once __DIR__ . '/config.php';
         $configurator = new ContactConfigurator();
         /** @var Contact\Utility $utility */
-        $utility = new \XoopsModules\Contact\Utility();
+        $utility = new Utility();
 
         //delete old HTML templates
         if (count($configurator->templateFolders) > 0) {
@@ -150,7 +140,7 @@ function xoops_module_update_contact(\XoopsModule $module, $previousVersion = nu
                     foreach ($templateList as $k => $v) {
                         $fileInfo = new \SplFileInfo($templateFolder . $v);
                         if ('html' === $fileInfo->getExtension() && 'index.html' !== $fileInfo->getFilename()) {
-                            if (file_exists($templateFolder . $v)) {
+                            if (is_file($templateFolder . $v)) {
                                 unlink($templateFolder . $v);
                             }
                         }
@@ -208,8 +198,8 @@ function xoops_module_update_contact(\XoopsModule $module, $previousVersion = nu
 
         return $grouppermHandler->deleteByModule($module->getVar('mid'), 'item_read');
     }
-    
-     if ($previousVersion < 227) {
+
+    if ($previousVersion < 227) {
         // Add contact_skype
         $sql = 'ALTER TABLE `' . $xoopsDB->prefix('contact') . "` ADD `contact_skype` VARCHAR(255) NULL AFTER `contact_icq`";
         $xoopsDB->query($sql);

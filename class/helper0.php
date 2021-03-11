@@ -8,6 +8,7 @@
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
+
 /**
  * contact module for xoops
  *
@@ -18,7 +19,6 @@
  * @min_xoops       2.5.7
  * @author          Goffy (xoops.wedega.com) - Email:<webmaster@wedega.com> - Website:<http://xoops.wedega.com>
  */
-defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 /**
  * Class ContactHelper
@@ -61,7 +61,7 @@ class ContactHelper
     protected function __construct($debug)
     {
         $this->debug   = $debug;
-        $this->dirname = basename(dirname(__DIR__));
+        $this->dirname = \basename(\dirname(__DIR__));
     }
 
     /*
@@ -181,6 +181,7 @@ class ContactHelper
             $this->module = $xoopsModule;
         } else {
             /** @var \XoopsModule $moduleHandler */
+            /** @var \XoopsModuleHandler $moduleHandler */
             $moduleHandler = xoops_getHandler('module');
             $this->module  = $moduleHandler::getByDirname($this->dirname);
         }

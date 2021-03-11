@@ -10,15 +10,16 @@
  */
 
 /**
- * @copyright    XOOPS Project https://xoops.org/
+ * @copyright    XOOPS Project (https://xoops.org)
  * @license      GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
- * @package
- * @since
- * @author       XOOPS Development Team
+ * @author      XOOPS Development Team
  */
-require_once dirname(dirname(dirname(__DIR__))) . '/mainfile.php';
 
-$moduleDirName      = basename(dirname(__DIR__));
+use Xmf\Module\Admin;
+
+require dirname(__DIR__, 3) . '/mainfile.php';
+
+$moduleDirName      = \basename(\dirname(__DIR__));
 $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
 if (!defined($moduleDirNameUpper . '_DIRNAME')) {
@@ -75,7 +76,7 @@ class ContactConfigurator
      */
     public function __construct()
     {
-        $moduleDirName       = basename(dirname(__DIR__));
+        $moduleDirName       = \basename(\dirname(__DIR__));
         $moduleDirNameUpper  = mb_strtoupper($moduleDirName);
         $this->name          = 'Contact Module Configurator';
         $this->uploadFolders = [
@@ -110,4 +111,4 @@ class ContactConfigurator
 
 // module information
 $modCopyright = "<a href='https://xoops.org' title='XOOPS Project' target='_blank'>
-                     <img src='" . constant($moduleDirNameUpper . '_AUTHOR_LOGOIMG') . '\' alt=\'XOOPS Project\' /></a>';
+                     <img src='" . Admin::iconUrl('xoopsmicrobutton.gif') . '\' alt=\'XOOPS Project\' ></a>';

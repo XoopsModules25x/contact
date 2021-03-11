@@ -1,4 +1,4 @@
 <div class="contact">
-    <{$navigation}>
-    <{$renderindex}>
+    <{$navigation|default:''}>
+    <{$renderindex|default:''}>
 </div>

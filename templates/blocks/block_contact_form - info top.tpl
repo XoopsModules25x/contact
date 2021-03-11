@@ -1,4 +1,4 @@
-<link rel="stylesheet" href='<{xoAppUrl}>modules/contact/assets/css/contact.css' type="text/css" />
+<link rel="stylesheet" href='<{xoAppUrl}>modules/contact/assets/css/contact.css' type="text/css" >
 
 <{if $block.recaptcha}>
 <script src='https://www.google.com/recaptcha/api.js'></script>
@@ -95,7 +95,7 @@
         <{if $block.recaptcha}>
         <div class="g-recaptcha" data-sitekey="<{$block.recaptchakey}>"></div>
         <{/if}>
-        <input type="submit" class="btn btn-primary" name="submit" id="submit" value="<{$block.lng_submit}>" title="<{$block.lng_submit}>" style="margin: 10px 0;" />
+        <input type="submit" class="btn btn-primary" name="submit" id="submit" value="<{$block.lng_submit}>" title="<{$block.lng_submit}>" style="margin: 10px 0;" >
     </form>
 </div>
 

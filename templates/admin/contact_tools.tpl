@@ -1,4 +1,4 @@
 <div class="contact">
-    <{$navigation}>
+    <{$navigation|default:''}>
     <{if $prune}><{$prune}><{/if}>
 </div>

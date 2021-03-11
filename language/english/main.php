@@ -1,4 +1,5 @@
 <?php
+
 define('_MD_CONTACT_FORM', 'Contact Form');
 define('_MD_CONTACT_NAME', 'Name');
 define('_MD_CONTACT_MAIL', 'Email');
@@ -38,7 +39,9 @@ define('_MD_CONTACT_SUBJECT_INFO', 'Enter subject');
 define('_MD_CONTACT_MESSAGE_INFO', 'Enter message');
 //2.21
 define('_MD_CONTACT_MAILCONFIRM_SUBJECT', 'Confirmation mail');
-define('_MD_CONTACT_MAILCONFIRM_BODY', '
+define(
+    '_MD_CONTACT_MAILCONFIRM_BODY',
+    '
 Dear {NAME}
 
 We confirm the receipt of your mail
@@ -48,11 +51,15 @@ Message:
 {BODY}
 
 We will contact you as soon as possible.
-');
+'
+);
 //2.27
-define('_MD_CONTACT_MAIL_BODY', '
+define(
+    '_MD_CONTACT_MAIL_BODY',
+    '
 On {WEBSITE} a new contact request came in:
 {INFO}
 Message:
 {BODY}
-');
+'
+);

@@ -20,9 +20,10 @@
  */
 
 use XoopsModules\Contact;
+use XoopsModules\Contact\Helper;
 
-require_once dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
-include dirname(__DIR__) . '/preloads/autoloader.php';
+require dirname(__DIR__, 3) . '/include/cp_header.php';
+require dirname(__DIR__) . '/preloads/autoloader.php';
 
 require_once XOOPS_ROOT_PATH . '/class/pagenav.php';
 require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
@@ -30,13 +31,13 @@ global $xoopsModule;
 
 $moduleDirName = $GLOBALS['xoopsModule']->getVar('dirname');
 /** @var \XoopsModules\Contact\Helper $helper */
-$helper = \XoopsModules\Contact\Helper::getInstance();
+$helper = Helper::getInstance();
 /** @var Xmf\Module\Admin $adminObject */
 $adminObject = Xmf\Module\Admin::getInstance();
 
 $myts = \MyTextSanitizer::getInstance();
 
-if (!isset($GLOBALS['xoopsTpl']) || !($GLOBALS['xoopsTpl'] instanceof XoopsTpl)) {
+if (!isset($GLOBALS['xoopsTpl']) || !($GLOBALS['xoopsTpl'] instanceof \XoopsTpl)) {
     require_once $GLOBALS['xoops']->path('class/template.php');
     $xoopsTpl = new \XoopsTpl();
 }
@@ -56,4 +57,4 @@ $helper->loadLanguage('main');
 
 // Contact Handler
 /** @var ContactHandler $contactHandler */
-$contactHandler = Contact\Helper::getInstance()->getHandler('Contact');
+$contactHandler = Helper::getInstance()->getHandler('Contact');

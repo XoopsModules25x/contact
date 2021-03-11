@@ -11,6 +11,9 @@ namespace XoopsModules\Contact\Common;
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
+
+
+
 /**
  * Breadcrumb Class
  *
@@ -26,7 +29,6 @@ namespace XoopsModules\Contact\Common;
  * $breadcrumb->addLink( 'bread 3', 'index3.php' );
  * echo $breadcrumb->render();
  */
-defined('XOOPS_ROOT_PATH') || die('XOOPS Root Path not defined');
 
 /**
  * Class Breadcrumb
@@ -38,7 +40,7 @@ class Breadcrumb
 
     public function __construct()
     {
-        $this->dirname = basename(dirname(dirname(__DIR__)));
+        $this->dirname = \basename(\dirname(__DIR__, 2));
     }
 
     /**
@@ -56,21 +58,33 @@ class Breadcrumb
     }
 
     /**
-     * Render Pedigree BreadCrumb
+     * Render BreadCrumb
      */
     public function render()
     {
-        if (!isset($GLOBALS['xoTheme']) || !is_object($GLOBALS['xoTheme'])) {
-            require_once $GLOBALS['xoops']->path('class/theme.php');
+        /*
+        TODO if you want to use the render code below,
+        1) create ./templates/chess_common_breadcrumb.tpl)
+        2) add declaration to  xoops_version.php
+        */
+        /*
+        if (!isset($GLOBALS['xoTheme']) || !\is_object($GLOBALS['xoTheme'])) {
+            require $GLOBALS['xoops']->path('class/theme.php');
+
             $GLOBALS['xoTheme'] = new \xos_opal_Theme();
         }
 
-        require_once $GLOBALS['xoops']->path('class/template.php');
+        require $GLOBALS['xoops']->path('class/template.php');
+
         $breadcrumbTpl = new \XoopsTpl();
+
         $breadcrumbTpl->assign('breadcrumb', $this->bread);
+
         $html = $breadcrumbTpl->fetch('db:' . $this->dirname . '_common_breadcrumb.tpl');
+
         unset($breadcrumbTpl);
 
         return $html;
+        */
     }
 }

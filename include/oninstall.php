@@ -10,14 +10,14 @@
  */
 
 /**
- * @copyright    XOOPS Project https://xoops.org/
+ * @copyright    XOOPS Project (https://xoops.org)
  * @license      GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
- * @package
- * @since
- * @author       XOOPS Development Team
+ * @author      XOOPS Development Team
  */
 
 use XoopsModules\Contact;
+use XoopsModules\Contact\Helper;
+use XoopsModules\Contact\Utility;
 
 //require_once __DIR__ . '/setup.php';
 
@@ -29,9 +29,9 @@ use XoopsModules\Contact;
  */
 function xoops_module_pre_install_contact(\XoopsModule $module)
 {
-    $moduleDirName = basename(dirname(__DIR__));
+    $moduleDirName = \basename(\dirname(__DIR__));
     /** @var Contact\Utility $utility */
-    $utility = new \XoopsModules\Contact\Utility();
+    $utility = new Utility();
 
     $xoopsSuccess = $utility::checkVerXoops($module);
     $phpSuccess   = $utility::checkVerPhp($module);
@@ -54,14 +54,13 @@ function xoops_module_pre_install_contact(\XoopsModule $module)
  */
 function xoops_module_install_contact(\XoopsModule $module)
 {
-    require_once dirname(dirname(dirname(__DIR__))) . '/mainfile.php';
-    require_once dirname(__DIR__) . '/include/config.php';
+    require dirname(__DIR__, 3) . '/mainfile.php';
 
-    $moduleDirName = basename(dirname(__DIR__));
+    $moduleDirName = \basename(\dirname(__DIR__));
 
     /** @var \XoopsModules\Contact\Helper $helper */
-    $helper       = \XoopsModules\Contact\Helper::getInstance();
-    $utility      = new Contact\Utility();
+    $helper       = Helper::getInstance();
+    $utility      = new Utility();
     $configurator = new Contact\Common\Configurator();
     // Load language files
     $helper->loadLanguage('admin');

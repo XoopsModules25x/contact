@@ -1,6 +1,6 @@
 <script src="<{$xoops_url}>/browse.php?Frameworks/jquery/jquery.js" type="text/javascript"></script>
 <script src="<{$xoops_url}>/browse.php?Frameworks/jquery/plugins/jquery.ui.js" type="text/javascript"></script>
-<link rel="stylesheet" href="<{$xoops_url}>/modules/system/css/ui/base/ui.all.css" type="text/css"/>
+<link rel="stylesheet" href="<{$xoops_url}>/modules/system/css/ui/base/ui.all.css" type="text/css">
 <script type="text/javascript">
     $(function () {
 
@@ -50,17 +50,17 @@
             <{xoMemberInfo assign=member_info}>
             <label for="name">Name</label>
             <input name="contact_name" title="Name" id="contact_name" size="20" maxlength="255" value="<{$xoops_uname}>" type="text"
-                   class="text ui-widget-content ui-corner-all"/>
-            <br/><label for="email">Email</label>
+                   class="text ui-widget-content ui-corner-all">
+            <br><label for="email">Email</label>
             <input name="contact_mail" title="Email" id="contact_mail" size="20" maxlength="255" value="<{$member_info.email}>" type="text"
-                   class="text ui-widget-content ui-corner-all"/>
-            <br/><label for="password">Phone</label>
+                   class="text ui-widget-content ui-corner-all">
+            <br><label for="password">Phone</label>
             <input name="contact_phone" title="Phone" id="contact_phone" size="20" maxlength="255" value="" type="text"
-                   class="text ui-widget-content ui-corner-all"/>
-            <br/><label for="password">Subject</label>
+                   class="text ui-widget-content ui-corner-all">
+            <br><label for="password">Subject</label>
             <input name="contact_subject" title="Subject" id="contact_subject" size="20" maxlength="255" value="" type="text"
-                   class="text ui-widget-content ui-corner-all"/>
-            <br/><label for="password">Comment</label>
+                   class="text ui-widget-content ui-corner-all">
+            <br><label for="password">Comment</label>
             <textarea name="contact_message" id="contact_message" title="Comment" rows="5" cols="60"></textarea>
             <input name="contact_uid" id="contact_uid" value="<{$xoops_userid}>" type="hidden">
         </form>

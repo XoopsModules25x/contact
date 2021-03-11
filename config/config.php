@@ -10,19 +10,19 @@
  */
 
 /**
- * @copyright    XOOPS Project https://xoops.org/
+ * @copyright    XOOPS Project (https://xoops.org)
  * @license      GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
- * @package
- * @since
- * @author       XOOPS Development Team
+ * @author      XOOPS Development Team
  */
 
-$moduleDirName      = basename(dirname(__DIR__));
+use Xmf\Module\Admin;
+
+$moduleDirName      = \basename(\dirname(__DIR__));
 $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 xoops_loadLanguage('common', $moduleDirName);
 
 return (object)[
-    'name'           => mb_strtoupper($moduleDirName) . ' ModuleConfigurator',
+    'name'           => $moduleDirNameUpper . ' ModuleConfigurator',
     'paths'          => [
         'dirname'    => $moduleDirName,
         'admin'      => XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/admin',
@@ -34,10 +34,13 @@ return (object)[
     'uploadFolders'  => [
         XOOPS_UPLOAD_PATH . '/' . $moduleDirName,
         XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/attachments',
+        XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/category',
+        XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/screenshots',
         //XOOPS_UPLOAD_PATH . '/flags'
     ],
     'copyBlankFiles' => [
         XOOPS_UPLOAD_PATH . '/' . $moduleDirName,
+        XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/attachments',
         XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/category',
         XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/screenshots',
         //XOOPS_UPLOAD_PATH . '/flags'
@@ -83,6 +86,6 @@ return (object)[
         //            'totalsubmitted'  => $helper->getHandler('Item')->getItemsCount(-1, [Constants::PUBLISHER_STATUS_SUBMITTED]),
     ],
     'modCopyright' => "<a href='https://xoops.org' title='XOOPS Project' target='_blank'>
-                     <img src='" . constant($moduleDirNameUpper . '_AUTHOR_LOGOIMG') . "' alt='XOOPS Project'></a>",
+                     <img src='" . Admin::iconUrl('xoopsmicrobutton.gif') . "' alt='XOOPS Project'></a>",
 ];
 

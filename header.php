@@ -19,7 +19,7 @@
  * @author      Hossein Azizabadi (AKA Voltan)
  */
 $moduleDirName = basename(__DIR__);
-require_once dirname(dirname(__DIR__)) . '/mainfile.php';
+require_once \dirname(__DIR__, 2) . '/mainfile.php';
 //require_once __DIR__   . '/class/contact.php';
 require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 
