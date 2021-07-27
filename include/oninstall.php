@@ -35,7 +35,7 @@ function xoops_module_pre_install_contact(\XoopsModule $module)
     $xoopsSuccess = $utility::checkVerXoops($module);
     $phpSuccess   = $utility::checkVerPhp($module);
 
-    if (false !== $xoopsSuccess && false !== $phpSuccess) {
+    if ($xoopsSuccess && $phpSuccess) {
         $mod_tables = &$module->getInfo('tables');
         foreach ($mod_tables as $table) {
             $GLOBALS['xoopsDB']->queryF('DROP TABLE IF EXISTS ' . $GLOBALS['xoopsDB']->prefix($table) . ';');
