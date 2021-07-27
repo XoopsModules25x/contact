@@ -174,7 +174,7 @@ class ContactHandler extends \XoopsPersistableObjectHandler
             $info = "\n" . $info . "\n";
         }
 
-        $body = \str_replace('{BODY}', \html_entity_decode($contact['contact_message'], \ENT_QUOTES, 'UTF-8'), _MD_CONTACT_MAIL_BODY);
+        $body = \str_replace('{BODY}', \html_entity_decode($contact['contact_message'], \ENT_QUOTES, 'UTF-8'), \_MD_CONTACT_MAIL_BODY);
         $body = \str_replace('{INFO}', $info, $body);
         $body = \str_replace('{WEBSITE}', XOOPS_URL, $body);
 

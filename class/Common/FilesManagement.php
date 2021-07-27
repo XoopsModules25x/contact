@@ -35,9 +35,9 @@ trait FilesManagement
     public static function createFolder($folder)
     {
         try {
-            if (!is_dir($folder)) {
-                if (!is_dir($folder) && !mkdir($folder) && !is_dir($folder)) {
-                    throw new RuntimeException(sprintf('Unable to create the %s directory', $folder));
+            if (!\is_dir($folder)) {
+                if (!\is_dir($folder) && !\mkdir($folder) && !\is_dir($folder)) {
+                    throw new RuntimeException(\sprintf('Unable to create the %s directory', $folder));
                 }
 
                 file_put_contents($folder . '/index.html', '<script>history.go(-1);</script>');
@@ -54,7 +54,7 @@ trait FilesManagement
      */
     public static function copyFile($file, $folder)
     {
-        return copy($file, $folder);
+        return \copy($file, $folder);
     }
 
     /**
@@ -63,21 +63,21 @@ trait FilesManagement
      */
     public static function recurseCopy($src, $dst)
     {
-        $dir = opendir($src);
+        $dir = \opendir($src);
         //        @mkdir($dst);
-        if (!@mkdir($dst) && !is_dir($dst)) {
+        if (!@\mkdir($dst) && !\is_dir($dst)) {
             throw new RuntimeException('The directory ' . $dst . ' could not be created.');
         }
-        while (false !== ($file = readdir($dir))) {
+        while (false !== ($file = \readdir($dir))) {
             if (('.' !== $file) && ('..' !== $file)) {
-                if (is_dir($src . '/' . $file)) {
+                if (\is_dir($src . '/' . $file)) {
                     self::recurseCopy($src . '/' . $file, $dst . '/' . $file);
                 } else {
-                    copy($src . '/' . $file, $dst . '/' . $file);
+                    \copy($src . '/' . $file, $dst . '/' . $file);
                 }
             }
         }
-        closedir($dir);
+        \closedir($dir);
     }
 
     /**
@@ -102,7 +102,7 @@ trait FilesManagement
         $dirInfo = new SplFileInfo($src);
         // validate is a directory
         if ($dirInfo->isDir()) {
-            $fileList = array_diff(scandir($src, SCANDIR_SORT_NONE), ['..', '.']);
+            $fileList = \array_diff(\scandir($src, \SCANDIR_SORT_NONE), ['..', '.']);
             foreach ($fileList as $k => $v) {
                 $fileInfo = new SplFileInfo("{$src}/{$v}");
                 if ($fileInfo->isDir()) {
@@ -110,13 +110,13 @@ trait FilesManagement
                     if (!$success = self::deleteDirectory($fileInfo->getRealPath())) {
                         break;
                     }
-                } elseif (!($success = unlink($fileInfo->getRealPath()))) {
+                } elseif (!($success = \unlink($fileInfo->getRealPath()))) {
                     break;
                 }
             }
             // now delete this (sub)directory if all the files are gone
             if ($success) {
-                $success = rmdir($dirInfo->getRealPath());
+                $success = \rmdir($dirInfo->getRealPath());
             }
         } else {
             // input is not a valid directory
@@ -143,7 +143,7 @@ trait FilesManagement
         }
 
         // If source is not a directory stop processing
-        if (!is_dir($src)) {
+        if (!\is_dir($src)) {
             return false;
         }
 
@@ -155,7 +155,7 @@ trait FilesManagement
             if ($fObj->isFile()) {
                 $filename = $fObj->getPathname();
                 $fObj     = null; // clear this iterator object to close the file
-                if (!unlink($filename)) {
+                if (!\unlink($filename)) {
                     return false; // couldn't delete the file
                 }
             } elseif (!$fObj->isDot() && $fObj->isDir()) {
@@ -164,7 +164,7 @@ trait FilesManagement
             }
         }
         $iterator = null;   // clear iterator Obj to close file/directory
-        return rmdir($src); // remove the directory & return results
+        return \rmdir($src); // remove the directory & return results
     }
 
     /**
@@ -183,12 +183,12 @@ trait FilesManagement
         }
 
         // If source is not a directory stop processing
-        if (!is_dir($src)) {
+        if (!\is_dir($src)) {
             return false;
         }
 
         // If the destination directory does not exist and could not be created stop processing
-        if (!is_dir($dest) && !mkdir($dest) && !is_dir($dest)) {
+        if (!\is_dir($dest) && !\mkdir($dest) && !\is_dir($dest)) {
             return false;
         }
 
@@ -196,7 +196,7 @@ trait FilesManagement
         $iterator = new DirectoryIterator($src);
         foreach ($iterator as $fObj) {
             if ($fObj->isFile()) {
-                rename($fObj->getPathname(), "{$dest}/" . $fObj->getFilename());
+                \rename($fObj->getPathname(), "{$dest}/" . $fObj->getFilename());
             } elseif (!$fObj->isDot() && $fObj->isDir()) {
                 // Try recursively on directory
                 self::rmove($fObj->getPathname(), "{$dest}/" . $fObj->getFilename());
@@ -204,7 +204,7 @@ trait FilesManagement
             }
         }
         $iterator = null;   // clear iterator Obj to close file/directory
-        return rmdir($src); // remove the directory & return results
+        return \rmdir($src); // remove the directory & return results
     }
 
     /**
@@ -226,12 +226,12 @@ trait FilesManagement
         }
 
         // If source is not a directory stop processing
-        if (!is_dir($src)) {
+        if (!\is_dir($src)) {
             return false;
         }
 
         // If the destination directory does not exist and could not be created stop processing
-        if (!is_dir($dest) && !mkdir($dest) && !is_dir($dest)) {
+        if (!\is_dir($dest) && !\mkdir($dest) && !\is_dir($dest)) {
             return false;
         }
 
@@ -239,7 +239,7 @@ trait FilesManagement
         $iterator = new DirectoryIterator($src);
         foreach ($iterator as $fObj) {
             if ($fObj->isFile()) {
-                copy($fObj->getPathname(), "{$dest}/" . $fObj->getFilename());
+                \copy($fObj->getPathname(), "{$dest}/" . $fObj->getFilename());
             } elseif (!$fObj->isDot() && $fObj->isDir()) {
                 self::rcopy($fObj->getPathname(), "{$dest}/" . $fObj->getFilename());
             }

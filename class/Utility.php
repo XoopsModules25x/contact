@@ -31,9 +31,9 @@ class Utility extends Common\SysUtility
         //            echo 'Caught exception: ', $e->getMessage(), "\n", '<br>';
         //        }
         try {
-            if (!is_dir($folder)) {
-                if (!mkdir($folder) && !is_dir($folder)) {
-                    throw new RuntimeException(sprintf('Unable to create the %s directory', $folder));
+            if (!\is_dir($folder)) {
+                if (!\mkdir($folder) && !\is_dir($folder)) {
+                    throw new RuntimeException(\sprintf('Unable to create the %s directory', $folder));
                 } else {
                     file_put_contents($folder . '/index.html', '<script>history.go(-1);</script>');
                 }
@@ -50,7 +50,7 @@ class Utility extends Common\SysUtility
      */
     public static function copyFile($file, $folder)
     {
-        return copy($file, $folder);
+        return \copy($file, $folder);
         //        try {
         //            if (!is_dir($folder)) {
         //                throw new \RuntimeException(sprintf('Unable to copy file as: %s ', $folder));
@@ -69,18 +69,18 @@ class Utility extends Common\SysUtility
      */
     public static function recurseCopy($src, $dst)
     {
-        $dir = opendir($src);
+        $dir = \opendir($src);
         //    @mkdir($dst);
-        while (false !== ($file = readdir($dir))) {
+        while (false !== ($file = \readdir($dir))) {
             if (($file !== '.') && ($file !== '..')) {
-                if (is_dir($src . '/' . $file)) {
+                if (\is_dir($src . '/' . $file)) {
                     self::recurseCopy($src . '/' . $file, $dst . '/' . $file);
                 } else {
-                    copy($src . '/' . $file, $dst . '/' . $file);
+                    \copy($src . '/' . $file, $dst . '/' . $file);
                 }
             }
         }
-        closedir($dir);
+        \closedir($dir);
     }
 
     /**
