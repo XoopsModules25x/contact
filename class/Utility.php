@@ -4,7 +4,6 @@ namespace XoopsModules\Contact;
 
 use RuntimeException;
 use XoopsModules\Contact\Common;
-use XoopsModules\Contact\Constants;
 
 /**
  * Class Utility
@@ -39,7 +38,7 @@ class Utility extends Common\SysUtility
                     file_put_contents($folder . '/index.html', '<script>history.go(-1);</script>');
                 }
             }
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo 'Caught exception: ', $e->getMessage(), "\n", '<br>';
         }
     }
@@ -88,7 +87,7 @@ class Utility extends Common\SysUtility
      *
      * Verifies XOOPS version meets minimum requirements for this module
      * @static
-     * @param XoopsModule $module
+     * @param \XoopsModule $module
      *
      * @return bool true if meets requirements, false if not
      */
@@ -110,7 +109,7 @@ class Utility extends Common\SysUtility
      *
      * Verifies PHP version meets minimum requirements for this module
      * @static
-     * @param XoopsModule $module
+     * @param \XoopsModule $module
      *
      * @return bool true if meets requirements, false if not
      */

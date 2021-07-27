@@ -30,7 +30,7 @@ $GLOBALS['xoopsOption']['template_main'] = 'contact_index.tpl';
 //unset($_SESSION);
 require_once XOOPS_ROOT_PATH . '/header.php';
 
-/** @var Contact\Helper $helper */
+/** @var Helper $helper */
 $helper = Helper::getInstance();
 /** reCaptcha by google **/
 global $xoopsConfig, $xoopsModuleConfig;

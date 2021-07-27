@@ -100,4 +100,4 @@ $copyright = "<a href='http://xoops.wedega.com' title='WEDEGA Webdesign Gabor' t
                      <img src='" . $local_logo . "' alt='WEDEGA Webdesign Gabor'></a>";
 
 //require_once CONTACT_PATH.'/class/helper.php';
-require_once CONTACT_PATH . '/include/functions.php';
+require_once __DIR__ . '/include/functions.php';

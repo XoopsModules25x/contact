@@ -307,6 +307,7 @@ class ContactHandler extends \XoopsPersistableObjectHandler
     public function contactGetReply($contact_id)
     {
         $ret = false;
+        $tab = [];
 
         $criteria = new \CriteriaCompo();
         $criteria->add(new \Criteria('contact_cid', $contact_id));
@@ -316,11 +317,11 @@ class ContactHandler extends \XoopsPersistableObjectHandler
             $ret = [];
             /** @var Contact $root */
             foreach ($contacts as $root) {
-                $tab                   = [];
                 $tab                   = $root->toArray();
                 $tab['contact_owner']  = \XoopsUser::getUnameFromId($root->getVar('contact_uid'));
                 $tab['contact_create'] = \formatTimestamp($root->getVar('contact_create'), _MEDIUMDATESTRING);
                 $ret []                = $tab;
+                unset($tab);
             }
         }
 

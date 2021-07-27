@@ -20,7 +20,12 @@
  */
 
 use Xmf\Request;
-use XoopsModules\Contact;
+use XoopsModules\Contact\{
+    Contact,
+    ContactHandler,
+    Helper
+};
+/** @var ContactHandler $contactHandler */
 
 // Call header
 require_once __DIR__ . '/admin_header.php';
@@ -28,7 +33,7 @@ require_once __DIR__ . '/admin_header.php';
 // Display Admin header
 xoops_cp_header();
 
-$helper = Contact\Helper::getInstance();
+$helper = Helper::getInstance();
 global $xoopsModuleConfig;
 // Define default value
 $level = '';

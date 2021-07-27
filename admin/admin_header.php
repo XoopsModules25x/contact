@@ -19,8 +19,12 @@
  * @author      Hossein Azizabadi (AKA Voltan)
  */
 
-use XoopsModules\Contact;
-use XoopsModules\Contact\Helper;
+use Xmf\Module\Admin;
+use XoopsModules\Contact\{
+    ContactHandler,
+    Helper
+};
+/** @var ContactHandler $contactHandler */
 
 require dirname(__DIR__, 3) . '/include/cp_header.php';
 require dirname(__DIR__) . '/preloads/autoloader.php';
@@ -32,7 +36,7 @@ global $xoopsModule;
 $moduleDirName = $GLOBALS['xoopsModule']->getVar('dirname');
 $helper = Helper::getInstance();
 /** @var Xmf\Module\Admin $adminObject */
-$adminObject = Xmf\Module\Admin::getInstance();
+$adminObject = Admin::getInstance();
 
 $myts = \MyTextSanitizer::getInstance();
 
@@ -55,5 +59,4 @@ $helper->loadLanguage('modinfo');
 $helper->loadLanguage('main');
 
 // Contact Handler
-/** @var ContactHandler $contactHandler */
 $contactHandler = Helper::getInstance()->getHandler('Contact');
