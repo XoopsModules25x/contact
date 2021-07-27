@@ -23,9 +23,6 @@ namespace XoopsModules\Contact\Common;
  * @author       Mamba <mambax7@gmail.com>
  */
 
-use MyTextSanitizer;
-use XoopsFormDhtmlTextArea;
-use XoopsFormTextArea;
 use XoopsModules\Contact\Helper;
 
 /**
