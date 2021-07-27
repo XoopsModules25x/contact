@@ -28,7 +28,6 @@ require_once __DIR__ . '/admin_header.php';
 // Display Admin header
 xoops_cp_header();
 
-/** @var Contact\Helper $helper */
 $helper = Contact\Helper::getInstance();
 global $xoopsModuleConfig;
 // Define default value

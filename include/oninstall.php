@@ -30,7 +30,6 @@ use XoopsModules\Contact\Utility;
 function xoops_module_pre_install_contact(\XoopsModule $module)
 {
     $moduleDirName = \basename(\dirname(__DIR__));
-    /** @var Contact\Utility $utility */
     $utility = new Utility();
 
     $xoopsSuccess = $utility::checkVerXoops($module);
@@ -58,7 +57,6 @@ function xoops_module_install_contact(\XoopsModule $module)
 
     $moduleDirName = \basename(\dirname(__DIR__));
 
-    /** @var \XoopsModules\Contact\Helper $helper */
     $helper       = Helper::getInstance();
     $utility      = new Utility();
     $configurator = new Contact\Common\Configurator();

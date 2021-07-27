@@ -27,7 +27,6 @@ require_once __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'contact_index.tpl';
 //unset($_SESSION);
 require XOOPS_ROOT_PATH . '/header.php';
-/** @var Contact\Helper $helper */
 $helper = Contact\Helper::getInstance();
 global $xoopsModuleConfig, $xoopsModule, $xoopsUser;
 

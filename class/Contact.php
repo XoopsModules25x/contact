@@ -63,7 +63,7 @@ class Contact extends \XoopsObject
     }
 
     /**
-     * @return XoopsThemeForm
+     * @return \XoopsThemeForm
      */
     public function contactReplyForm()
     {

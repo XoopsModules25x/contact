@@ -64,7 +64,6 @@ function block_contact_form_map_show($options)
  */
 function contactGetElements(&$block)
 {
-    /** @var Contact\Helper $helper */
     $helper = Contact\Helper::getInstance();
 
     xoops_loadLanguage('main', 'contact');

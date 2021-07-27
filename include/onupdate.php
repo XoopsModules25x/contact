@@ -128,7 +128,6 @@ function xoops_module_update_contact(\XoopsModule $module, $previousVersion = nu
     if ($previousVersion < 227) {
         require_once __DIR__ . '/config.php';
         $configurator = new ContactConfigurator();
-        /** @var Contact\Utility $utility */
         $utility = new Utility();
 
         //delete old HTML templates

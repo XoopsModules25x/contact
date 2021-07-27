@@ -158,7 +158,7 @@ class ContactHelper
 
     /**
      * @param $name
-     * @return mixed
+     * @return string
      */
     public function getHandler($name)
     {
