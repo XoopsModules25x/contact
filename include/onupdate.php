@@ -21,8 +21,14 @@
  * @param              $version
  */
 
-use XoopsModules\Contact;
-use XoopsModules\Contact\Utility;
+use XoopsModules\Contact\{
+    Common\Configurator,
+    Helper,
+    Utility
+};
+/** @var Helper $helper */
+/** @var Utility $utility */
+/** @var Configurator $configurator */
 
 if ((!defined('XOOPS_ROOT_PATH')) || !($GLOBALS['xoopsUser'] instanceof \XoopsUser)
     || !$GLOBALS['xoopsUser']->isAdmin()) {
@@ -39,10 +45,10 @@ if ((!defined('XOOPS_ROOT_PATH')) || !($GLOBALS['xoopsUser'] instanceof \XoopsUs
  */
 function xoops_module_pre_update_contact(\XoopsModule $module)
 {
-    /** @var Contact\Helper $helper */
-    /** @var Contact\Utility $utility */
+    /** @var Helper $helper */
+    /** @var Utility $utility */
     $moduleDirName = \basename(\dirname(__DIR__));
-    $helper        = Contact\Helper::getInstance();
+    $helper        = Helper::getInstance();
     $utility       = new Utility();
 
     $xoopsSuccess = $utility::checkVerXoops($module);
@@ -63,11 +69,12 @@ function xoops_module_update_contact(\XoopsModule $module, $previousVersion = nu
     $moduleDirName      = \basename(\dirname(__DIR__));
     $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
-    /** @var Contact\Helper $helper */ /** @var Contact\Utility $utility */
-    /** @var Contact\Common\Configurator $configurator */
-    $helper       = Contact\Helper::getInstance();
+    /** @var Helper $helper */
+    /** @var Utility $utility */
+    /** @var Configurator $configurator */
+    $helper       = Helper::getInstance();
     $utility      = new Utility();
-    $configurator = new Contact\Common\Configurator();
+    $configurator = new Configurator();
 
     $xoopsDB = \XoopsDatabaseFactory::getDatabaseConnection();
 
@@ -126,7 +133,7 @@ function xoops_module_update_contact(\XoopsModule $module, $previousVersion = nu
     }
 
     if ($previousVersion < 227) {
-        $configurator = new ContactConfigurator();
+        $configurator = new Configurator();
         $utility = new Utility();
 
         //delete old HTML templates
