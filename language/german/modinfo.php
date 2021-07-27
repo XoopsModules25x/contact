@@ -102,4 +102,4 @@ define('_MI_CONTACT_MAIL_SEND', 'E.Mail an Admin');
 define('_MI_CONTACT_MAIL_SEND_DESC', 'Die einlangenden Kontaktanfragen werden an den Administrator weitergeleitet');
 // 2.27
 define('_MI_CONTACT_SHOWBCRUMBS', 'Brotkrumen-Navigation');
-define('_MI_CONTACT_SHOWBCRUMBS_DESC', "Die Brotkrumen-Navigation mit Pfad zur aktuellen Seite anzeigen");
+define('_MI_CONTACT_SHOWBCRUMBS_DESC', 'Die Brotkrumen-Navigation mit Pfad zur aktuellen Seite anzeigen');
