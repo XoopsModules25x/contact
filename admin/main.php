@@ -88,7 +88,6 @@ switch ($op) {
             if (0 != $obj->getVar('contact_cid')) {
                 redirect_header('main.php', 3, _AM_CONTACT_CANTREPLY);
             }
-            /** @var \XoopsThemeForm $form */
             $form = $obj->contactReplyForm();
             $GLOBALS['xoopsTpl']->assign('replyform', $form->render());
             $GLOBALS['xoopsTpl']->assign('replylist', $contactHandler->contactGetReply($contact_id));

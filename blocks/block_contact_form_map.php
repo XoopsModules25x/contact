@@ -25,6 +25,10 @@
 use XoopsModules\Contact;
 
 // Function show block form only
+/**
+ * @param $options
+ * @return array
+ */
 function block_contact_form_show($options)
 {
     $block = [];
