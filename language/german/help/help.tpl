@@ -18,7 +18,7 @@
     - Extrahieren Sie den Ordner 'contact' in das Module-Verzeichnis<br>
     - Installieren Sie das Modul über Administration -> Module.<br><br>
     Wenn Sie zusätzliche Informationen benötigen, lesen Sie die Installationshinweise unter
-    <a href="http://goo.gl/adT2i">XOOPS Operations Manual</a><br><br></p>
+    <a href="https://goo.gl/adT2i">XOOPS Operations Manual</a><br><br></p>
 
     <h4 class="odd">Grundsätzliche Informationen</h4>
     <p>

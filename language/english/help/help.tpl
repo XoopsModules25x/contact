@@ -15,7 +15,7 @@
     extract the /contact folder into the ../modules directory. Install the
     module through Admin -> System Module -> Modules. <br><br>
     Detailed instructions on installing modules are available in the
-    <a href="http://goo.gl/adT2i">XOOPS Operations Manual</a><br><br>
+    <a href="https://goo.gl/adT2i">XOOPS Operations Manual</a><br><br>
 
 
     <h4 class="odd">OPERATING INSTRUCTIONS</h4><br>
