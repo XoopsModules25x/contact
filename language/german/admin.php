@@ -1,5 +1,4 @@
 <?php
-
 // index
 define('_AM_CONTACT_INDEX_ADMENU1', 'Kontakt');
 define('_AM_CONTACT_INDEX_TOTAL', "Es befinden sich  <span class='green'>%s</span> Anfragen in der Datenbank");
@@ -14,6 +13,7 @@ define('_AM_CONTACT_EMAIL', 'E-Mail');
 define('_AM_CONTACT_URL', 'URL');
 define('_AM_CONTACT_VIEWURL', 'URL besuchen');
 define('_AM_CONTACT_ICQ', 'ICQ');
+define('_AM_CONTACT_SKYPE', 'Skype');
 define('_AM_CONTACT_COMPANY', 'Firma');
 define('_AM_CONTACT_LOCATION', 'Ort');
 define('_AM_CONTACT_IP', 'IP');
@@ -47,3 +47,12 @@ define('_AM_CONTACT_LOGS_COLUMN_URL', 'URL');
 define('_AM_CONTACT_LOGS_COLUMN_MAIL', 'E-Mail');
 //2.25
 define('_AM_CONTACT_CANTREPLY', 'Kann nicht beantworten');
+//2.25 RC1
+define('_AM_CONTACT_UPGRADEFAILED0', "Aktualisierung fehlgeschlagen - konnte Feld '%s' nicht umbenennen");
+define('_AM_CONTACT_UPGRADEFAILED1', "Aktualisierung fehlgeschlagen - konnte neues Feld '%s' nicht erstellen");
+define('_AM_CONTACT_UPGRADEFAILED2', "Aktualisierung fehlgeschlagen - konnte Tabelle '%s' nicht umbenennen");
+define('_AM_CONTACT_ERROR_COLUMN', 'Konnte neue Spalte in Datenbank nicht erstellen: %s');
+define('_AM_CONTACT_ERROR_BAD_XOOPS', 'Dieses Modul benötigt mindestens Xoops Version %s (Ihre derzeitige Version ist %s)');
+define('_AM_CONTACT_ERROR_BAD_PHP', 'Dieses Modul benötigt mindestens PHP Version %s (Ihre derzeitige Version ist %s)');
+define('_AM_CONTACT_ERROR_TAG_REMOVAL', 'Konnte Tags vom Modul Tag nicht entfernen');
+

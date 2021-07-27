@@ -5,6 +5,7 @@
 + fixed bug with missing additional infos in sended mail (alian/goffy)
 + fixed bug with missing contact_uid when sending (goffy)
 + added module preference for display/hide breadcrumbs (goffy)
++ added new block for showing contact info together with map (goffy)
 
 <h5>2.26 RC-1 [2017-08-09]</h5>
 <hr>

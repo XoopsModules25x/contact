@@ -128,6 +128,14 @@ $modversion['blocks'][] = [
     'options'     => '',
     'template'    => 'block_' . $moduleDirName . '_form_map.tpl',
 ];
+$modversion['blocks'][] = [
+    'file'        => 'block_' . $moduleDirName . '_form_map.php',
+    'name'        => _MI_B_CONTACT_INFO_MAP,
+    'description' => _MI_B_CONTACT_INFO_MAP_DESC,
+    'show_func'   => 'block_' . $moduleDirName . '_form_map_show',
+    'options'     => '',
+    'template'    => 'block_' . $moduleDirName . '_info_map.tpl'
+];
 
 // Settings
 

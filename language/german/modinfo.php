@@ -32,15 +32,12 @@ define('_MI_CONTACT_FORM_ADDRESS_DESC', '');
 define('_MI_CONTACT_FORM_DEPT', 'Auswahl für Abteilungen anzeigen');
 define('_MI_CONTACT_FORM_DEPT_DESC', '');
 define('_MI_CONTACT_DEPT', 'Abteilungen/Empfänger');
-define(
-    '_MI_CONTACT_DEPT_DESC',
-    'Diese Option erlaubt die Angabe/Kombination von verschiedenen Abteilungen/Empfängern.<br>'
-    . 'Je nach Benutzerauswahl erhält die entsprechende Abteilung die jeweilige Kontaktinformation an die dafür definierte E-Mail-Adresse.<br><br>'
-    . 'Definiere jede Abteilung/E-Mail wie folgt:<br><br>'
-    . "abteilung1,email1|abteilung2,email2|abteilung3,email3 etc. - jede Abteilung muss von der E-Mail mit einem Beistrich ',' getrennt sein,<br>"
-    . "und jede Kombination Abteilung/E-Mail muss durch einen Strich '|' getrennt sein.<br><br>"
-    . 'Wenn keine Abteilung/kein Empfänger angegeben wird, wird die Mailnachricht an die Standard-E-Mail-Adresse versendet.'
-);
+define('_MI_CONTACT_DEPT_DESC', 'Diese Option erlaubt die Angabe/Kombination von verschiedenen Abteilungen/Empfängern.<br>'
+                                . 'Je nach Benutzerauswahl erhält die entsprechende Abteilung die jeweilige Kontaktinformation an die dafür definierte E-Mail-Adresse.<br><br>'
+                                . 'Definiere jede Abteilung/E-Mail wie folgt:<br><br>'
+                                . "abteilung1,email1|abteilung2,email2|abteilung3,email3 etc. - jede Abteilung muss von der E-Mail mit einem Beistrich ',' getrennt sein,<br>"
+                                . "und jede Kombination Abteilung/E-Mail muss durch einen Strich '|' getrennt sein.<br><br>"
+                                . 'Wenn keine Abteilung/kein Empfänger angegeben wird, wird die Mailnachricht an die Standard-E-Mail-Adresse versendet.');
 define('_MI_CONTACT_PERPAGE', 'Anfragen pro Seite');
 define('_MI_CONTACT_PERPAGE_DESC', '');
 define('_MI_CONTACT_TOPINFO', 'Überschrift des Kontaktformulars');
@@ -80,6 +77,29 @@ define('_MI_B_CONTACT_MAP', 'Standort');
 define('_MI_B_CONTACT_MAP_DESC', 'Den definierten Standort in Google Maps als Block anzeigen');
 define('_MI_B_CONTACT_FORM_MAP', 'Kontaktformular und Standort');
 define('_MI_B_CONTACT_FORM_MAP_DESC', 'Ein Kontaktformular zusammen mit dem Standort in Google Maps als Block anzeigen');
+define('_MI_B_CONTACT_INFO_MAP', 'Kontaktinfo und Standort');
+define('_MI_B_CONTACT_INFO_MAP_DESC', 'Ein Kontaktinformation zusammen mit dem Standort in Google Maps als Block anzeigen');
 
 define('_MI_CONTACT_DEFAULT', 'Standard-Kontaktdaten');
 define('_MI_CONTACT_DEFAULT_DESC', 'Hier können die Kontaktdaten angegeben werden, die zusätzlich zum Formular angezeigt werden sollen (z.B. Name, Adresse , Telefonnummer,...');
+//2.25 RC1
+//Help
+define('_MI_CONTACT_DIRNAME', basename(dirname(dirname(__DIR__))));
+define('_MI_CONTACT_HELP_HEADER', __DIR__.'/help/helpheader.tpl');
+define('_MI_CONTACT_BACK_2_ADMIN', 'Back to Administration of ');
+define('_MI_CONTACT_OVERVIEW', 'Overview');
+
+//define('_MI_CONTACT_HELP_DIR', __DIR__);
+
+//help multi-page
+define('_MI_CONTACT_DISCLAIMER', 'Disclaimer');
+define('_MI_CONTACT_LICENSE', 'License');
+define('_MI_CONTACT_SUPPORT', 'Support');
+//What to do with the Contact message
+define('_MI_CONTACT_MAIL_SAVE_DB', 'Nachricht in DB speichern');
+define('_MI_CONTACT_MAIL_SAVE_DB_DESC', 'Die einlangenden Kontaktanfragen in der Datenbank speichern');
+define('_MI_CONTACT_MAIL_SEND', 'E.Mail an Admin');
+define('_MI_CONTACT_MAIL_SEND_DESC', 'Die einlangenden Kontaktanfragen werden an den Administrator weitergeleitet');
+// 2.27
+define('_MI_CONTACT_SHOWBCRUMBS', 'Brotkrumen-Navigation');
+define('_MI_CONTACT_SHOWBCRUMBS_DESC', "Die Brotkrumen-Navigation mit Pfad zur aktuellen Seite anzeigen");
