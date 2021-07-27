@@ -20,9 +20,10 @@
  */
 
 use Xmf\Module\Admin;
-use XoopsModules\Contact;
-use XoopsModules\Contact\Helper;
-/** @var \XoopsModules\Contact\Helper $helper */
+use XoopsModules\Contact\{
+    Helper
+};
+/** @var Helper $helper */
 
 $moduleDirName = basename(dirname(__DIR__));
 $moduleDirNameUpper = mb_strtoupper($moduleDirName);
