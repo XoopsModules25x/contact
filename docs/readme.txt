@@ -23,7 +23,7 @@ Read Me First
  4. Installation
  _____________________________________________________________________
 
- Simply upload these module folder to a directory of your xoops modules folder,
+ Simply upload this module folder to a directory of your xoops modules folder,
  and install it via xoops modules administration panel. You can  configure
  it through Contact module control panel.
  Detailed instructions on installing modules are available in the
