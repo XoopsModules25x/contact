@@ -96,4 +96,4 @@ if (is_object($helper->getModule())) {
 }
 
 //require_once CONTACT_PATH.'/class/helper.php';
-require_once __DIR__ . '/include/functions.php';
+//require_once __DIR__ . '/include/functions.php';
