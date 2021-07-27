@@ -183,7 +183,7 @@ class ContactHelper
             /** @var \XoopsModule $moduleHandler */
             /** @var \XoopsModuleHandler $moduleHandler */
             $moduleHandler = xoops_getHandler('module');
-            $this->module  = $moduleHandler::getByDirname($this->dirname);
+            $this->module  = $moduleHandler->getByDirname($this->dirname);
         }
         $this->addLog('INIT MODULE');
     }
