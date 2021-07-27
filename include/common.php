@@ -95,9 +95,5 @@ if (is_object($helper->getModule())) {
     $GLOBALS['xoopsTpl']->assign('pathModIcon32', $pathModIcon32);
 }
 
-// module information
-$copyright = "<a href='http://xoops.wedega.com' title='WEDEGA Webdesign Gabor' target='_blank'>
-                     <img src='" . $local_logo . "' alt='WEDEGA Webdesign Gabor'></a>";
-
 //require_once CONTACT_PATH.'/class/helper.php';
 require_once __DIR__ . '/include/functions.php';
