@@ -19,6 +19,7 @@
  * @author      Hossein Azizabadi (AKA Voltan)
  */
 
+/** @var ContactHandler $contactHandler */
 // Call header
 require_once __DIR__ . '/admin_header.php';
 // Display Admin header

@@ -19,6 +19,7 @@
  * @author      Hossein Azizabadi (AKA Voltan)
  */
 require_once __DIR__ . '/header.php';
+/** @var ContactHandler $contactHandler */
 
 if (!empty($_POST)) {
     // Info Processing

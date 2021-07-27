@@ -30,7 +30,7 @@ trait VersionChecks
     public static function checkVerXoops(\XoopsModule $module = null, $requiredVer = null)
     {
         $moduleDirName      = \basename(\dirname(__DIR__, 2));
-        $moduleDirNameUpper = mb_strtoupper($moduleDirName);
+        $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
         if (null === $module) {
             $module = \XoopsModule::getByDirname($moduleDirName);
         }
@@ -62,7 +62,7 @@ trait VersionChecks
     public static function checkVerPhp(\XoopsModule $module = null)
     {
         $moduleDirName      = \basename(\dirname(__DIR__, 2));
-        $moduleDirNameUpper = mb_strtoupper($moduleDirName);
+        $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
         if (null === $module) {
             $module = \XoopsModule::getByDirname($moduleDirName);
         }
@@ -99,7 +99,7 @@ trait VersionChecks
     public static function checkVerModule($helper, $source = 'github', $default = 'master')
     {
         $moduleDirName      = \basename(\dirname(__DIR__, 2));
-        $moduleDirNameUpper = mb_strtoupper($moduleDirName);
+        $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
         $update             = '';
         $repository         = 'XoopsModules25x/' . $moduleDirName;
         //        $repository         = 'XoopsModules25x/publisher'; //for testing only
@@ -114,7 +114,7 @@ trait VersionChecks
                 $curlReturn = \curl_exec($curlHandle);
                 if (false === $curlReturn) {
                     \trigger_error(\curl_error($curlHandle));
-                } elseif (false !== \strpos($curlReturn, 'Not Found')) {
+                } elseif (false !== \mb_strpos($curlReturn, 'Not Found')) {
                     \trigger_error('Repository Not Found: ' . $infoReleasesUrl);
                 } else {
                     $file              = json_decode($curlReturn, false);
@@ -126,7 +126,7 @@ trait VersionChecks
                     }
                     //"PHP-standardized" version
                     $latestVersion = mb_strtolower($latestVersion);
-                    if (false !== mb_strpos($latestVersion, 'final')) {
+                    if (false !== \mb_strpos($latestVersion, 'final')) {
                         $latestVersion = \str_replace('_', '', mb_strtolower($latestVersion));
                         $latestVersion = \str_replace('final', '', mb_strtolower($latestVersion));
                     }

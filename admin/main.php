@@ -26,6 +26,7 @@ use XoopsModules\Contact\{
     Helper
 };
 /** @var ContactHandler $contactHandler */
+/** @var Admin $adminObject */
 
 // Call header
 require_once __DIR__ . '/admin_header.php';

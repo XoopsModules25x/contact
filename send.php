@@ -24,6 +24,7 @@ use Xmf\Request;
 use XoopsModules\Contact\{
     Helper
 };
+/** @var ContactHandler $contactHandler */
 
 require_once __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'contact_index.tpl';
