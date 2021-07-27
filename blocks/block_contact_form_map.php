@@ -79,7 +79,7 @@ function contactGetElements(&$block)
         $departments    = xoops_getModuleOption('contact_dept', 'contact');
         foreach ($departments as $val) {
             [$name, $email] = explode(',', $val, 2); //split the name and email
-            array_push($departmentlist, $name);
+            $departmentlist[] = $name;
         }
         $block['depart']      = $helper->getConfig('form_dept');
         $block['departments'] = $departmentlist;
