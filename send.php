@@ -21,7 +21,9 @@
  */
 
 use Xmf\Request;
-use XoopsModules\Contact;
+use XoopsModules\Contact\{
+    Helper
+};
 
 require_once __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'contact_index.tpl';
@@ -29,7 +31,7 @@ $GLOBALS['xoopsOption']['template_main'] = 'contact_index.tpl';
 require_once XOOPS_ROOT_PATH . '/header.php';
 
 /** @var Contact\Helper $helper */
-$helper = Contact\Helper::getInstance();
+$helper = Helper::getInstance();
 /** reCaptcha by google **/
 global $xoopsConfig, $xoopsModuleConfig;
 $captcha = '';
@@ -45,7 +47,7 @@ if (!$captcha && $helper->getConfig('recaptchause')) {
     redirect_header('index.php', 2, _MD_CONTACT_MES_NOCAPTCHA);
 } else {
     $response = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $helper->getConfig('recaptchakey') . '&response=' . $captcha . '&remoteip=' . $_SERVER['REMOTE_ADDR']);
-    if (false === $response['success'] && $helper->getConfig('recaptchause')) {
+    if (false === $response && $helper->getConfig('recaptchause')) {
         redirect_header('index.php', 2, _MD_CONTACT_MES_CAPTCHAINCORRECT);
     } else {
         global $xoopsConfig, $xoopsOption, $xoopsTpl, $xoopsUser, $xoopsUserIsAdmin, $xoopsLogger;
