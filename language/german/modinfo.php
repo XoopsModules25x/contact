@@ -84,7 +84,7 @@ define('_MI_CONTACT_DEFAULT', 'Standard-Kontaktdaten');
 define('_MI_CONTACT_DEFAULT_DESC', 'Hier können die Kontaktdaten angegeben werden, die zusätzlich zum Formular angezeigt werden sollen (z.B. Name, Adresse , Telefonnummer,...');
 //2.25 RC1
 //Help
-define('_MI_CONTACT_DIRNAME', basename(dirname(dirname(__DIR__))));
+define('_MI_CONTACT_DIRNAME', basename(dirname(__DIR__, 2)));
 define('_MI_CONTACT_HELP_HEADER', __DIR__.'/help/helpheader.tpl');
 define('_MI_CONTACT_BACK_2_ADMIN', 'Back to Administration of ');
 define('_MI_CONTACT_OVERVIEW', 'Overview');
@@ -102,4 +102,4 @@ define('_MI_CONTACT_MAIL_SEND', 'E.Mail an Admin');
 define('_MI_CONTACT_MAIL_SEND_DESC', 'Die einlangenden Kontaktanfragen werden an den Administrator weitergeleitet');
 // 2.27
 define('_MI_CONTACT_SHOWBCRUMBS', 'Brotkrumen-Navigation');
-define('_MI_CONTACT_SHOWBCRUMBS_DESC', "Die Brotkrumen-Navigation mit Pfad zur aktuellen Seite anzeigen");
+define('_MI_CONTACT_SHOWBCRUMBS_DESC', 'Die Brotkrumen-Navigation mit Pfad zur aktuellen Seite anzeigen');

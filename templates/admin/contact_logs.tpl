@@ -1,7 +1,7 @@
 <div class="contact">
-    <{$navigation}>
+    <{$navigation|default:''}>
     <{if $form}><{$form}><{/if}>
-    <{if $logs}>
+    <{if $logs|default:''}>
     <div class="pad2">
         <ul>
             <{foreach item=log from=$logs}>

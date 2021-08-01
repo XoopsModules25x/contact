@@ -8,20 +8,27 @@
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
+
 /**
- * wgSitenotice module for xoops
+ * Contact module for xoops
  *
  * @copyright       XOOPS Project (https://xoops.org)
  * @license         GPL 2.0 or later
  * @package         wgsitenotice
  * @since           1.0
  * @min_xoops       2.5.7
- * @author          Goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<http://wedega.com>
+ * @author          Goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<https://wedega.com>
  * @param $options
  * @return array
  */
 
+use XoopsModules\Contact;
+
 // Function show block form only
+/**
+ * @param $options
+ * @return array
+ */
 function block_contact_form_show($options)
 {
     $block = [];
@@ -61,12 +68,7 @@ function block_contact_form_map_show($options)
  */
 function contactGetElements(&$block)
 {
-    /** @var XoopsModuleHandler $moduleHandler */
-    $moduleHandler = xoops_getHandler('module');
-    $xoopsModule   = $moduleHandler->getByDirname('contact');
-    /** @var XoopsConfigHandler $configHandler */
-    $configHandler     = xoops_getHandler('config');
-    $xoopsModuleConfig = $configHandler->getConfigsByCat(0, $xoopsModule->mid());
+    $helper = Contact\Helper::getInstance();
 
     xoops_loadLanguage('main', 'contact');
 
@@ -75,29 +77,29 @@ function contactGetElements(&$block)
     $block['lng_username'] = 'name';
 
     /*Modules Options*/
-    if ($xoopsModuleConfig['form_dept'] == 1) {
+    if (1 == $helper->getConfig('form_dept')) {
         // show a drop down with the correct departments listed
         $departmentlist = [];
         $departments    = xoops_getModuleOption('contact_dept', 'contact');
         foreach ($departments as $val) {
-            list($name, $email) = explode(',', $val, 2); //split the name and email
-            array_push($departmentlist, $name);
+            [$name, $email] = explode(',', $val, 2); //split the name and email
+            $departmentlist[] = $name;
         }
-        $block['depart']      = $xoopsModuleConfig['form_dept'];
+        $block['depart']      = $helper->getConfig('form_dept');
         $block['departments'] = $departmentlist;
     }
-    $block['recaptcha']       = $xoopsModuleConfig['recaptchause'];
-    $block['recaptchakey']    = $xoopsModuleConfig['recaptchakey'];
-    $block['url']             = $xoopsModuleConfig['form_url'];
-    $block['icq']             = $xoopsModuleConfig['form_icq'];
-    $block['skype']           = $xoopsModuleConfig['form_skype'];
-    $block['company']         = $xoopsModuleConfig['form_company'];
-    $block['location']        = $xoopsModuleConfig['form_location'];
-    $block['phone']           = $xoopsModuleConfig['form_phone'];
-    $block['address']         = $xoopsModuleConfig['form_address'];
-    $block['info']            = $xoopsModuleConfig['contact_info'];
-    $block['contact_default'] = $xoopsModuleConfig['contact_default'];
-    $block['map']             = $xoopsModuleConfig['embed_maps'];
+    $block['recaptcha']       = $helper->getConfig('recaptchause');
+    $block['recaptchakey']    = $helper->getConfig('recaptchakey');
+    $block['url']             = $helper->getConfig('form_url');
+    $block['icq']             = $helper->getConfig('form_icq');
+    $block['skype']           = $helper->getConfig('form_skype');
+    $block['company']         = $helper->getConfig('form_company');
+    $block['location']        = $helper->getConfig('form_location');
+    $block['phone']           = $helper->getConfig('form_phone');
+    $block['address']         = $helper->getConfig('form_address');
+    $block['info']            = $helper->getConfig('contact_info');
+    $block['contact_default'] = $helper->getConfig('contact_default');
+    $block['map']             = $helper->getConfig('embed_maps');
     /*end Modules options*/
 
     /* get language vars*/

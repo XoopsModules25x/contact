@@ -19,10 +19,15 @@
  * @author      Hossein Azizabadi (AKA Voltan)
  */
 
+use \XoopsModules\Contact\{
+    ContactHandler,
+    Helper
+};
+/** @var ContactHandler $contactHandler */
+
 $moduleDirName = basename(__DIR__);
-include __DIR__ . '/../../mainfile.php';
-include __DIR__ . '/class/contact.php';
+require_once \dirname(__DIR__, 2) . '/mainfile.php';
+//require_once __DIR__   . '/class/contact.php';
 require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 
-/** @var ContactContactHandler $contactHandler*/
-$contactHandler = xoops_getModuleHandler('contact', $moduleDirName);
+$contactHandler = Helper::getInstance()->getHandler('Contact');

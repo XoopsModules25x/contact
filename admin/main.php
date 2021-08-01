@@ -20,17 +20,27 @@
  */
 
 use Xmf\Request;
+use XoopsModules\Contact\{
+    Contact,
+    ContactHandler,
+    Helper
+};
+/** @var ContactHandler $contactHandler */
+/** @var Admin $adminObject */
 
 // Call header
-require __DIR__ . '/admin_header.php';
+require_once __DIR__ . '/admin_header.php';
+
 // Display Admin header
 xoops_cp_header();
+
+$helper = Helper::getInstance();
 global $xoopsModuleConfig;
 // Define default value
-$level      = '';
+$level = '';
 
-$saveinfo = $xoopsModuleConfig['saveinfo'];
-$sendmail = $xoopsModuleConfig['sendmail'];
+$saveinfo = $helper->getConfig('saveinfo');
+$sendmail = $helper->getConfig('sendmail');
 
 $op         = Request::getString('op', 'list');
 $contact_id = Request::getInt('id', 0);
@@ -61,7 +71,7 @@ switch ($op) {
         $contacts        = $contactHandler->contactGetAdminList($contact, 'contact_cid');
 
         if ($contact_numrows > $contact['limit']) {
-            $contact_pagenav = new XoopsPageNav($contact_numrows, $contact['limit'], $contact['start'], 'start', 'limit=' . $contact['limit']);
+            $contact_pagenav = new \XoopsPageNav($contact_numrows, $contact['limit'], $contact['start'], 'start', 'limit=' . $contact['limit']);
             $contact_pagenav = $contact_pagenav->renderNav(4);
         } else {
             $contact_pagenav = '';
@@ -71,15 +81,13 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('contact_pagenav', $contact_pagenav);
         $level = 'list';
         break;
-
     case 'reply':
         if ($contact_id > 0) {
             /** @var Contact $obj */
             $obj = $contactHandler->get($contact_id);
-            if ($obj->getVar('contact_cid') != 0) {
+            if (0 != $obj->getVar('contact_cid')) {
                 redirect_header('main.php', 3, _AM_CONTACT_CANTREPLY);
             }
-            /** @var XoopsThemeForm $form */
             $form = $obj->contactReplyForm();
             $GLOBALS['xoopsTpl']->assign('replyform', $form->render());
             $GLOBALS['xoopsTpl']->assign('replylist', $contactHandler->contactGetReply($contact_id));
@@ -88,7 +96,6 @@ switch ($op) {
         }
         $level = 'reply';
         break;
-
     case 'doreply':
         // check email
         if ('' === Request::getString('contact_mailto', '', 'POST')) {
@@ -122,7 +129,6 @@ switch ($op) {
 
         $level = 'doreply';
         break;
-
     case 'view':
         $obj = $contactHandler->get($contact_id);
 
@@ -135,7 +141,7 @@ switch ($op) {
         $contact['contact_id']         = $obj->getVar('contact_id');
         $contact['contact_uid']        = $obj->getVar('contact_uid');
         $contact['contact_name']       = $obj->getVar('contact_name');
-        $contact['contact_owner']      = XoopsUser::getUnameFromId($obj->getVar('contact_uid'));
+        $contact['contact_owner']      = \XoopsUser::getUnameFromId($obj->getVar('contact_uid'));
         $contact['contact_subject']    = $obj->getVar('contact_subject');
         $contact['contact_mail']       = $obj->getVar('contact_mail');
         $contact['contact_url']        = $obj->getVar('contact_url');
@@ -154,7 +160,6 @@ switch ($op) {
 
         $level = 'view';
         break;
-
     case 'delete':
         if ($contact_id > 0) {
             // Prompt message
@@ -165,7 +170,6 @@ switch ($op) {
 
         $level = 'delete';
         break;
-
     case 'dodelete':
         if (!$contact_id > 0) {
             redirect_header('main.php', 3, _AM_CONTACT_MSG_EXIST);
@@ -173,9 +177,9 @@ switch ($op) {
             //            exit();
         }
 
-        $criteria = new CriteriaCompo();
-        $criteria->add(new Criteria('contact_id', $contact_id));
-        $criteria->add(new Criteria('contact_cid', $contact_id), 'OR');
+        $criteria = new \CriteriaCompo();
+        $criteria->add(new \Criteria('contact_id', $contact_id));
+        $criteria->add(new \Criteria('contact_cid', $contact_id), 'OR');
 
         if (!$contactHandler->deleteAll($criteria)) {
             redirect_header('main.php', 1, _AM_CONTACT_MSG_DELETEERROR);
@@ -195,4 +199,4 @@ $GLOBALS['xoopsTpl']->assign('level', $level);
 // Call template file
 $GLOBALS['xoopsTpl']->display(XOOPS_ROOT_PATH . '/modules/contact/templates/admin/contact_main.tpl');
 // Call footer
-require __DIR__ . '/admin_footer.php';
+require_once __DIR__ . '/admin_footer.php';

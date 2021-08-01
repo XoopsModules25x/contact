@@ -32,12 +32,15 @@ define('_MI_CONTACT_FORM_ADDRESS_DESC', '');
 define('_MI_CONTACT_FORM_DEPT', 'Show select Departments');
 define('_MI_CONTACT_FORM_DEPT_DESC', '');
 define('_MI_CONTACT_DEPT', 'Departments/Receipients');
-define('_MI_CONTACT_DEPT_DESC', 'Departments allow you to define a department/email combination.<br>'
-                                . 'Users selecting from a defined department will have their contact information sent to the corresponding email address you define.<br><br>'
-                                . 'Define each department/email as follows:<br><br>'
-                                . 'dept1,email1|dept2,email2|dept3,email3 etc. - each department and email must be separated<br>'
-                                . "by a comma ',', and each department email combination must be separated by a pipe '|'<br><br>"
-                                . 'If no department/recipient is defined, than the mail will be sent to standard e-mail-address.');
+define(
+    '_MI_CONTACT_DEPT_DESC',
+    'Departments allow you to define a department/email combination.<br>'
+    . 'Users selecting from a defined department will have their contact information sent to the corresponding email address you define.<br><br>'
+    . 'Define each department/email as follows:<br><br>'
+    . 'dept1,email1|dept2,email2|dept3,email3 etc. - each department and email must be separated<br>'
+    . "by a comma ',', and each department email combination must be separated by a pipe '|'<br><br>"
+    . 'If no department/recipient is defined, than the mail will be sent to standard e-mail-address.'
+);
 define('_MI_CONTACT_PERPAGE', 'Messages per page');
 define('_MI_CONTACT_PERPAGE_DESC', '');
 define('_MI_CONTACT_TOPINFO', 'Header contact form');
@@ -84,8 +87,8 @@ define('_MI_CONTACT_DEFAULT', 'Default contact info');
 define('_MI_CONTACT_DEFAULT_DESC', 'Here you can define additional information, which should be shown beside contact form (e.g name, address , phone number,...');
 //2.25 RC1
 //Help
-define('_MI_CONTACT_DIRNAME', basename(dirname(dirname(__DIR__))));
-define('_MI_CONTACT_HELP_HEADER', __DIR__.'/help/helpheader.tpl');
+define('_MI_CONTACT_DIRNAME', basename(dirname(__DIR__, 2)));
+define('_MI_CONTACT_HELP_HEADER', __DIR__ . '/help/helpheader.tpl');
 define('_MI_CONTACT_BACK_2_ADMIN', 'Back to Administration of ');
 define('_MI_CONTACT_OVERVIEW', 'Overview');
 

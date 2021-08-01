@@ -1,4 +1,4 @@
 <div class="contact">
-    <{$navigation}>
-    <{$renderabout}>
+    <{$navigation|default:''}>
+    <{$renderabout|default:''}>
 </div>

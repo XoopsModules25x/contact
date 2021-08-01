@@ -8,28 +8,25 @@
  * @link            https://xoops.org XOOPS
  */
 
-
 /**
  * Prepares system prior to attempting to uninstall module
- * @param XoopsModule $module {@link XoopsModule}
+ * @param \XoopsModule $module {@link XoopsModule}
  *
  * @return bool true if ready to uninstall, false if not
  */
-
-function xoops_module_pre_uninstall_contact(XoopsModule $module)
+function xoops_module_pre_uninstall_contact(\XoopsModule $module)
 {
     // Do some synchronization
     return true;
 }
 
 /**
- *
  * Performs tasks required during uninstallation of the module
- * @param XoopsModule $module {@link XoopsModule}
+ * @param \XoopsModule $module {@link XoopsModule}
  *
  * @return bool true if uninstallation successful, false if not
  */
-function xoops_module_uninstall_contact(XoopsModule $module)
+function xoops_module_uninstall_contact(\XoopsModule $module)
 {
     return true;
 }

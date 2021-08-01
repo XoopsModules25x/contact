@@ -23,7 +23,7 @@ CREATE TABLE contact (
   KEY (contact_uid),
   KEY (contact_cid),
   KEY (contact_create),
-  KEY (contact_mail),
+  KEY (contact_mail(100)),
   KEY (contact_phone),
   KEY (contact_platform),
   KEY (contact_type)

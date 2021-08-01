@@ -21,34 +21,39 @@
  */
 
 use Xmf\Request;
+use XoopsModules\Contact\{
+    Helper
+};
+/** @var ContactHandler $contactHandler */
 
-include __DIR__ . '/header.php';
+require_once __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'contact_index.tpl';
 //unset($_SESSION);
-include XOOPS_ROOT_PATH . '/header.php';
+require_once XOOPS_ROOT_PATH . '/header.php';
 
+$helper = Helper::getInstance();
 /** reCaptcha by google **/
 global $xoopsConfig, $xoopsModuleConfig;
 $captcha = '';
 
-$saveinfo = $xoopsModuleConfig['saveinfo'];
-$sendmail = $xoopsModuleConfig['sendmail'];
+$saveinfo = $helper->getConfig('saveinfo');
+$sendmail = $helper->getConfig('sendmail');
 
 if ('' !== Request::getString('g-recaptcha-response', '', 'POST')) {
     $captcha = Request::getString('g-recaptcha-response', '', 'POST');
 }
 
-if (!$captcha && $xoopsModuleConfig['recaptchause']) {
+if (!$captcha && $helper->getConfig('recaptchause')) {
     redirect_header('index.php', 2, _MD_CONTACT_MES_NOCAPTCHA);
 } else {
-    $response = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $xoopsModuleConfig['recaptchakey'] . '&response=' . $captcha . '&remoteip=' . $_SERVER['REMOTE_ADDR']);
-    if ($response['success'] === false && $xoopsModuleConfig['recaptchause']) {
+    $response = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $helper->getConfig('recaptchakey') . '&response=' . $captcha . '&remoteip=' . $_SERVER['REMOTE_ADDR']);
+    if (false === $response && $helper->getConfig('recaptchause')) {
         redirect_header('index.php', 2, _MD_CONTACT_MES_CAPTCHAINCORRECT);
     } else {
         global $xoopsConfig, $xoopsOption, $xoopsTpl, $xoopsUser, $xoopsUserIsAdmin, $xoopsLogger;
         $op         = Request::getString('op', 'form', 'POST');
         $department = Request::getString('department', '', 'GET');
-        if ($op === 'save') {
+        if ('save' === $op) {
             if ('' === Request::getString('submit', '', 'POST')) {
                 redirect_header(XOOPS_URL, 3, _MD_CONTACT_MES_ERROR);
             } else {
@@ -72,7 +77,7 @@ if (!$captcha && $xoopsModuleConfig['recaptchause']) {
                 // send mail can send message
                 if (1 === $sendmail) {
                     $message = $contactHandler->contactSendMail($contact);
-                    if ($xoopsModuleConfig['mailconfirm']) {
+                    if ($helper->getConfig('mailconfirm')) {
                         $res_mailconfirm = $contactHandler->contactSendMailConfirm($contact);
                     }
                 } elseif (1 === $saveinfo) {
@@ -87,4 +92,4 @@ if (!$captcha && $xoopsModuleConfig['recaptchause']) {
     }
 }
 
-include XOOPS_ROOT_PATH . '/footer.php';
+require_once XOOPS_ROOT_PATH . '/footer.php';

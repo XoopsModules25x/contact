@@ -19,8 +19,9 @@
  * @author      Hossein Azizabadi (AKA Voltan)
  * @author      Mirza (AKA Bleekk)
  */
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
-defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
+require_once __DIR__ . '/preloads/autoloader.php';
 
 $moduleDirName = basename(__DIR__);
 
@@ -28,7 +29,7 @@ $moduleDirName = basename(__DIR__);
 $modversion = [
     'version'             => 2.27,
     'module_status'       => 'RC-1',
-    'release_date'        => '2017/08/09',
+    'release_date'        => '2021/07/27',
     'name'                => _MI_CONTACT_NAME,
     'description'         => _MI_CONTACT_DESC,
     'official'            => 0,
@@ -44,7 +45,7 @@ $modversion = [
     // ------------------- Folders & Files -------------------
     'release_info'        => 'Changelog',
     'release_file'        => XOOPS_URL . "/modules/$moduleDirName/docs/changelog.txt",
-    //
+
     'manual'              => 'link to manual file',
     'manual_file'         => XOOPS_URL . "/modules/$moduleDirName/docs/install.txt",
     // images
@@ -54,15 +55,15 @@ $modversion = [
     'modicons16'          => 'assets/images/icons/16',
     'modicons32'          => 'assets/images/icons/32',
     //About
-    'demo_site_url'       => 'http://www.xoops.org',
+    'demo_site_url'       => 'https://xoops.org',
     'demo_site_name'      => 'XOOPS Demo Site',
     'support_url'         => 'https://xoops.org/modules/newbb/viewforum.php?forum=28/',
     'support_name'        => 'Support Forum',
     'module_website_url'  => 'www.xoops.org',
     'module_website_name' => 'XOOPS Project',
     // ------------------- Min Requirements -------------------
-    'min_php'             => '5.5',
-    'min_xoops'           => '2.5.8',
+    'min_php'             => '7.3',
+    'min_xoops'           => '2.5.10',
     'min_admin'           => '1.2',
     'min_db'              => ['mysql' => '5.1'],
     // ------------------- Admin Menu -------------------
@@ -78,10 +79,10 @@ $modversion = [
     'onUninstall'         => 'include/onuninstall.php',
     // -------------------  PayPal ---------------------------
     'paypal'              => [
-        'business'      => 'foundation@xoops.org',
+        'business'      => 'xoopsfoundation@gmail.com',
         'item_name'     => 'Donation : ' . _MI_CONTACT_NAME,
         'amount'        => 0,
-        'currency_code' => 'USD'
+        'currency_code' => 'USD',
     ],
     // ------------------- Mysql -----------------------------
     'sqlfile'             => ['mysql' => 'sql/mysql.sql'],
@@ -97,22 +98,19 @@ $modversion['helpsection'] = [
     ['name' => _MI_CONTACT_SUPPORT, 'link' => 'page=support'],
 ];
 
-// Templates
+// ------------------- Templates ------------------- //
 $modversion['templates'] = [
-    [
-        'file'        => $moduleDirName . '_index.tpl',
-        'description' => '_MI_CONTACT_TEMPLATES'
-    ],
+    ['file' => $moduleDirName . '_index.tpl', 'description' => '_MI_CONTACT_TEMPLATES',],
 ];
 
-// Blocks
+// ------------------- Blocks ------------------- //
 $modversion['blocks'][] = [
     'file'        => 'block_' . $moduleDirName . '_form_map.php',
     'name'        => _MI_B_CONTACT_FORM,
     'description' => _MI_B_CONTACT_FORM_DESC,
     'show_func'   => 'block_' . $moduleDirName . '_form_show',
     'options'     => '',
-    'template'    => 'block_' . $moduleDirName . '_form.tpl'
+    'template'    => 'block_' . $moduleDirName . '_form.tpl',
 ];
 $modversion['blocks'][] = [
     'file'        => 'block_' . $moduleDirName . '_form_map.php',
@@ -120,7 +118,7 @@ $modversion['blocks'][] = [
     'description' => _MI_B_CONTACT_MAP_DESC,
     'show_func'   => 'block_' . $moduleDirName . '_map_show',
     'options'     => '',
-    'template'    => 'block_' . $moduleDirName . '_map.tpl'
+    'template'    => 'block_' . $moduleDirName . '_map.tpl',
 ];
 $modversion['blocks'][] = [
     'file'        => 'block_' . $moduleDirName . '_form_map.php',
@@ -128,7 +126,7 @@ $modversion['blocks'][] = [
     'description' => _MI_B_CONTACT_FORM_MAP_DESC,
     'show_func'   => 'block_' . $moduleDirName . '_form_map_show',
     'options'     => '',
-    'template'    => 'block_' . $moduleDirName . '_form_map.tpl'
+    'template'    => 'block_' . $moduleDirName . '_form_map.tpl',
 ];
 $modversion['blocks'][] = [
     'file'        => 'block_' . $moduleDirName . '_form_map.php',
@@ -147,7 +145,7 @@ $modversion['config'][] = [
     'description' => '_MI_CONTACT_MAIL_SAVE_DB_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
-    'default'     => 1
+    'default'     => 1,
 ];
 
 $modversion['config'][] = [
@@ -156,7 +154,7 @@ $modversion['config'][] = [
     'description' => '_MI_CONTACT_MAIL_SEND_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
-    'default'     => 1
+    'default'     => 1,
 ];
 
 $modversion['config'][] = [
@@ -165,7 +163,7 @@ $modversion['config'][] = [
     'description' => '',
     'formtype'    => 'line_break',
     'valuetype'   => 'textbox',
-    'default'     => 'head'
+    'default'     => 'head',
 ];
 
 $modversion['config'][] = [
@@ -174,7 +172,7 @@ $modversion['config'][] = [
     'description' => '_MI_CONTACT_FORM_RECAPTCHA_USE_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
-    'default'     => 0
+    'default'     => 0,
 ];
 
 $modversion['config'][] = [
@@ -183,7 +181,7 @@ $modversion['config'][] = [
     'description' => '_MI_CONTACT_FORM_RECAPTCHA_KEY_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
-    'default'     => ''
+    'default'     => '',
 ];
 
 $modversion['config'][] = [
@@ -192,7 +190,7 @@ $modversion['config'][] = [
     'description' => '',
     'formtype'    => 'line_break',
     'valuetype'   => 'textbox',
-    'default'     => 'head'
+    'default'     => 'head',
 ];
 
 $modversion['config'][] = [
@@ -201,7 +199,7 @@ $modversion['config'][] = [
     'description' => '_MI_CONTACT_FORM_URL_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
-    'default'     => 0
+    'default'     => 0,
 ];
 
 $modversion['config'][] = [
@@ -210,7 +208,7 @@ $modversion['config'][] = [
     'description' => '_MI_CONTACT_FORM_ICQ_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
-    'default'     => 0
+    'default'     => 0,
 ];
 
 $modversion['config'][] = [
@@ -219,7 +217,7 @@ $modversion['config'][] = [
     'description' => '_MI_CONTACT_FORM_SKYPE_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
-    'default'     => 0
+    'default'     => 0,
 ];
 
 $modversion['config'][] = [
@@ -228,7 +226,7 @@ $modversion['config'][] = [
     'description' => '_MI_CONTACT_FORM_COMPANY_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
-    'default'     => 0
+    'default'     => 0,
 ];
 
 $modversion['config'][] = [
@@ -237,7 +235,7 @@ $modversion['config'][] = [
     'description' => '_MI_CONTACT_FORM_LOCATION_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
-    'default'     => 0
+    'default'     => 0,
 ];
 
 $modversion['config'][] = [
@@ -246,7 +244,7 @@ $modversion['config'][] = [
     'description' => '_MI_CONTACT_FORM_PHONE_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
-    'default'     => 0
+    'default'     => 0,
 ];
 
 $modversion['config'][] = [
@@ -255,7 +253,7 @@ $modversion['config'][] = [
     'description' => '_MI_CONTACT_FORM_ADDRESS_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
-    'default'     => 0
+    'default'     => 0,
 ];
 
 $modversion['config'][] = [
@@ -264,7 +262,7 @@ $modversion['config'][] = [
     'description' => '',
     'formtype'    => 'line_break',
     'valuetype'   => 'textbox',
-    'default'     => 'head'
+    'default'     => 'head',
 ];
 
 $modversion['config'][] = [
@@ -273,7 +271,7 @@ $modversion['config'][] = [
     'description' => '_MI_CONTACT_FORM_DEPT_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
-    'default'     => 0
+    'default'     => 0,
 ];
 
 $modversion['config'][] = [
@@ -282,7 +280,7 @@ $modversion['config'][] = [
     'description' => '_MI_CONTACT_DEPT_DESC',
     'formtype'    => 'textarea',
     'valuetype'   => 'array',
-    'default'     => ''
+    'default'     => '',
 ];
 
 $modversion['config'][] = [
@@ -291,7 +289,7 @@ $modversion['config'][] = [
     'description' => '_MI_CONTACT_SUBJECT_PREFIX_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
-    'default'     => 0
+    'default'     => 0,
 ];
 
 $modversion['config'][] = [
@@ -300,7 +298,7 @@ $modversion['config'][] = [
     'description' => '_MI_CONTACT_PREFIX_TEXT_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
-    'default'     => _MI_CONTACT_PREFIX_TEXT_DEFAULT
+    'default'     => _MI_CONTACT_PREFIX_TEXT_DEFAULT,
 ];
 
 $modversion['config'][] = [
@@ -309,7 +307,7 @@ $modversion['config'][] = [
     'description' => '',
     'formtype'    => 'line_break',
     'valuetype'   => 'textbox',
-    'default'     => 'head'
+    'default'     => 'head',
 ];
 
 $modversion['config'][] = [
@@ -318,7 +316,7 @@ $modversion['config'][] = [
     'description' => '_MI_CONTACT_TOPINFO_DESC',
     'formtype'    => 'textarea',
     'valuetype'   => 'text',
-    'default'     => ''
+    'default'     => '',
 ];
 
 $modversion['config'][] = [
@@ -327,7 +325,7 @@ $modversion['config'][] = [
     'description' => '_MI_CONTACT_DEFAULT_DESC',
     'formtype'    => 'textarea',
     'valuetype'   => 'text',
-    'default'     => ''
+    'default'     => '',
 ];
 
 $modversion['config'][] = [
@@ -336,7 +334,7 @@ $modversion['config'][] = [
     'description' => '_MI_CONTACT_MAP_DESC',
     'formtype'    => 'textarea',
     'valuetype'   => 'text',
-    'default'     => ''
+    'default'     => '',
 ];
 
 $modversion['config'][] = [
@@ -345,7 +343,7 @@ $modversion['config'][] = [
     'description' => '',
     'formtype'    => 'line_break',
     'valuetype'   => 'textbox',
-    'default'     => 'head'
+    'default'     => 'head',
 ];
 
 $modversion['config'][] = [
@@ -354,7 +352,7 @@ $modversion['config'][] = [
     'description' => '_MI_CONTACT_RECIPIENT_STD_DESC',
     'formtype'    => 'text',
     'valuetype'   => 'text',
-    'default'     => $GLOBALS['xoopsConfig']['adminmail']
+    'default'     => $GLOBALS['xoopsConfig']['adminmail'],
 ];
 
 $modversion['config'][] = [
@@ -363,7 +361,7 @@ $modversion['config'][] = [
     'description' => '_MI_CONTACT_MAIL_CONFIRM_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
-    'default'     => 0
+    'default'     => 0,
 ];
 
 $modversion['config'][] = [
@@ -372,7 +370,7 @@ $modversion['config'][] = [
     'description' => '',
     'formtype'    => 'line_break',
     'valuetype'   => 'textbox',
-    'default'     => 'head'
+    'default'     => 'head',
 ];
 
 $modversion['config'][] = [
@@ -381,7 +379,7 @@ $modversion['config'][] = [
     'description' => '_MI_CONTACT_PERPAGE_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
-    'default'     => 10
+    'default'     => 10,
 ];
 // Show breadcrumb
 $modversion['config'][] = [

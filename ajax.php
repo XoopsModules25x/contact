@@ -18,8 +18,8 @@
  * @author      Trabis <lusopoemas@gmail.com>
  * @author      Hossein Azizabadi (AKA Voltan)
  */
-
-include __DIR__ . '/header.php';
+require_once __DIR__ . '/header.php';
+/** @var ContactHandler $contactHandler */
 
 if (!empty($_POST)) {
     // Info Processing

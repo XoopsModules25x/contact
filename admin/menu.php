@@ -19,44 +19,63 @@
  * @author      Hossein Azizabadi (AKA Voltan)
  */
 
-defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
+use Xmf\Module\Admin;
+use XoopsModules\Contact\{
+    Helper
+};
+/** @var Helper $helper */
 
 $moduleDirName = basename(dirname(__DIR__));
-$pathIcon32    = \Xmf\Module\Admin::menuIconPath('');
+$moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
-xoops_loadLanguage('modinfo', $moduleDirName);
+$helper = Helper::getInstance();
+$helper->loadLanguage('common');
+$helper->loadLanguage('feedback');
+
+$pathIcon32 = Admin::menuIconPath('');
+$pathModIcon32 = XOOPS_URL .   '/modules/' . $moduleDirName . '/assets/images/icons/32/';
+if (is_object($helper->getModule()) && false !== $helper->getModule()->getInfo('modicons32')) {
+    $pathModIcon32 = $helper->url($helper->getModule()->getInfo('modicons32'));
+}
 
 $adminmenu[] = [
     'title' => _MI_CONTACT_MENU_HOME,
     'desc'  => _MI_CONTACT_MENU_HOME_DESC,
     'icon'  => $pathIcon32 . '/home.png',
-    'link'  => 'admin/index.php'
+    'link'  => 'admin/index.php',
 ];
 
 $adminmenu[] = [
     'title' => _MI_CONTACT_MENU_CONTACT,
     'desc'  => _MI_CONTACT_MENU_CONTACT_DESC,
     'icon'  => $pathIcon32 . '/content.png',
-    'link'  => 'admin/main.php'
+    'link'  => 'admin/main.php',
 ];
 
 $adminmenu[] = [
     'title' => _MI_CONTACT_MENU_LOGS,
     'desc'  => _MI_CONTACT_MENU_LOGS_DESC,
     'icon'  => $pathIcon32 . '/identity.png',
-    'link'  => 'admin/log.php'
+    'link'  => 'admin/log.php',
 ];
 
 $adminmenu[] = [
     'title' => _MI_CONTACT_MENU_TOOLS,
     'desc'  => _MI_CONTACT_MENU_TOOLS_DESC,
     'icon'  => $pathIcon32 . '/delete.png',
-    'link'  => 'admin/tools.php'
+    'link'  => 'admin/tools.php',
+];
+
+// Blocks Admin
+$adminmenu[] = [
+    'title' => constant('CO_' . $moduleDirNameUpper . '_' . 'BLOCKS'),
+    'link' => 'admin/blocksadmin.php',
+    'icon' => $pathIcon32 . '/block.png',
 ];
 
 $adminmenu[] = [
     'title' => _MI_CONTACT_MENU_ABOUT,
     'desc'  => _MI_CONTACT_MENU_ABOUT_DESC,
     'icon'  => $pathIcon32 . '/about.png',
-    'link'  => 'admin/about.php'
+    'link'  => 'admin/about.php',
 ];

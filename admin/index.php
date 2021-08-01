@@ -19,8 +19,9 @@
  * @author      Hossein Azizabadi (AKA Voltan)
  */
 
+/** @var ContactHandler $contactHandler */
 // Call header
-require __DIR__ . '/admin_header.php';
+require_once __DIR__ . '/admin_header.php';
 // Display Admin header
 xoops_cp_header();
 
@@ -34,4 +35,4 @@ $adminObject->displayIndex();
 // Call template file
 $GLOBALS['xoopsTpl']->display(XOOPS_ROOT_PATH . '/modules/contact/templates/admin/contact_index.tpl');
 // Call footer
-require __DIR__ . '/admin_footer.php';
+require_once __DIR__ . '/admin_footer.php';
