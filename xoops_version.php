@@ -28,7 +28,7 @@ $moduleDirName = basename(__DIR__);
 // ------------------- Informations ------------------- //
 $modversion = [
     'version'             => '2.27.0',
-    'module_status'       => 'RC-1',
+    'module_status'       => 'RC-2',
     'release_date'        => '2022/02/20',
     'name'                => _MI_CONTACT_NAME,
     'description'         => _MI_CONTACT_DESC,
